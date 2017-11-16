@@ -1,0 +1,40 @@
+{
+  "name": "react-native-sectioned-multi-select",
+  "version": "0.0.1",
+  "description": "a multi (or single) select component with support for sub categories, search, chips.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.44.0",
+    "react-native-vector-icons": "^4.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renrizzolo/react-native-sectioned-multi-select.git"
+  },
+  "keywords": [
+    "select",
+    "multiselect",
+    "picker",
+    "category",
+    "react",
+    "native"
+  ],
+  "author": "Ren Rizzolo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renrizzolo/react-native-sectioned-multi-select/issues"
+  },
+  "homepage": "https://github.com/renrizzolo/react-native-sectioned-multi-select#readme"
+}
