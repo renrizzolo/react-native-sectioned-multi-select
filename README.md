@@ -190,6 +190,7 @@ You can pass a styles object to style it how you like.
 
 These are the styles you can change:  
 	`container`  
+	`listContainer`  
 	`selectToggle`  
 	`selectToggleText`  
 	`item`  
