@@ -9,10 +9,22 @@ The problems I had were that I needed it to be in a modal, because of nested Scr
 ## Usage
 react-native-vector-icons package is required, [set it up](https://github.com/oblador/react-native-vector-icons) if you haven't already
 
+You can programatically remove all items by setting up a ref to the component:
+```
+<SectionedMultiSelect
+    ...
+    ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
+/>
+```
+and then use the `_removeAllItems` function:
+```
+onPress={() => this.SectionedMultiSelect._removeAllItems()}
+```
+
 Required props:  
-`items` array  
-`uniqueKey` string  
-`onSelectedItemsChange` function  
+`items` | array  
+`uniqueKey` | string  
+`onSelectedItemsChange` | function  
 
 ```javascript
 import React, { Component } from 'react';
