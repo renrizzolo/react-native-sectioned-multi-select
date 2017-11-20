@@ -6,6 +6,12 @@ It's intended for long-ish lists, as it opens in a Modal (I might make this opti
 This is based on https://github.com/toystars/react-native-multiple-select. 
 The problems I had were that I needed it to be in a modal, because of nested ScrollViews not working on Android, and I needed to display categories with sub-categories.
 
+
+![preview 1](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-1.gif)
+![preview 2](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-2.gif)
+![preview 3](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-3.gif)
+![preview 4](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-4.gif)
+
 ## Usage
 react-native-vector-icons package is required, [set it up](https://github.com/oblador/react-native-vector-icons) if you haven't already
 
