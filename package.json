@@ -1,6 +1,6 @@
 {
   "name": "react-native-sectioned-multi-select",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "a multi (or single) select component with support for sub categories, search, chips.",
   "main": "index.js",
   "directories": {
@@ -9,9 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
