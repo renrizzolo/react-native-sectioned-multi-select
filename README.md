@@ -13,7 +13,11 @@ The problems I had were that I needed it to be in a modal, because of nested Scr
 ![preview 4](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-4.gif)
 
 ## Usage
-react-native-vector-icons package is required, [set it up](https://github.com/oblador/react-native-vector-icons) if you haven't already
+[![NPM Version](https://img.shields.io/npm/v/react-native-sectioned-multi-select.svg?style=flat)](https://www.npmjs.com/package/react-native-sectioned-multi-select)
+
+`npm i -S react-native-sectioned-multi-select`
+
+react-native-vector-icons package is required, [set it up](https://github.com/oblador/react-native-vector-icons) if you haven't already.
 
 Required props:  
 `items` | array  
