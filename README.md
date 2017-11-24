@@ -162,8 +162,9 @@ Props, there are lots.
 |searchPlaceholderText	|'Search categories...'| string		|the placeholder text for the search input |
 |removeAllText	|'Remove all'| string		|Text for optional remove all button |
 |showRemoveAll	|false| bool		| Whether to show a Remove all chip at the beginning of the selected items chips |
-
 |noResultsText					| 'Sorry, no results'| string		|the text to display when the search result is empty |
+|modalSupportedOrientations	|['landscape', 'portrait']| array		| The suppoertedOirentations of the Modal |
+|modalAnimationType	|'fade'| string		|The animation type of the Modal (fade or slide) |
 |styles									| {}						| object		|Styles object - see styles section |
 |colors									| {...}	| object				|colors object - see colors section |
 |itemFontFamily				| 'condensed'		| string\|object	|font family for the parent items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section). |
