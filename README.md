@@ -207,8 +207,8 @@ These are the styles you can change:
 	`subItemText`  
 	`searchBar`  
 	`center`  
-	`separator`
-	`subSeparator`
+	`separator`  
+	`subSeparator`  
 	`chipContainer`  
 	`chipText`  
 	`chipIcon`  
