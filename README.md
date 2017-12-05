@@ -160,6 +160,7 @@ Props, there are lots.
 |selectText							|'Select'				| string		|the text for the select component |
 |confirmText						|'Confirm'			| string		|the text for the confirm button|
 |searchPlaceholderText	|'Search categories...'| string		|the placeholder text for the search input |
+|hideSearch  | false | bool | hide the search bar entirely |
 |removeAllText	|'Remove all'| string		|Text for optional remove all button |
 |showRemoveAll	|false| bool		| Whether to show a Remove all chip at the beginning of the selected items chips |
 |noResultsText					| 'Sorry, no results'| string		|the text to display when the search result is empty |
