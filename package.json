@@ -15,7 +15,8 @@
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",
-    "react-native-vector-icons": "^4.1.1"
+    "react-native-vector-icons": "^4.1.1",
+    "react-native-elements": "^0.18.5",
   },
   "repository": {
     "type": "git",
