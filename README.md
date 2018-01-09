@@ -197,24 +197,23 @@ Props, there are lots.
 ## Colors
 You can pass a colors object to theme it how you like.
 
-These are the available options and their defaults:
-```
-primary:'#3f51b5',
-success: '#4caf50',
-text:'#2e2e2e',
-subText: '#848787',
-toggleTextColor: '#ffffff',
-selectToggleTextColor: '#ffffff',
-searchPlaceholderTextColor: '#999',
-searchSelectionColor: 'rgba(0,0,0,0.2)',
-chipColor: '#848787',
-```
+These are the available colors and their defaults:
 
-Primary is used for the dropdown toggle icon, the no results text and the background of the confirm button.  
-Success is used for the selected checkmark icon.  
-Text is the parent item text.  
-subText is the sub item text.  
+| Name                  | Default       | Description  |  
+| -------------         |-------------  | ----- |
+|primary | #3f51b5 | used for the dropdown toggle icon, the no results text and the background of the confirm button. | 
+|success |  #4caf50 |used for the selected checkmark icon.  | 
+|text | #2e2e2e | Parent item text color | 
+|subText |  #848787 | Sub item text color | 
+|selectToggleTextColor |  #333 | Select button text color | 
+|searchPlaceholderTextColor |  #999 | Search input placeholder text color |
+|searchSelectionColor |  rgba(0,0,0,0.2) | Search input text selection color |
+|itemBackground |  #fff  | parent item background color |
+|subItemBackground |  #ffffff  | sub item background color |
+|chipColor |  #848787 | chip color |
+|disabled |  #d7d7d7 | Selected icon color for sub items when highlight children is used |
 
+ 
 ## Styles
 You can pass a styles object to style it how you like.
 
@@ -237,7 +236,8 @@ These are the styles you can change:
 	`searchTextInput`  
 	`scrollView`  
 	`button`  
-	`confirmText`  
+	`confirmText`
+  `selectedItem`
 
 
 ## Fonts
