@@ -146,32 +146,53 @@ Sub categories are optional, there's no need to have `subKey` items if you don't
 
 Props, there are lots.
 
-
+### Main
 | Prop        					| Default       | type 			| Desc  |
 | ------------- 				|-------------	| -----			|-----	|
-| single     						| false 				| bool 			|allow only one selection |
+|uniqueKey              | 'id'          | string    |the unique key for your items
+|subKey           | 'sub'         | string    |the array of sub items within items |
 |selectedItems					| []						| array 		|the selected items |
-|uniqueKey							| 'id'					| string		|the unique key for your items
-|subKey						| 'sub'					| string		|the array of sub items within items |
 |onSelectedItemsChange	| () => {}			| function	|function that runs when an item is toggled|
-|showDropDowns					| true					| bool			|whether to allow dropdown toggles to show/hide the sub items (if false, sub items are always shown)|
-|showChips							| true					| bool			|whether to show the chips of the selected items |
-|readOnlyHeadings				| false					| bool			|whether the parent items can be pressed or not. If true and `showDropdowns` is true, pressing the parent item will toggle the dropdown  |
-|selectText							|'Select'				| string		|the text for the select component |
-|confirmText						|'Confirm'			| string		|the text for the confirm button|
-|searchPlaceholderText	|'Search categories...'| string		|the placeholder text for the search input |
+|onSelectedItemObjectsChange  | () => {}      | function  |function that returns the selected items as their original objects instead of an array of ids |
+
+
+### Options
+
+| Prop                  | Default       | type      | Desc  |
+| -------------         |-------------  | -----     |-----  |
+| single                | false         | bool      |allow only one selection |
+| showDropDowns         | true          | bool      |whether to allow dropdown toggles to show/hide the sub items (if false, sub items are always shown)|
+|showChips              | true          | bool      |whether to show the chips of the selected items |
+|readOnlyHeadings       | false         | bool      |whether the parent items can be pressed or not. If true and `showDropdowns` is true, pressing the parent item will toggle the dropdown  |
 |hideSearch  | false | bool | hide the search bar entirely |
-|removeAllText	|'Remove all'| string		|Text for optional remove all button |
-|showRemoveAll	|false| bool		| Whether to show a Remove all chip at the beginning of the selected items chips |
-|noResultsText					| 'Sorry, no results'| string		|the text to display when the search result is empty |
-|modalSupportedOrientations	|['landscape', 'portrait']| array		| The suppoertedOirentations of the Modal |
-|modalAnimationType	|'fade'| string		|The animation type of the Modal (fade or slide) |
-|styles									| {}						| object		|Styles object - see styles section |
-|colors									| {...}	| object				|colors object - see colors section |
-|itemFontFamily				| 'condensed'		| string\|object	|font family for the parent items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section). |
-|subItemFontFamily		| 'light'				| string\|object	|font family for the sub items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
-|searchTextFontFamily	| 'black'				| string\|object	|font family for the search input. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
-|confirmFontFamily		| 'bold'				| string\|object	|font family for the confirm button. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
+|selectChildren | false | bool | if true, selecting a parent item will automatically select its children |
+|highlightChildren | false | bool | if true, selecting a parent item will automatically highlight its children (but the child ids won't be broadcast to the selectedItems state) |
+|showRemoveAll  |false| bool  | Whether to show a Remove all chip at the beginning of the selected items chips |
+|modalSupportedOrientations |['landscape', 'portrait']| array   | The supportedOrientations of the Modal |
+|modalAnimationType |'fade'| string   |The animation type of the Modal (fade or slide) |
+
+### Customization
+
+| Prop                  | Default       | type      | Desc  |
+| -------------         |-------------  | -----     |-----  |
+|selectText             |'Select'       | string    |the text for the select component |
+|confirmText            |'Confirm'      | string    |the text for the confirm button|
+|searchPlaceholderText  |'Search categories...'| string   |the placeholder text for the search input |
+|removeAllText  |'Remove all'| string   |Text for optional remove all button |
+|noResultsComponent         | `<Text>Sorry, no results</Text>` | object   |the component to display when the search results are empty |
+|loadingComponent    | `<View style={{marginTop:20, alignItems:'center', justifyContent:'center'}}>   <ActivityIndicator/>  </View>` | object   |the component to display when the items are empty |
+|selectToggleIconComponent | Material `keyboard-arrow-down` | object | The icon to the right of the dropdown in its initial state ) |
+|searchIconComponent | Material `search` | object | The search input icon (default Magnifying glass)
+|selectedIconComponent | Material `check` | object | The icon to the left of the selected item (default Checkmark)
+|dropDownToggleIconUpComponent | Material `keyboard-arrow-up` | object | The parent dropdown icon in closed state
+|dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object | The parent dropdown icon in opened state
+|styles                 | {}            | object    |Styles object - see styles section |
+|colors                 | {...} | object        |colors object - see colors section |
+|itemFontFamily       | 'condensed'   | string\|object  |font family for the parent items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section). |
+|subItemFontFamily    | 'light'       | string\|object  |font family for the sub items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
+|searchTextFontFamily | 'black'       | string\|object  |font family for the search input. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
+|confirmFontFamily    | 'bold'        | string\|object  |font family for the confirm button. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
+
 
 ## Colors
 You can pass a colors object to theme it how you like.
