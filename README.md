@@ -188,11 +188,10 @@ Props, there are lots.
 |dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object | The parent dropdown icon in opened state
 |styles                 | {}            | object    |Styles object - see styles section |
 |colors                 | {...} | object        |colors object - see colors section |
-|itemFontFamily       | 'condensed'   | string\|object  |font family for the parent items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section). |
-|subItemFontFamily    | 'light'       | string\|object  |font family for the sub items. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
-|searchTextFontFamily | 'black'       | string\|object  |font family for the search input. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
-|confirmFontFamily    | 'bold'        | string\|object  |font family for the confirm button. Can be a regular style object or a string that coresponds to my own platform specific mappings (see Fonts section).|
-
+|itemFontFamily       | Avenir / normal - bold   | object  |font family for the parent items. Can be a regular style object |
+|subItemFontFamily    |  Avenir / normal - 200       | object  |font family for the sub items. Can be a regular style object |
+|searchTextFontFamily |  Avenir / normal - 200       | object  |font family for the search input. Can be a regular style object |
+|confirmFontFamily    |  Avenir / normal - bold        | object  |font family for the confirm button. |
 
 ## Colors
 You can pass a colors object to theme it how you like.
@@ -239,27 +238,3 @@ These are the styles you can change:
 	`confirmText`
   `selectedItem`
 
-
-## Fonts
-
-You can customize fonts with these props:  
-`itemFontFamily`  
-`subItemFontFamily`  
-`searchTextFontFamily`  
-`confirmFontFamily`  
-
-you can pass in a string of `regular`, `condensed`, `light`, `bold`, `black` or `serif`.
-
-|font 					| ios 							| android 				|
-|----						|----								|----							|
-|regular				|	Avenir-Heavy				|sans-serif				|
-|condensed				|AvenirNextCondensed-DemiBold		|sans-serif-condensed		|
-|light				|Avenir-Light								|sans-serif-light		|
-|bold				|Avenir-Black			|	sans-serif (700)	|
-|black				|Avenir-Black					|sans-serif (900)			|
-|serif				|	Georgia	| serif |
-
-If you prefer to use your own fonts, you can pass in an object instead:
-```
-searchTextFontFamily={{fontFamily:'sans-serif-light'}}
-```

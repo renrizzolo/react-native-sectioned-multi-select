@@ -1,25 +1,27 @@
 # Changelog
+## [Unreleased] - 2018-01-10
+
+### Added
+- disabled color. When highlightChildren is true, the child checkmarks become the disabled color
+- highlighted children TouchableOpacity disabled. You can't / it doesn't make sense to cherry pick sub items in this mode
+
+### Removed
+- removed / streamlined fonts
+
+### Changed
+- moved RowItem and SubRowItem into separate files
+
+### Fixed
+- linting etc.
+- fixed `reduceSelected` function - rejecting children works properly now
 
 ## [Unreleased] - 2018-01-08
 
 ### Added
-- Custom component for no results
-    - `noResultsComponent` - If your items are loaded from an API you could render an Activity Indicator like so: 
-    ```
-    noResultsComponent={(this.state.items && this.state.items.length) ? noResults : loading}
-
-    ...
-    const loading = 
-	<View style={styles.center}>
-		<ActivityIndicator size={"large"}/>
-	</View>;
-
-	const noResults = 
-		<View style={styles.center}>
-			<Text>Sorry No results.</Text>
-		</View>;
-
-    ```
+- Custom component for no results text
+    - `noResultsComponent` - More customizable than a string.
+- custom component for loading
+    - `loadingComponent` - display an ActivityIndicator (default) component when items are empty / undefined
 - Custom components for icons 
     - `selectToggleIconComponent` - The icon to the right of the dropdown in its initial state (Default arrow down)
     - `searchIconComponent` - The search input icon (default Magnifying glass)
@@ -30,7 +32,7 @@
     - `selectChildren` - boolean
 - Highlight (but don't broadcast to state) all child ids when a parent is selected
     - `highlightChildren` - boolean
-    
+- 
 ### Removed
 - Removed No results text string in favour of a component (object) to allow for more customization.
 
@@ -39,6 +41,7 @@
 
 ### Fixed
 - Erroneously used `item.id` instead of `item[uniqueKey]`
+
 
 ## [0.2.0] - 2017-12-06
 
