@@ -217,6 +217,45 @@ const fonts = {
     }),
 }
 
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  container: {
+    paddingTop: 40,
+    paddingHorizontal: 20,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#333',
+  },
+  border: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#dadada',
+    marginBottom: 20,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    marginTop: 20,
+  },
+  label: {
+    fontWeight: 'bold',
+  },
+  switch: {
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+})
+
 const tintColor = '#174A87'
 
 const Loading = props => (
@@ -272,11 +311,10 @@ export default class App extends Component {
   fetchCategories = () => {
     this.setState({ hasErrored: false })
 
-    fetch('https://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=1500ms')
+    fetch('https://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms')
       .then(response => response.json())
       .then((responseJson) => {
         this.setState({ cats: responseJson })
-        console.log(this.state.cats)
       })
       .catch((error) => {
         this.setState({ hasErrored: true })
@@ -362,43 +400,3 @@ export default class App extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    marginTop: 30,
-  },
-  container: {
-    paddingTop: 40,
-    paddingHorizontal: 20,
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#333',
-  },
-  border: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#dadada',
-    marginBottom: 0,
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 20,
-  },
-  label: {
-    fontWeight: 'bold',
-  },
-  switch: {
-    marginBottom: 20,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
-})
-
