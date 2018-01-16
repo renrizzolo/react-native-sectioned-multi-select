@@ -1,23 +1,9 @@
 # Changelog
-## [Unreleased] - 2018-01-10
+## 0.3.0 - 2018-01-16
 
 ### Added
 - disabled color. When highlightChildren is true, the child checkmarks become the disabled color
 - highlighted children TouchableOpacity disabled. You can't / it doesn't make sense to cherry pick sub items in this mode
-
-### Removed
-- removed / streamlined fonts
-
-### Changed
-- moved RowItem and SubRowItem into separate files
-
-### Fixed
-- linting etc.
-- fixed `reduceSelected` function - rejecting children works properly now
-
-## [Unreleased] - 2018-01-08
-
-### Added
 - Custom component for no results text
     - `noResultsComponent` - More customizable than a string.
 - custom component for loading
@@ -35,12 +21,16 @@
 - 
 ### Removed
 - Removed No results text string in favour of a component (object) to allow for more customization.
+- removed / streamlined fonts
 
 ### Changed
 - Moved row item and sub item to separate classes, in order to enhance performance for long lists. Use `shouldComponentUpdate` to not re-render every item on toggle.
+- moved RowItem and SubRowItem into separate files
 
 ### Fixed
+- fixed `reduceSelected` function - rejecting children works properly now
 - Erroneously used `item.id` instead of `item[uniqueKey]`
+
 
 
 ## [0.2.0] - 2017-12-06
