@@ -311,7 +311,7 @@ export default class App extends Component {
   fetchCategories = () => {
     this.setState({ hasErrored: false })
 
-    fetch('https://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms')
+    fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms', {headers: 'no-cache'})
       .then(response => response.json())
       .then((responseJson) => {
         this.setState({ cats: responseJson })
@@ -363,7 +363,7 @@ export default class App extends Component {
         loadingComponent={
           <Loading 
             hasErrored={this.state.hasErrored}
-            etchCategories={this.fetchCategories} 
+            fetchCategories={this.fetchCategories} 
           />
         }
         showDropDowns={this.state.showDropDowns}
