@@ -9,7 +9,7 @@
 	"dependencies": {
 		"react": "16.0.0",
 		"react-native": "0.50.3",
-		"react-native-sectioned-multi-select": "git+https://github.com/renrizzolo/react-native-sectioned-multi-select.git#dev",
+		"react-native-sectioned-multi-select": "git+https://github.com/renrizzolo/react-native-sectioned-multi-select.git",
 		"react-native-vector-icons": "^4.4.2"
 	},
 	"devDependencies": {
