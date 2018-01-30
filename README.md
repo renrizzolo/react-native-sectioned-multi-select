@@ -172,6 +172,7 @@ Props, there are lots.
 |modalSupportedOrientations |['landscape', 'portrait']| array   | The supportedOrientations of the Modal |
 |modalAnimationType |'fade'| string   |The animation type of the Modal (fade or slide) |
 
+
 ### Customization
 
 | Prop                  | Default       | type      | Desc  |
@@ -192,7 +193,8 @@ Props, there are lots.
 |itemFontFamily       | Avenir / normal - bold   | object  |font family for the parent items. Can be a regular style object |
 |subItemFontFamily    |  Avenir / normal - 200       | object  |font family for the sub items. Can be a regular style object |
 |searchTextFontFamily |  Avenir / normal - 200       | object  |font family for the search input. Can be a regular style object |
-|confirmFontFamily    |  Avenir / normal - bold        | object  |font family for the confirm button. |
+|confirmFontFamily    |  Avenir / normal - bold      | object  |font family for the confirm button. |
+|numberOfLines        |null              |number     |numberOfLines for label text |  
 
 ## Colors
 You can pass a colors object to theme it how you like.

@@ -1,4 +1,18 @@
 # Changelog
+## 0.3.3 - 2017-01-18
+### Added
+	- Added `numberOfLines` prop, so long labels can be truncated (defaults to null - no truncation).
+### Changed
+	- add flex to label text so checkmark is visible for long items
+	
+## 0.3.2 - 2017-01-18
+### Changed
+	- Make remove all chip use chipColor
+
+## 0.3.1 - 2017-01-17
+### Changed
+	- Add changelog to Readme
+
 ## 0.3.0 - 2018-01-16
 
 ### Added

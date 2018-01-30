@@ -9,125 +9,126 @@ import {
   TouchableWithoutFeedback,
   sectionedList,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 //import SLIcon from 'react-native-vector-icons/SimpleLineIcons'
 
 
-// const items = [
-//   {
-//     name: 'Fruits',
-//     id: 0,
-//     children: [
-//       {
-//         name: 'Apple',
-//         id: 10,
-//       },
-//       {
-//         name: 'Strawberry',
-//         id: 11,
-//       },
-//       {
-//         name: 'Pineapple',
-//         id: 13,
-//       },
-//       {
-//         name: 'Banana',
-//         id: 14,
-//       },
-//       {
-//         name: 'Watermelon',
-//         id: 15,
-//       },
-//       {
-//         name: 'אבטיח',
-//         id: 17,
-//       },
-//       {
-//         name: 'Raspberry',
-//         id: 18,
-//       },
-//       {
-//         name: 'Orange',
-//         id: 19,
-//       },
-//       {
-//         name: 'Mandarin',
-//         id: 20,
-//       },
-//       {
-//         name: 'Papaya',
-//         id: 21,
-//       },
-//       {
-//         name: 'Lychee',
-//         id: 22,
-//       },
-//       {
-//         name: 'Cherry',
-//         id: 23,
-//       },
-//       {
-//         name: 'Peach',
-//         id: 24,
-//       },
-//       {
-//         name: 'Apricot',
-//         id: 25,
-//       },
+const items = [
+  {
+    name: 'Fruits from various places around the world, if you like',
+    id: 0,
+    children: [
+      {
+        name: 'Apple',
+        id: 10,
+      },
+      {
+        name: 'Strawberry and Banana and Pineapple and Pawpaw and Peach',
+        id: 11,
+      },
+      {
+        name: 'Pineapple',
+        id: 13,
+      },
+      {
+        name: 'Banana',
+        id: 14,
+      },
+      {
+        name: 'Watermelon',
+        id: 15,
+      },
+      {
+        name: 'אבטיח',
+        id: 17,
+      },
+      {
+        name: 'Raspberry',
+        id: 18,
+      },
+      {
+        name: 'Orange',
+        id: 19,
+      },
+      {
+        name: 'Mandarin',
+        id: 20,
+      },
+      {
+        name: 'Papaya',
+        id: 21,
+      },
+      {
+        name: 'Lychee',
+        id: 22,
+      },
+      {
+        name: 'Cherry',
+        id: 23,
+      },
+      {
+        name: 'Peach',
+        id: 24,
+      },
+      {
+        name: 'Apricot',
+        id: 25,
+      },
 
-//     ],
-//   },
-//   {
-//     name: 'Gems',
-//     id: 1,
-//     children: [
-//       {
-//         name: 'Quartz',
-//         id: 26,
-//       },
-//       {
-//         name: 'Zircon',
-//         id: 27,
-//       },
-//       {
-//         name: 'Sapphire',
-//         id: 28,
-//       },
-//       {
-//         name: 'Topaz',
-//         id: 29,
-//       },
-//     ],
-//   },
-//   {
-//     name: 'Plants',
-//     id: 2,
-//     children: [
-//       {
-//         name: "Mother In Law\'s Tongue",
-//         id: 30,
-//       },
-//       {
-//         name: 'Yucca',
-//         id: 31,
-//       },
-//       {
-//         name: 'Monsteria',
-//         id: 32,
-//       },
-//       {
-//         name: 'Palm',
-//         id: 33,
-//       },
+    ],
+  },
+  {
+    name: 'Gems',
+    id: 1,
+    children: [
+      {
+        name: 'Quartz',
+        id: 26,
+      },
+      {
+        name: 'Zircon',
+        id: 27,
+      },
+      {
+        name: 'Sapphire',
+        id: 28,
+      },
+      {
+        name: 'Topaz',
+        id: 29,
+      },
+    ],
+  },
+  {
+    name: 'Plants',
+    id: 2,
+    children: [
+      {
+        name: "Mother In Law\'s Tongue",
+        id: 30,
+      },
+      {
+        name: 'Yucca',
+        id: 31,
+      },
+      {
+        name: 'Monsteria',
+        id: 32,
+      },
+      {
+        name: 'Palm',
+        id: 33,
+      },
 
-//     ],
-//   },
-//   {
-//     name: 'No child',
-//     id: 34,
-//   },
-// ]
+    ],
+  },
+  {
+    name: 'No child',
+    id: 34,
+  },
+]
 
 // const items2 = []
 // for (let i = 0; i < 100; i++) {
@@ -354,7 +355,7 @@ export default class App extends Component {
           React native sectioned multi select example.
     </Text>
       <SectionedMultiSelect
-        items={this.state.cats}
+        items={items}
         ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
         uniqueKey="id"
         subKey="children"
@@ -372,12 +373,17 @@ export default class App extends Component {
         showRemoveAll
         selectChildren={this.state.selectChildren}
         highlightChildren={this.state.highlightChildren}
-        //hideSearch
-        // itemFontFamily={fonts.boldCondensed}
+        //  hideSearch
+        //  itemFontFamily={fonts.boldCondensed}
         onSelectedItemsChange={this.onSelectedItemsChange}
         onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
         selectedItems={this.state.selectedItems}
-
+        styles={{
+          chipText: {
+            maxWidth: Dimensions.get('screen').width - 90,
+          }
+        }}
+        // numberOfLines={1}
       />
     <View>
       <View style={styles.border}>
