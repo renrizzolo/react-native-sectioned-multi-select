@@ -1,15 +1,20 @@
 # Changelog
-## 0.3.3 - 2017-01-30
+
+## 0.3.4 - 2018-02-14
+### Fixed
+    - fixed `onSelectedItemObjectsChange` for single select mode #9
+
+## 0.3.3 - 2018-01-30
 ### Added
 	- Added `numberOfLines` prop, so long labels can be truncated (defaults to null - no truncation).
 ### Changed
 	- add flex to label text so checkmark is visible for long items
 
-## 0.3.2 - 2017-01-18
+## 0.3.2 - 2018-01-18
 ### Changed
 	- Make remove all chip use chipColor
 
-## 0.3.1 - 2017-01-17
+## 0.3.1 - 2018-01-17
 ### Changed
 	- Add changelog to Readme
 
