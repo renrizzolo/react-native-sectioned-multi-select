@@ -1,5 +1,7 @@
 # Changelog
-
+## 0.3.5 - 2018-03-08
+### Added
+    - customizable `selectedText` string (defaults to 'selected'). #13
 ## 0.3.4 - 2018-02-14
 ### Fixed
     - fixed `onSelectedItemObjectsChange` for single select mode #9
