@@ -17,115 +17,115 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 
 const items = [
   {
-    name: 'Fruits from various places around the world, if you like',
+    title: 'Fruits from various places around the world, if you like',
     id: 0,
     children: [
       {
-        name: 'Apple',
+        title: 'Apple',
         id: 10,
       },
       {
-        name: 'Strawberry and Banana and Pineapple and Pawpaw and Peach',
+        title: 'Strawberry and Banana and Pineapple and Pawpaw and Peach',
         id: 11,
       },
       {
-        name: 'Pineapple',
+        title: 'Pineapple',
         id: 13,
       },
       {
-        name: 'Banana',
+        title: 'Banana',
         id: 14,
       },
       {
-        name: 'Watermelon',
+        title: 'Watermelon',
         id: 15,
       },
       {
-        name: 'אבטיח',
+        title: 'אבטיח',
         id: 17,
       },
       {
-        name: 'Raspberry',
+        title: 'Raspberry',
         id: 18,
       },
       {
-        name: 'Orange',
+        title: 'Orange',
         id: 19,
       },
       {
-        name: 'Mandarin',
+        title: 'Mandarin',
         id: 20,
       },
       {
-        name: 'Papaya',
+        title: 'Papaya',
         id: 21,
       },
       {
-        name: 'Lychee',
+        title: 'Lychee',
         id: 22,
       },
       {
-        name: 'Cherry',
+        title: 'Cherry',
         id: 23,
       },
       {
-        name: 'Peach',
+        title: 'Peach',
         id: 24,
       },
       {
-        name: 'Apricot',
+        title: 'Apricot',
         id: 25,
       },
 
     ],
   },
   {
-    name: 'Gems',
+    title: 'Gems',
     id: 1,
     children: [
       {
-        name: 'Quartz',
+        title: 'Quartz',
         id: 26,
       },
       {
-        name: 'Zircon',
+        title: 'Zircon',
         id: 27,
       },
       {
-        name: 'Sapphire',
+        title: 'Sapphire',
         id: 28,
       },
       {
-        name: 'Topaz',
+        title: 'Topaz',
         id: 29,
       },
     ],
   },
   {
-    name: 'Plants',
+    title: 'Plants',
     id: 2,
     children: [
       {
-        name: "Mother In Law\'s Tongue",
+        title: "Mother In Law\'s Tongue",
         id: 30,
       },
       {
-        name: 'Yucca',
+        title: 'Yucca',
         id: 31,
       },
       {
-        name: 'Monsteria',
+        title: 'Monsteria',
         id: 32,
       },
       {
-        name: 'Palm',
+        title: 'Palm',
         id: 33,
       },
 
     ],
   },
   {
-    name: 'No child',
+    title: 'No child',
     id: 34,
   },
 ]
@@ -306,9 +306,12 @@ export default class App extends Component {
 
   componentWillMount() {
     this.fetchCategories()
+
   }
-
-
+  componentDidMount() {
+    // programatically opening the select
+    this.SectionedMultiSelect._toggleSelector()
+  }
   fetchCategories = () => {
     this.setState({ hasErrored: false })
 
@@ -359,14 +362,18 @@ export default class App extends Component {
         ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
         uniqueKey="id"
         subKey="children"
+        titleKey="title"
+        showCancelButton
+        showChips={false}
         selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
         noResultsComponent={this.noResults}
         loadingComponent={
-          <Loading 
+          <Loading
             hasErrored={this.state.hasErrored}
-            fetchCategories={this.fetchCategories} 
+            fetchCategories={this.fetchCategories}
           />
         }
+      //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
         showDropDowns={this.state.showDropDowns}
         readOnlyHeadings={this.state.readOnlyHeadings}
         single={this.state.single}
@@ -381,6 +388,9 @@ export default class App extends Component {
         styles={{
           chipText: {
             maxWidth: Dimensions.get('screen').width - 90,
+          },
+          cancelButton: {
+         //   flex: 6,
           }
         }}
         // numberOfLines={1}
