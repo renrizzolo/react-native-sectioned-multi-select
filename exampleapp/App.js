@@ -364,7 +364,7 @@ export default class App extends Component {
         subKey="children"
         titleKey="title"
         showCancelButton
-        showChips={false}
+        hideSelect={true}
         selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
         noResultsComponent={this.noResults}
         loadingComponent={
