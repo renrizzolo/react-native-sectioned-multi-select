@@ -1,4 +1,15 @@
 # Changelog
+## 0.4.5 - 2018-03-13
+### Added
+    - Cancel button #15
+        - shows on the modal to the leftof the confirm button. Pressing it dismisses the modal AND removes all selected items.
+        - show with `showCancelButton` prop.
+        - `cancelButton` style and `cancelIconComponent` are available. (It is a 'close' icon by default, but you could make it a text component if you want).
+    - Hide select #16
+        - hide the select entirely with `hideSelect` prop.
+    - Title key #14
+        - customize the title key with `titleKey` prop, instaed of being forced to use 'name'.
+        
 ## 0.3.5 - 2018-03-08
 ### Added
     - customizable `selectedText` string (defaults to 'selected'). #13

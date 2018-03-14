@@ -136,10 +136,15 @@ and then use the `_removeAllItems` function:
 ```
 onPress={() => this.SectionedMultiSelect._removeAllItems()}
 ```
+You can open the modal programatically with the _toggleSelector() method:
 
+```
+onPress={() => this.SectionedMultiSelect._toggleSelector()}
+```
 ## Items
 
-Your items should have a `uniqueKey` and a `name`. Any child items of that item should be in `subKey`, and they will have `uniqueKey` and `name` properties. As you can see from the example above, my items all have a unique `id` property and the child items is an array within the `subKey` property.
+Your items should have a `uniqueKey`(default: 'id') and a `tileKey` (default: 'name'). 
+Any child items of that item should be in `subKey`, and they will have `uniqueKey` and `tileKey` properties. As you can see from the example above, my items all have a unique `id` property and the child items is an array within the `subKey` property.
 
 Sub categories are optional, there's no need to have `subKey` items if you don't want to.
 
@@ -152,6 +157,7 @@ Props, there are lots.
 | ------------- 				|-------------	| -----			|-----	|
 |uniqueKey              | 'id'          | string    |the unique key for your items
 |subKey           | 'sub'         | string    |the array of sub items within items |
+|titleKey           | 'name'         | string    |the key for the display name / title of the item |
 |selectedItems					| []						| array 		|the selected items |
 |onSelectedItemsChange	| () => {}			| function	|function that runs when an item is toggled|
 |onSelectedItemObjectsChange  | () => {}      | function  |function that returns the selected items as their original objects instead of an array of ids |
@@ -164,6 +170,8 @@ Props, there are lots.
 | single                | false         | bool      |allow only one selection |
 | showDropDowns         | true          | bool      |whether to allow dropdown toggles to show/hide the sub items (if false, sub items are always shown)|
 |showChips              | true          | bool      |whether to show the chips of the selected items |
+|hideSelect             | false         | bool      |hide the select component |
+|showCancelButton       | false         | bool      |Show a cancel button next to the confirm button. Dismisses modal and removes all selected items. |
 |readOnlyHeadings       | false         | bool      |whether the parent items can be pressed or not. If true and `showDropdowns` is true, pressing the parent item will toggle the dropdown  |
 |hideSearch  | false | bool | hide the search bar entirely |
 |selectChildren | false | bool | if true, selecting a parent item will automatically select its children |
@@ -189,6 +197,7 @@ Props, there are lots.
 |selectedIconComponent | Material `check` | object | The icon to the left of the selected item (default Checkmark)
 |dropDownToggleIconUpComponent | Material `keyboard-arrow-up` | object | The parent dropdown icon in closed state
 |dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object | The parent dropdown icon in opened state
+|cancelIconComponent | Material `cancel` | object | The cancel button's inner component |
 |styles                 | {}            | object    |Styles object - see styles section |
 |colors                 | {...} | object        |colors object - see colors section |
 |itemFontFamily       | Avenir / normal - bold   | object  |font family for the parent items. Can be a regular style object |
@@ -206,6 +215,7 @@ These are the available colors and their defaults:
 | -------------         |-------------  | ----- |
 |primary | #3f51b5 | used for the dropdown toggle icon, the no results text and the background of the confirm button. | 
 |success |  #4caf50 |used for the selected checkmark icon.  | 
+|cancel | #1A1A1A | used for the cancel button background |
 |text | #2e2e2e | Parent item text color | 
 |subText |  #848787 | Sub item text color | 
 |selectToggleTextColor |  #333 | Select button text color | 
@@ -241,4 +251,4 @@ These are the styles you can change:
 	`button`  
 	`confirmText`
   `selectedItem`
-
+  `cancelButton`

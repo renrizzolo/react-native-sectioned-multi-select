@@ -287,6 +287,7 @@ export default class App extends Component {
     this.state = {
       selectedItems: [],
       selectedItemObjects: [],
+      currentItems: [],
       showDropDowns: false,
       single: false,
       readOnlyHeadings: false,
@@ -310,7 +311,7 @@ export default class App extends Component {
   }
   componentDidMount() {
     // programatically opening the select
-    this.SectionedMultiSelect._toggleSelector()
+    // this.SectionedMultiSelect._toggleSelector()
   }
   fetchCategories = () => {
     this.setState({ hasErrored: false })
@@ -328,6 +329,20 @@ export default class App extends Component {
 
   onSelectedItemsChange = (selectedItems) => {
     this.setState({ selectedItems })
+  }
+
+  onConfirm = () => {
+    this.setState({ currentItems: this.state.selectedItems })
+  }
+
+  onCancel = () => {
+    this.SectionedMultiSelect._removeAllItems();
+
+    // const dif = this.state.selectedItems.filter(el => !this.state.currentItems.includes(el))
+    // this.SectionedMultiSelect._removeItems(dif)
+    this.setState({ 
+      selectedItems: this.state.currentItems
+    })
   }
   onSelectedItemObjectsChange = (selectedItemObjects) => {
     this.setState({ selectedItemObjects })
@@ -364,7 +379,7 @@ export default class App extends Component {
         subKey="children"
         titleKey="title"
         showCancelButton
-        hideSelect={true}
+        // hideSelect={true}
         selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
         noResultsComponent={this.noResults}
         loadingComponent={
@@ -373,7 +388,7 @@ export default class App extends Component {
             fetchCategories={this.fetchCategories}
           />
         }
-      //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
+        //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
         showDropDowns={this.state.showDropDowns}
         readOnlyHeadings={this.state.readOnlyHeadings}
         single={this.state.single}
@@ -384,6 +399,8 @@ export default class App extends Component {
         //  itemFontFamily={fonts.boldCondensed}
         onSelectedItemsChange={this.onSelectedItemsChange}
         onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
+        // onCancel={this.onCancel}
+        //onConfirm={this.onConfirm}
         selectedItems={this.state.selectedItems}
         styles={{
           chipText: {
