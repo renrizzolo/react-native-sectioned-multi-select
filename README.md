@@ -143,8 +143,8 @@ onPress={() => this.SectionedMultiSelect._toggleSelector()}
 ```
 ## Items
 
-Your items should have a `uniqueKey`(default: 'id') and a `tileKey` (default: 'name'). 
-Any child items of that item should be in `subKey`, and they will have `uniqueKey` and `tileKey` properties. As you can see from the example above, my items all have a unique `id` property and the child items is an array within the `subKey` property.
+Your items should have a `uniqueKey`(default: 'id') and a `displayKey` (default: 'name'). 
+Any child items of that item should be in `subKey`, and they will have `uniqueKey` and `displayKey` properties. As you can see from the example above, my items all have a unique `id` property and the child items is an array within the `subKey` property.
 
 Sub categories are optional, there's no need to have `subKey` items if you don't want to.
 
@@ -157,11 +157,12 @@ Props, there are lots.
 | ------------- 				|-------------	| -----			|-----	|
 |uniqueKey              | 'id'          | string    |the unique key for your items
 |subKey           | 'sub'         | string    |the array of sub items within items |
-|titleKey           | 'name'         | string    |the key for the display name / title of the item |
+|displayKey           | 'name'         | string    |the key for the display name / title of the item |
 |selectedItems					| []						| array 		|the selected items |
-|onSelectedItemsChange	| () => {}			| function	|function that runs when an item is toggled|
-|onSelectedItemObjectsChange  | () => {}      | function  |function that returns the selected items as their original objects instead of an array of ids |
-
+|onSelectedItemsChange	| 	| function	|function that runs when an item is toggled|
+|onSelectedItemObjectsChange  |   | function  |function that returns the selected items as their original objects instead of an array of ids |
+|onCancel  |   | function  |function that runs when the confirm button is pressed |
+|onConfirm  |   | function  |function that runs when the cancel button is pressed |
 
 ### Options
 
@@ -187,7 +188,7 @@ Props, there are lots.
 | -------------         |-------------  | -----     |-----  |
 |selectText             |'Select'       | string    |the text for the select component |
 |confirmText            |'Confirm'      | string    |the text for the confirm button|
-|selectedText            |'selected'      | string    |the text that follows the number of items selected |
+|selectedText            |'selected'      | string OR function    |the text that follows the number of items selected |
 |searchPlaceholderText  |'Search categories...'| string   |the placeholder text for the search input |
 |removeAllText  |'Remove all'| string   |Text for optional remove all button |
 |noResultsComponent         | `<Text>Sorry, no results</Text>` | object   |the component to display when the search results are empty |

@@ -1,5 +1,5 @@
 # Changelog
-## 0.4.5 - 2018-03-13
+## 0.4.5 - 2018-03-23
 ### Added
     - Cancel button #15
         - shows on the modal to the leftof the confirm button. Pressing it dismisses the modal AND removes all selected items.
@@ -7,8 +7,14 @@
         - `cancelButton` style and `cancelIconComponent` are available. (It is a 'close' icon by default, but you could make it a text component if you want).
     - Hide select #16
         - hide the select entirely with `hideSelect` prop.
-    - Title key #14
-        - customize the title key with `titleKey` prop, instaed of being forced to use 'name'.
+    - Display key #14
+        - customize the title key with `displayKey` prop, instaed of being forced to use 'name'.
+    - Added `headerComponent` prop  - goes above search bar #17
+    - Added `onCancel` and `onConfirm` function props
+
+### Changed
+    - `SelectedText` now allowed to be a function, for more complex translations/
+ 
         
 ## 0.3.5 - 2018-03-08
 ### Added
