@@ -1,5 +1,5 @@
 # Changelog
-## 0.4.5 - 2018-03-23
+## 0.4.0 - 2018-03-23
 ### Added
     - Cancel button #15
         - shows on the modal to the leftof the confirm button. Pressing it dismisses the modal AND removes all selected items.
