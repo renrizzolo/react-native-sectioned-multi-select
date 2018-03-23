@@ -7,7 +7,6 @@ import {
   ScrollView,
   Switch,
   TouchableWithoutFeedback,
-  sectionedList,
   ActivityIndicator,
   Dimensions,
 } from 'react-native'
@@ -106,7 +105,7 @@ const items = [
     id: 2,
     children: [
       {
-        title: "Mother In Law\'s Tongue",
+        title: "Mother In Law's Tongue",
         id: 30,
       },
       {
@@ -129,7 +128,30 @@ const items = [
     id: 34,
   },
 ]
+const items2 =
+  [{
+    title: 'Plants',
+    id: 2,
+    children: [
+      {
+        title: "Mother In Law's Tongue",
+        id: 30,
+      },
+      {
+        title: 'Yucca',
+        id: 31,
+      },
+      {
+        title: 'Monsteria',
+        id: 32,
+      },
+      {
+        title: 'Palm',
+        id: 33,
+      },
 
+    ],
+  }]
 // const items2 = []
 // for (let i = 0; i < 100; i++) {
 //   items2.push({
@@ -261,15 +283,15 @@ const tintColor = '#174A87'
 
 const Loading = props => (
   props.hasErrored ?
-  <TouchableWithoutFeedback onPress={props.fetchCategories}>
+    <TouchableWithoutFeedback onPress={props.fetchCategories}>
+      <View style={styles.center}>
+        <Text>oops... something went wrong. Tap to reload</Text>
+      </View>
+    </TouchableWithoutFeedback>
+    :
     <View style={styles.center}>
-      <Text>oops... something went wrong. Tap to reload</Text>
+      <ActivityIndicator size="large" />
     </View>
-  </TouchableWithoutFeedback>
-  :
-  <View style={styles.center}>
-    <ActivityIndicator size="large" />
-  </View>
 )
 
 const Toggle = props => (
@@ -286,6 +308,7 @@ export default class App extends Component {
     super()
     this.state = {
       selectedItems: [],
+      selectedItems2: [],
       selectedItemObjects: [],
       currentItems: [],
       showDropDowns: false,
@@ -293,55 +316,38 @@ export default class App extends Component {
       readOnlyHeadings: false,
       highlightChildren: false,
       selectChildren: false,
-      cats: [],
       hasErrored: false,
     }
   }
 
 
-  noResults =
-  <View key="a" style={styles.center}>
-    <Text>Sorry No results...</Text>
-  </View>;
-
-
   componentWillMount() {
     this.fetchCategories()
-
   }
   componentDidMount() {
     // programatically opening the select
     // this.SectionedMultiSelect._toggleSelector()
   }
-  fetchCategories = () => {
-    this.setState({ hasErrored: false })
-
-    fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms', {headers: 'no-cache'})
-      .then(response => response.json())
-      .then((responseJson) => {
-        this.setState({ cats: responseJson })
-      })
-      .catch((error) => {
-        this.setState({ hasErrored: true })
-        throw error.message
-      })
-  }
 
   onSelectedItemsChange = (selectedItems) => {
-    this.setState({ selectedItems })
+    const filteredItems = selectedItems.filter(val => !this.state.selectedItems2.includes(val))
+    this.setState({ selectedItems: filteredItems })
+    console.log(selectedItems)
   }
 
+  onSelectedItemsChange2 = (selectedItems) => {
+    const filteredItems = selectedItems.filter(val => !this.state.selectedItems.includes(val))
+    this.setState({ selectedItems2: filteredItems })
+  }
   onConfirm = () => {
     this.setState({ currentItems: this.state.selectedItems })
   }
 
   onCancel = () => {
-    this.SectionedMultiSelect._removeAllItems();
+    this.SectionedMultiSelect._removeAllItems()
 
-    // const dif = this.state.selectedItems.filter(el => !this.state.currentItems.includes(el))
-    // this.SectionedMultiSelect._removeItems(dif)
-    this.setState({ 
-      selectedItems: this.state.currentItems
+    this.setState({
+      selectedItems: this.state.currentItems,
     })
   }
   onSelectedItemObjectsChange = (selectedItemObjects) => {
@@ -364,72 +370,142 @@ export default class App extends Component {
   onSelectChildrenToggle = (selectChildren) => {
     this.setState({ selectChildren })
   }
+  fetchCategories = () => {
+    this.setState({ hasErrored: false })
+    fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms', { headers: 'no-cache' })
+      .then(response => response.json())
+      .then((responseJson) => {
+        this.setState({ cats: responseJson })
+      })
+      .catch((error) => {
+        this.setState({ hasErrored: true })
+        throw error.message
+      })
+  }
+  filterDuplicates = items => items.sort().reduce((accumulator, current) => {
+    const length = accumulator.length
+    if (length === 0 || accumulator[length - 1] !== current) {
+      accumulator.push(current)
+    }
+    return accumulator
+  }, []);
+
+
+  noResults =
+    <View key="a" style={styles.center}>
+      <Text>Sorry No results...</Text>
+    </View>;
 
 
   render() {
     return (
-  <ScrollView style={{backgroundColor:'#f8f8f8'}} contentContainerStyle={styles.container}>
-    <Text style={styles.welcome}>
-          React native sectioned multi select example.
-    </Text>
-      <SectionedMultiSelect
-        items={items}
-        ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
-        uniqueKey="id"
-        subKey="children"
-        titleKey="title"
-        showCancelButton
-        // hideSelect={true}
-        selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
-        noResultsComponent={this.noResults}
-        loadingComponent={
-          <Loading
-            hasErrored={this.state.hasErrored}
-            fetchCategories={this.fetchCategories}
-          />
-        }
-        //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
-        showDropDowns={this.state.showDropDowns}
-        readOnlyHeadings={this.state.readOnlyHeadings}
-        single={this.state.single}
-        showRemoveAll
-        selectChildren={this.state.selectChildren}
-        highlightChildren={this.state.highlightChildren}
-        //  hideSearch
-        //  itemFontFamily={fonts.boldCondensed}
-        onSelectedItemsChange={this.onSelectedItemsChange}
-        onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
-        // onCancel={this.onCancel}
-        //onConfirm={this.onConfirm}
-        selectedItems={this.state.selectedItems}
-        styles={{
-          chipText: {
-            maxWidth: Dimensions.get('screen').width - 90,
-          },
-          cancelButton: {
-         //   flex: 6,
+      <ScrollView style={{ backgroundColor: '#f8f8f8' }} contentContainerStyle={styles.container}>
+        <Text style={styles.welcome}>
+            React native sectioned multi select example.
+        </Text>
+        <SectionedMultiSelect
+          items={items}
+          ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
+          uniqueKey="id"
+          subKey="children"
+          displayKey="title"
+          showCancelButton
+          // hideSelect={true}
+          // headerComponent={
+          //   <View style={{ padding: 20 }}>
+          //     <Toggle name="Show dropdown toggles" onPress={this.onShowDropDownsToggle} val={this.state.showDropDowns} />
+          //   </View>
+          // }
+          selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
+          noResultsComponent={this.noResults}
+          loadingComponent={
+            <Loading
+              hasErrored={this.state.hasErrored}
+              fetchCategories={this.fetchCategories}
+            />
           }
-        }}
-        // numberOfLines={1}
-      />
-    <View>
-      <View style={styles.border}>
-        <Text style={styles.heading}>Settings</Text>
-      </View>
+          //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
+          showDropDowns={this.state.showDropDowns}
+          readOnlyHeadings={this.state.readOnlyHeadings}
+          single={this.state.single}
+          showRemoveAll
+          selectChildren={this.state.selectChildren}
+          highlightChildren={this.state.highlightChildren}
+          //  hideSearch
+          //  itemFontFamily={fonts.boldCondensed}
+          onSelectedItemsChange={this.onSelectedItemsChange}
+          onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
+          onCancel={this.onCancel}
+          onConfirm={this.onConfirm}
+          selectedItems={this.state.selectedItems}
+          styles={{
+            chipText: {
+              maxWidth: Dimensions.get('screen').width - 90,
+            },
+            cancelButton: {
+           //   flex: 6,
+            },
+          }}
+          // numberOfLines={1}
+        />
+        <SectionedMultiSelect
+          items={items2}
+          ref={SectionedMultiSelect2 => this.SectionedMultiSelect2 = SectionedMultiSelect2}
+          uniqueKey="id"
+          subKey="children"
+          displayKey="title"
+          showCancelButton
+          // hideSelect={true}
+          selectText={this.state.selectedItems2.length ? 'Select categories' : 'All categories'}
+          noResultsComponent={this.noResults}
+          loadingComponent={
+            <Loading
+              hasErrored={this.state.hasErrored}
+              fetchCategories={this.fetchCategories}
+            />
+          }
+          //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
+          showDropDowns={this.state.showDropDowns}
+          readOnlyHeadings={this.state.readOnlyHeadings}
+          single={this.state.single}
+          showRemoveAll
+          selectChildren={this.state.selectChildren}
+          highlightChildren={this.state.highlightChildren}
+          //  hideSearch
+          //  itemFontFamily={fonts.boldCondensed}
+          onSelectedItemsChange={this.onSelectedItemsChange2}
+          onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
+          onCancel={this.onCancel}
+          onConfirm={this.onConfirm}
+          selectedItems={this.state.selectedItems2}
+          styles={{
+            chipText: {
+              maxWidth: Dimensions.get('screen').width - 90,
+            },
+            cancelButton: {
+           //   flex: 6,
+            },
+          }}
+          // numberOfLines={1}
+        />
+        <View>
+          <View style={styles.border}>
+            <Text style={styles.heading}>Settings</Text>
+          </View>
 
-      <Toggle name="Single" onPress={this.onSingleToggle} val={this.state.single}/>
-      <Toggle name="Read only headings" onPress={this.onReadOnlyHeadingsToggle} val={this.state.readOnlyHeadings}/>
-      <Toggle name="Show dropdown toggles" onPress={this.onShowDropDownsToggle} val={this.state.showDropDowns}/>
-      <Toggle name="Auto-highlight children" onPress={this.onHighlightChildrenToggle} val={this.state.highlightChildren}/>
-      <Toggle name="Auto-select children" onPress={this.onSelectChildrenToggle} val={this.state.selectChildren}/>
+          <Toggle name="Single" onPress={this.onSingleToggle} val={this.state.single} />
+          <Toggle name="Read only headings" onPress={this.onReadOnlyHeadingsToggle} val={this.state.readOnlyHeadings} />
+          <Toggle name="Show dropdown toggles" onPress={this.onShowDropDownsToggle} val={this.state.showDropDowns} />
+          <Toggle name="Auto-highlight children" onPress={this.onHighlightChildrenToggle} val={this.state.highlightChildren} />
+          <Toggle name="Auto-select children" onPress={this.onSelectChildrenToggle} val={this.state.selectChildren} />
 
-      <TouchableWithoutFeedback onPress={() => this.SectionedMultiSelect._removeAllItems()}>
-        <View style={styles.switch}>
-          <Text style={styles.label}>Remove All</Text>
+          <TouchableWithoutFeedback onPress={() => this.SectionedMultiSelect._removeAllItems()}>
+            <View style={styles.switch}>
+              <Text style={styles.label}>Remove All</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-      </TouchableWithoutFeedback>
-    </View>
-  </ScrollView>
+      </ScrollView>
     )
   }
 }
