@@ -11,7 +11,7 @@ import {
   Dimensions,
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
-//import SLIcon from 'react-native-vector-icons/SimpleLineIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
 const items = [
@@ -322,7 +322,7 @@ export default class App extends Component {
 
 
   componentWillMount() {
-    this.fetchCategories()
+   // this.fetchCategories()
   }
   componentDidMount() {
     // programatically opening the select
@@ -442,11 +442,29 @@ export default class App extends Component {
             chipText: {
               maxWidth: Dimensions.get('screen').width - 90,
             },
-            cancelButton: {
-           //   flex: 6,
+            container: {
+
             },
+            cancelButton: {
+              backgroundColor: 'lightgrey',
+
+            },
+            button: {
+
+              backgroundColor: 'silver',
+            },
+            confirmText: {
+              color: 'black',
+            }
           }}
-          // numberOfLines={1}
+           numberOfLines={1}
+           cancelIconComponent={
+            <Icon
+                       size={20}
+                       name="cancel"
+                       style={{ color: 'black' }}
+                     />
+           }
         />
         <SectionedMultiSelect
           items={items2}
@@ -454,7 +472,7 @@ export default class App extends Component {
           uniqueKey="id"
           subKey="children"
           displayKey="title"
-          showCancelButton
+         // showCancelButton
           // hideSelect={true}
           selectText={this.state.selectedItems2.length ? 'Select categories' : 'All categories'}
           noResultsComponent={this.noResults}

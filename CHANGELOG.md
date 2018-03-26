@@ -1,4 +1,8 @@
 # Changelog
+## 0.4.1 - 2018-03-26
+### Fixed
+    - cancel / confirm buttons not displaying properly on iOS. Cancel takes a fixed width instead of a flex ratio now. #19
+
 ## 0.4.0 - 2018-03-23
 ### Added
     - Cancel button #15
