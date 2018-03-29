@@ -1,4 +1,11 @@
 # Changelog
+
+## 0.4.2 - 2018-03-29
+### Fixed / Added
+    - disabled items
+        - sub item Touchable wasn't being disabled when a truthy disabled key is present
+        - make item text colors.disabled when item has truthy disabled key
+
 ## 0.4.1 - 2018-03-26
 ### Fixed
     - cancel / confirm buttons not displaying properly on iOS. Cancel takes a fixed width instead of a flex ratio now. #19
