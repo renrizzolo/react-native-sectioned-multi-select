@@ -410,6 +410,7 @@ export default class App extends Component {
           subKey="children"
           displayKey="title"
           showCancelButton
+          alwaysShowSelectText
           // hideSelect={true}
           // headerComponent={
           //   <View style={{ padding: 20 }}>

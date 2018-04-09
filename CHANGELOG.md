@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.4 - 2018-04-09
+### Added
+    - `alwaysShowSelectText` prop - if true the select label won't show the amount selected + `selectedText` or the name of the selected item if only one items is selected. Not applied when `single` is true as single shows the `dispayKey` on the select label only. #23
+
 ## 0.4.2 - 2018-03-29
 ### Fixed / Added
     - disabled items
@@ -13,7 +17,7 @@
 ## 0.4.0 - 2018-03-23
 ### Added
     - Cancel button #15
-        - shows on the modal to the leftof the confirm button. Pressing it dismisses the modal AND removes all selected items.
+        - shows on the modal to the left of the confirm button. Pressing it dismisses the modal AND removes all selected items.
         - show with `showCancelButton` prop.
         - `cancelButton` style and `cancelIconComponent` are available. (It is a 'close' icon by default, but you could make it a text component if you want).
     - Hide select #16

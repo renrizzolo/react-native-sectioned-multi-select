@@ -173,6 +173,7 @@ Props, there are lots.
 |showChips              | true          | bool      |whether to show the chips of the selected items |
 |hideSelect             | false         | bool      |hide the select component |
 |showCancelButton       | false         | bool      |Show a cancel button next to the confirm button. Dismisses modal and removes all selected items. |
+| alwaysShowSelectText  | false         | bool      | Don't show number of items selected or the single selected item on the select label (unless `single` is true).
 |readOnlyHeadings       | false         | bool      |whether the parent items can be pressed or not. If true and `showDropdowns` is true, pressing the parent item will toggle the dropdown  |
 |hideSearch  | false | bool | hide the search bar entirely |
 |selectChildren | false | bool | if true, selecting a parent item will automatically select its children |
