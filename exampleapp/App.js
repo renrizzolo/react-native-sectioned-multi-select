@@ -7,6 +7,7 @@ import {
   ScrollView,
   Switch,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   ActivityIndicator,
   Dimensions,
 } from 'react-native'
@@ -14,7 +15,7 @@ import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
-const items = [
+let items = [
   {
     title: 'Fruits from various places around the world, if you like',
     id: 0,
@@ -307,6 +308,7 @@ export default class App extends Component {
   constructor() {
     super()
     this.state = {
+      items: items,
       selectedItems: [],
       selectedItems2: [],
       selectedItemObjects: [],
@@ -396,6 +398,33 @@ export default class App extends Component {
       <Text>Sorry No results...</Text>
     </View>;
 
+handleAddSearchTerm = () => {
+    const searchTerm = this.SectionedMultiSelect._getSearchTerm();
+    const id = items[items.length - 1].id + 1;
+  if ( searchTerm.length && !items.some( item => item.title.includes(searchTerm) ) ) {
+    const newItem = {id: id, title: searchTerm};
+    this.setState(prevState => ({items: [...prevState.items, newItem]}));
+    this.onSelectedItemsChange([...this.state.selectedItems, id])
+    this.SectionedMultiSelect._submitSelection()
+  }
+}
+
+searchAdornment = (searchTerm) => {
+  return(
+    searchTerm.length ?
+      <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',}} onPress={this.handleAddSearchTerm}>
+        <View>
+          <Icon
+            size={18}
+            style={{ marginHorizontal: 15 }}
+            name="add"
+           />
+        </View>
+      </TouchableOpacity>
+    : 
+    null
+  )
+}
 
   render() {
     return (
@@ -404,13 +433,14 @@ export default class App extends Component {
             React native sectioned multi select example.
         </Text>
         <SectionedMultiSelect
-          items={items}
+          items={this.state.items}
           ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
           uniqueKey="id"
           subKey="children"
           displayKey="title"
           showCancelButton
           alwaysShowSelectText
+          searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
           // hideSelect={true}
           // headerComponent={
           //   <View style={{ padding: 20 }}>
