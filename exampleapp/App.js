@@ -412,7 +412,10 @@ handleAddSearchTerm = () => {
 searchAdornment = (searchTerm) => {
   return(
     searchTerm.length ?
-      <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center',}} onPress={this.handleAddSearchTerm}>
+      <TouchableOpacity 
+        style={{ alignItems: 'center', justifyContent: 'center'}} 
+        onPress={this.handleAddSearchTerm}
+      >
         <View>
           <Icon
             size={18}
@@ -441,12 +444,6 @@ searchAdornment = (searchTerm) => {
           showCancelButton
           alwaysShowSelectText
           searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
-          // hideSelect={true}
-          // headerComponent={
-          //   <View style={{ padding: 20 }}>
-          //     <Toggle name="Show dropdown toggles" onPress={this.onShowDropDownsToggle} val={this.state.showDropDowns} />
-          //   </View>
-          // }
           selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
           noResultsComponent={this.noResults}
           loadingComponent={
