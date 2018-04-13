@@ -1,9 +1,9 @@
 # Changelog
 
-## 0.4.4 - 2018-04-09
+## 0.4.4 - 2018-04-13
 ### Added
     - `alwaysShowSelectText` prop - if true the select label won't show the amount selected + `selectedText` or the name of the selected item if only one items is selected. Not applied when `single` is true as single shows the `dispayKey` on the select label only. #23
-
+    - `searchAdornment` prop - function that receives the text of the search input, and is output on the right hand side of the search input. Useful if you need to do something with the search text like add a new item.
 ## 0.4.2 - 2018-03-29
 ### Fixed / Added
     - disabled items
