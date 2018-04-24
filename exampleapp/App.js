@@ -351,6 +351,7 @@ export default class App extends Component {
     this.setState({
       selectedItems: this.state.currentItems,
     })
+    console.log(this.state.selectedItems);
   }
   onSelectedItemObjectsChange = (selectedItemObjects) => {
     this.setState({ selectedItemObjects })
@@ -399,9 +400,9 @@ export default class App extends Component {
     </View>;
 
 handleAddSearchTerm = () => {
-    const searchTerm = this.SectionedMultiSelect._getSearchTerm();
-    const id = items[items.length - 1].id + 1;
-  if ( searchTerm.length && !items.some( item => item.title.includes(searchTerm) ) ) {
+  const searchTerm = this.SectionedMultiSelect._getSearchTerm();
+  const id = this.state.items[this.state.items.length - 1].id + 1;
+  if ( searchTerm.length && !this.state.items.some( item => item.title.includes(searchTerm) ) ) {
     const newItem = {id: id, title: searchTerm};
     this.setState(prevState => ({items: [...prevState.items, newItem]}));
     this.onSelectedItemsChange([...this.state.selectedItems, id])
