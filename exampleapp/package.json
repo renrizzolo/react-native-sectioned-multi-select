@@ -9,7 +9,7 @@
 	"dependencies": {
 		"react": "16.0.0",
 		"react-native": "0.50.3",
-		"react-native-sectioned-multi-select": "^0.4.3",
+		"react-native-sectioned-multi-select": "^0.4.6",
 		"react-native-vector-icons": "^4.4.2"
 	},
 	"devDependencies": {

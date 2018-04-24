@@ -191,6 +191,7 @@ Props, there are lots.
 |confirmText            |'Confirm'      | string    |the text for the confirm button|
 |selectedText            |'selected'      | string OR function    |the text that follows the number of items selected |
 |searchPlaceholderText  |'Search categories...'| string   |the placeholder text for the search input |
+|searchAdornment |   | |function | receives search input text and is output on the right side of the search input |
 |removeAllText  |'Remove all'| string   |Text for optional remove all button |
 |noResultsComponent         | `<Text>Sorry, no results</Text>` | object   |the component to display when the search results are empty |
 |loadingComponent    | `<View style={{marginTop:20, alignItems:'center', justifyContent:'center'}}>   <ActivityIndicator/>  </View>` | object   |the component to display when the items are empty |

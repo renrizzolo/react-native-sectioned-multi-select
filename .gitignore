@@ -10,5 +10,5 @@ yarn-error.log*
 node_modules/
 
 # exampleapp
-android/
-ios/
+exampleapp/android/
+exampleapp/ios/
