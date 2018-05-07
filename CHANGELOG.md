@@ -1,4 +1,7 @@
 # Changelog
+## 0.4.7 - 2018-05-07
+### Changed
+    - Removed lodash dependency: replaced get and reject functions with internal functions.
 
 ## 0.4.4 - 2018-04-13
 ### Added
