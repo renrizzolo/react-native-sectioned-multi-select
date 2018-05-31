@@ -328,7 +328,7 @@ export default class App extends Component {
   }
   componentDidMount() {
     // programatically opening the select
-    // this.SectionedMultiSelect._toggleSelector()
+    this.SectionedMultiSelect._toggleSelector();
   }
 
   onSelectedItemsChange = (selectedItems) => {
@@ -454,7 +454,9 @@ searchAdornment = (searchTerm) => {
             />
           }
           //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
-          showDropDowns={this.state.showDropDowns}
+          showDropDowns={true}
+          expandDropDowns
+          // expandedIds={[1,2]}
           readOnlyHeadings={this.state.readOnlyHeadings}
           single={this.state.single}
           showRemoveAll
@@ -462,39 +464,23 @@ searchAdornment = (searchTerm) => {
           highlightChildren={this.state.highlightChildren}
           //  hideSearch
           //  itemFontFamily={fonts.boldCondensed}
+        
           onSelectedItemsChange={this.onSelectedItemsChange}
           onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems}
-          styles={{
-            chipText: {
-              maxWidth: Dimensions.get('screen').width - 90,
-            },
-            container: {
-
-            },
-            cancelButton: {
-              backgroundColor: 'lightgrey',
-
-            },
-            button: {
-
-              backgroundColor: 'silver',
-            },
-            confirmText: {
-              color: 'black',
-            }
-          }}
+          colors={{itemBackground: 'rgba(0,0,0,0)', primary: '#3f51b5', success: '#4caf50'}}
            numberOfLines={1}
            cancelIconComponent={
             <Icon
-                       size={20}
-                       name="cancel"
-                       style={{ color: 'black' }}
-                     />
+             size={20}
+             name="cancel"
+             style={{ color: 'black' }}
+           />
            }
         />
+
         <SectionedMultiSelect
           items={items2}
           ref={SectionedMultiSelect2 => this.SectionedMultiSelect2 = SectionedMultiSelect2}
@@ -556,3 +542,4 @@ searchAdornment = (searchTerm) => {
     )
   }
 }
+
