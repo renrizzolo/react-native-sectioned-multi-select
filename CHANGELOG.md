@@ -1,4 +1,9 @@
 # Changelog
+## 0.4.8 - 2018-05-31
+### Added
+    - Add `expandDropDowns` prop. Set to true to expand all parent dropdowns (when using `showDropDowns`).
+    - Add `expandedIds` prop. optionally pass an array of ids to be expanded on mount (when using `showDropDowns` *and* `expandDropDowns`).
+
 ## 0.4.7 - 2018-05-07
 ### Changed
     - Removed lodash dependency: replaced get and reject functions with internal functions.
