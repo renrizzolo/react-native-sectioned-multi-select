@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Dimensions,
+  LayoutAnimation
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -129,48 +130,49 @@ let items = [
     id: 34,
   },
 ]
-const items2 =
-  [{
-    title: 'Plants',
-    id: 2,
-    children: [
-      {
-        title: "Mother In Law's Tongue",
-        id: 30,
-      },
-      {
-        title: 'Yucca',
-        id: 31,
-      },
-      {
-        title: 'Monsteria',
-        id: 32,
-      },
-      {
-        title: 'Palm',
-        id: 33,
-      },
-
-    ],
-  }]
-// const items2 = []
-// for (let i = 0; i < 100; i++) {
-//   items2.push({
-//     id: i,
-//     name: `item ${i}`,
+// const items2 =
+//   [{
+//     title: 'Plants',
+//     id: 2,
 //     children: [
 //       {
-//         id: i + 1000, name: `child ${i + 1000}`,
+//         title: "Mother In Law's Tongue",
+//         id: 30,
 //       },
 //       {
-//         id: i + 2000, name: `child ${i + 2000}`,
+//         title: 'Yucca',
+//         id: 31,
 //       },
 //       {
-//         id: i + 3000, name: `child ${i + 3000}`,
+//         title: 'Monsteria',
+//         id: 32,
 //       },
+//       {
+//         title: 'Palm',
+//         id: 33,
+//       },
+
 //     ],
-//   })
-// }
+//   }]
+const items2 = []
+for (let i = 0; i < 100; i++) {
+  items2.push({
+    id: i,
+    title: `item ${i}`,
+    children: [
+      {
+        id: `10${i}`, title: `child 10${i}`,
+      },
+      {
+        id: `11${i}`,  title: `child 11${i}`,
+      },
+      {
+        id: `12${i}`,  title: `child 12${i}`,
+      },
+            
+    ],
+  })
+}
 
 const fonts = {
   condensed:
@@ -296,7 +298,7 @@ const Loading = props => (
 )
 
 const Toggle = props => (
-  <TouchableWithoutFeedback onPress={() => props.onPress(!props.val)}>
+  <TouchableWithoutFeedback onPress={() => props.onPress(!props.val)} disabled={props.disabled}>
     <View style={styles.switch}>
       <Text style={styles.label}>{props.name}</Text>
       <Switch onTintColor={tintColor} onValueChange={v => props.onPress(v)} value={props.val} />
@@ -356,6 +358,9 @@ export default class App extends Component {
   onSelectedItemObjectsChange = (selectedItemObjects) => {
     this.setState({ selectedItemObjects })
     console.log(selectedItemObjects)
+  }
+  onExpandDropDownsToggle = (expandDropDowns) => {
+    this.setState({ expandDropDowns })
   }
   onShowDropDownsToggle = (showDropDowns) => {
     this.setState({ showDropDowns })
@@ -454,9 +459,9 @@ searchAdornment = (searchTerm) => {
             />
           }
           //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
-          showDropDowns={true}
-          expandDropDowns
-          // expandedIds={[1,2]}
+          showDropDowns={this.state.showDropDowns}
+          expandDropDowns={this.state.expandDropDowns}
+          animateDropDowns={false}
           readOnlyHeadings={this.state.readOnlyHeadings}
           single={this.state.single}
           showRemoveAll
@@ -470,7 +475,7 @@ searchAdornment = (searchTerm) => {
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems}
-          colors={{itemBackground: 'rgba(0,0,0,0)', primary: '#3f51b5', success: '#4caf50'}}
+          colors={{itemBackground: 'rgba(0,0,0,0)', primary: '#3f51b5', success: '#4caf50', disabled: '#dadada'}}
            numberOfLines={1}
            cancelIconComponent={
             <Icon
@@ -499,6 +504,8 @@ searchAdornment = (searchTerm) => {
           }
           //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
           showDropDowns={this.state.showDropDowns}
+          expandDropDowns={this.state.expandDropDowns}
+          customLayoutAnimation={LayoutAnimation.Presets.spring}
           readOnlyHeadings={this.state.readOnlyHeadings}
           single={this.state.single}
           showRemoveAll
@@ -511,14 +518,18 @@ searchAdornment = (searchTerm) => {
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems2}
-          styles={{
-            chipText: {
-              maxWidth: Dimensions.get('screen').width - 90,
-            },
-            cancelButton: {
-           //   flex: 6,
-            },
-          }}
+          // styles={{
+          //   chipText: {
+          //     maxWidth: Dimensions.get('screen').width - 90,
+          //   },
+          //   cancelButton: {
+          //  //   flex: 6,
+          //   },
+          //   subItem: {
+          //     paddingVertical: 15,
+          //   },
+
+          // }}
           // numberOfLines={1}
         />
         <View>
@@ -528,9 +539,10 @@ searchAdornment = (searchTerm) => {
 
           <Toggle name="Single" onPress={this.onSingleToggle} val={this.state.single} />
           <Toggle name="Read only headings" onPress={this.onReadOnlyHeadingsToggle} val={this.state.readOnlyHeadings} />
+          <Toggle name="Expand dropdowns" onPress={this.onExpandDropDownsToggle} val={this.state.expandDropDowns} disabled={!this.state.showDropDowns}/>
           <Toggle name="Show dropdown toggles" onPress={this.onShowDropDownsToggle} val={this.state.showDropDowns} />
-          <Toggle name="Auto-highlight children" onPress={this.onHighlightChildrenToggle} val={this.state.highlightChildren} />
-          <Toggle name="Auto-select children" onPress={this.onSelectChildrenToggle} val={this.state.selectChildren} />
+          <Toggle name="Auto-highlight children" onPress={this.onHighlightChildrenToggle} val={this.state.highlightChildren} disabled={this.state.selectChildren}/>
+          <Toggle name="Auto-select children" onPress={this.onSelectChildrenToggle} val={this.state.selectChildren} disabled={this.state.highlightChildren}/>
 
           <TouchableWithoutFeedback onPress={() => this.SectionedMultiSelect._removeAllItems()}>
             <View style={styles.switch}>
