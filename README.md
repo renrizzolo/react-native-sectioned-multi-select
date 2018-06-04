@@ -170,17 +170,19 @@ Props, there are lots.
 | -------------         |-------------  | -----     |-----  |
 | single                | false         | bool      |allow only one selection |
 | showDropDowns         | true          | bool      |whether to allow dropdown toggles to show/hide the sub items (if false, sub items are always shown)|
+|expandDropDowns        | false         | bool      |when using `showDropDowns`, set to true to expand all the dropdowns on mount|
+|animateDropDowns       | true          | bool      |whether to animate toggling of dropdowns|
 |showChips              | true          | bool      |whether to show the chips of the selected items |
 |hideSelect             | false         | bool      |hide the select component |
 |showCancelButton       | false         | bool      |Show a cancel button next to the confirm button. Dismisses modal and removes all selected items. |
 | alwaysShowSelectText  | false         | bool      | Don't show number of items selected or the single selected item on the select label (unless `single` is true).
 |readOnlyHeadings       | false         | bool      |whether the parent items can be pressed or not. If true and `showDropdowns` is true, pressing the parent item will toggle the dropdown  |
-|hideSearch  | false | bool | hide the search bar entirely |
-|selectChildren | false | bool | if true, selecting a parent item will automatically select its children |
-|highlightChildren | false | bool | if true, selecting a parent item will automatically highlight its children (but the child ids won't be broadcast to the selectedItems state) |
-|showRemoveAll  |false| bool  | Whether to show a Remove all chip at the beginning of the selected items chips |
+|hideSearch             | false         | bool      | hide the search bar entirely |
+|selectChildren         | false         | bool      | if true, selecting a parent item will automatically select its children |
+|highlightChildren      | false         | bool      | if true, selecting a parent item will automatically highlight its children (but the child ids won't be broadcast to the selectedItems state) |
+|showRemoveAll          |false          | bool      | Whether to show a Remove all chip at the beginning of the selected items chips |
 |modalSupportedOrientations |['landscape', 'portrait']| array   | The supportedOrientations of the Modal |
-|modalAnimationType |'fade'| string   |The animation type of the Modal (fade or slide) |
+|modalAnimationType     |'fade'         | string    |The animation type of the Modal (fade or slide) |
 
 
 ### Customization
@@ -208,6 +210,7 @@ Props, there are lots.
 |searchTextFontFamily |  Avenir / normal - 200       | object  |font family for the search input. Can be a regular style object |
 |confirmFontFamily    |  Avenir / normal - bold      | object  |font family for the confirm button. |
 |numberOfLines        |null              |number     |numberOfLines for label text |  
+|customLayoutAnimation  | `LayoutAnimation.Presets.easeInEaseOut` | object    |define your own `LayoutAnimation` preset or custom animation |
 
 ## Colors
 You can pass a colors object to theme it how you like.
