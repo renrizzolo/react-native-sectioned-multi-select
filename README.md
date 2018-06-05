@@ -190,6 +190,7 @@ Props, there are lots.
 |selectText             |'Select'       | string    |the text for the select component |
 |confirmText            |'Confirm'      | string    |the text for the confirm button|
 |selectedText            |'selected'      | string OR function    |the text that follows the number of items selected |
+|setSelectedText            |      | function    | Function that allows you to set custom Selected Text given access to component's `props` |
 |searchPlaceholderText  |'Search categories...'| string   |the placeholder text for the search input |
 |searchAdornment |   | |function | receives search input text and is output on the right side of the search input |
 |removeAllText  |'Remove all'| string   |Text for optional remove all button |
