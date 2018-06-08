@@ -161,8 +161,8 @@ Props, there are lots.
 |selectedItems					| []						| array 		|the selected items |
 |onSelectedItemsChange	| 	| function	|function that runs when an item is toggled|
 |onSelectedItemObjectsChange  |   | function  |function that returns the selected items as their original objects instead of an array of ids |
-|onCancel  |   | function  |function that runs when the confirm button is pressed |
-|onConfirm  |   | function  |function that runs when the cancel button is pressed |
+|onCancel  |   | function  |function that runs when the cancel button is pressed |
+|onConfirm  |   | function  |function that runs when the confirm button is pressed |
 
 ### Options
 
@@ -209,6 +209,7 @@ Props, there are lots.
 |searchTextFontFamily |  Avenir / normal - 200       | object  |font family for the search input. Can be a regular style object |
 |confirmFontFamily    |  Avenir / normal - bold      | object  |font family for the confirm button. |
 |numberOfLines        |null              |number     |numberOfLines for label text |  
+|labelNumberOfLines        |null              |number     |Number of lines for Selected Text label |  
 
 ## Colors
 You can pass a colors object to theme it how you like.
