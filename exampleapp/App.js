@@ -537,7 +537,7 @@ searchAdornment = (searchTerm) => {
           //  hideSearch
           //  itemFontFamily={fonts.boldCondensed}
           onSelectedItemsChange={this.onSelectedItemsChange2}
-          onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
+          // onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems2}
