@@ -1,14 +1,17 @@
 # Changelog
-## 0.5.0 - 2018-06-04
+## 0.5.0 - 2018-06-12
 ### Added
     - Add `expandDropDowns` prop. Set to true to expand all parent dropdowns (when using `showDropDowns`).
     - Add `animateDropDowns` prop. Set to false to not use LayoutAnimation when toggling the dropdowns.
     - Add `customLayoutAnimation` prop. Use your own LayoutAnimation preset or custom layout animation object for the toggling of dropdowns.
+    - Add `selectLabelNumberOfLines` prop.
+    - Add `renderSelectText` function that receives props. This allows you to fully customize what the select label says and when, overriding `selectText`, `selectedText` etc.
 ### Changed
+    - `numberOfLines` is now `itemNumberOfLines`, to avoid confusion.
     - There were serious perf issues for things like toggling dropdowns with larger lists. To mitigate this, the sub items have been moved inside of the parent items and some functions have been rafactored or moved. The only noticeable difference should be that the parent item's `itemSeparator` shows at the bottom of the group of items, rather than always being directly below the parent item.
 ### Fixed
     - Cast keyExtractor ids to string #31
-    - Should be generally faster
+    - Should be generally faster...
 
 ## 0.4.7 - 2018-05-07
 ### Changed
