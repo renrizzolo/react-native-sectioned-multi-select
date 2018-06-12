@@ -330,7 +330,7 @@ export default class App extends Component {
   }
   componentDidMount() {
     // programatically opening the select
-    this.SectionedMultiSelect._toggleSelector();
+    // this.SectionedMultiSelect._toggleSelector();
   }
 
   onSelectedItemsChange = (selectedItems) => {
@@ -414,7 +414,19 @@ handleAddSearchTerm = () => {
     this.SectionedMultiSelect._submitSelection()
   }
 }
+  renderSelectText = () => {
+    const { selectedItemObjects } = this.state;
 
+    return selectedItemObjects.length ?
+      `I like ${selectedItemObjects.map((item, i) => {
+        let label = `${item.title}, `
+        if (i === selectedItemObjects.length - 2) label = `${item.title} and `
+        if (i === selectedItemObjects.length - 1) label = `${item.title}.`
+        return label
+      }).join('')}`
+      :
+      'Select a fruit'
+  }
 searchAdornment = (searchTerm) => {
   return(
     searchTerm.length ?
@@ -448,9 +460,9 @@ searchAdornment = (searchTerm) => {
           subKey="children"
           displayKey="title"
           showCancelButton
-          alwaysShowSelectText
+          // alwaysShowSelectText
           searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
-          selectText={this.state.selectedItems.length ? 'Select categories' : 'All categories'}
+          renderSelectText={this.renderSelectText}
           noResultsComponent={this.noResults}
           loadingComponent={
             <Loading
@@ -469,19 +481,30 @@ searchAdornment = (searchTerm) => {
           highlightChildren={this.state.highlightChildren}
           //  hideSearch
           //  itemFontFamily={fonts.boldCondensed}
-        
           onSelectedItemsChange={this.onSelectedItemsChange}
           onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems}
-          colors={{itemBackground: 'rgba(0,0,0,0)', primary: '#3f51b5', success: '#4caf50', disabled: '#dadada'}}
-           numberOfLines={1}
+          colors={{primary: 'crimson'}}
+           itemNumberOfLines={3}
+          selectLabelNumberOfLines={3}
+          styles={{
+            // chipText: {
+            //   maxWidth: Dimensions.get('screen').width - 90,
+            // },
+            itemText: {
+              color: this.state.selectedItems.length ? 'black' : 'lightgrey'
+            },
+            subItemText: {
+              color: this.state.selectedItems.length ? 'black' : 'lightgrey'
+            },
+          }}
            cancelIconComponent={
             <Icon
              size={20}
-             name="cancel"
-             style={{ color: 'black' }}
+             name="close"
+             style={{ color: 'white' }}
            />
            }
         />
@@ -518,10 +541,16 @@ searchAdornment = (searchTerm) => {
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems2}
-          // styles={{
-          //   chipText: {
-          //     maxWidth: Dimensions.get('screen').width - 90,
-          //   },
+          styles={{
+            chipText: {
+               maxWidth: Dimensions.get('screen').width - 90,
+            },
+            itemText: {
+              color: this.state.selectedItems2.length ? 'black' : 'lightgrey'
+            },
+            subItemText: {
+              color: this.state.selectedItems2.length ? 'black' : 'lightgrey'
+            },
           //   cancelButton: {
           //  //   flex: 6,
           //   },
@@ -529,7 +558,7 @@ searchAdornment = (searchTerm) => {
           //     paddingVertical: 15,
           //   },
 
-          // }}
+           }}
           // numberOfLines={1}
         />
         <View>
