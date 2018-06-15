@@ -486,8 +486,8 @@ searchAdornment = (searchTerm) => {
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems}
-          colors={{primary: 'crimson'}}
-           itemNumberOfLines={3}
+          colors={{ primary: this.state.selectedItems.length ? 'forestgreen' : 'crimson' }}
+          itemNumberOfLines={3}
           selectLabelNumberOfLines={3}
           styles={{
             // chipText: {
