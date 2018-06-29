@@ -10,13 +10,14 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Dimensions,
-  LayoutAnimation
+  LayoutAnimation,
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
+// Sorry for the mess
 
-let items = [
+const items = [
   {
     title: 'Fruits from various places around the world, if you like',
     id: 0,
@@ -38,7 +39,7 @@ let items = [
         id: 14,
       },
       {
-        title: 'Watermelon',
+        title: 'Wátermelon',
         id: 15,
       },
       {
@@ -81,7 +82,7 @@ let items = [
     ],
   },
   {
-    title: 'Gems',
+    title: 'Gèms',
     id: 1,
     children: [
       {
@@ -93,7 +94,7 @@ let items = [
         id: 27,
       },
       {
-        title: 'Sapphire',
+        title: 'Sapphirè',
         id: 28,
       },
       {
@@ -281,7 +282,46 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 })
-
+const accentMap = {
+  'â': 'a',
+  'Â': 'A',
+  'à': 'a',
+  'À': 'A',
+  'á': 'a',
+  'Á': 'A',
+  'ã': 'a',
+  'Ã': 'A',
+  'ê': 'e',
+  'Ê': 'E',
+  'è': 'e',
+  'È': 'E',
+  'é': 'e',
+  'É': 'E',
+  'î': 'i',
+  'Î': 'I',
+  'ì': 'i',
+  'Ì': 'I',
+  'í': 'i',
+  'Í': 'I',
+  'õ': 'o',
+  'Õ': 'O',
+  'ô': 'o',
+  'Ô': 'O',
+  'ò': 'o',
+  'Ò': 'O',
+  'ó': 'o',
+  'Ó': 'O',
+  'ü': 'u',
+  'Ü': 'U',
+  'û': 'u',
+  'Û': 'U',
+  'ú': 'u',
+  'Ú': 'U',
+  'ù': 'u',
+  'Ù': 'U',
+  'ç': 'c',
+  'Ç': 'C'
+};
 const tintColor = '#174A87'
 
 const Loading = props => (
@@ -333,6 +373,43 @@ export default class App extends Component {
     // this.SectionedMultiSelect._toggleSelector();
   }
 
+  getProp = (object, key) => object && this.removerAcentos(object[key])
+
+  rejectProp = (items, fn) => items.filter(fn)
+
+  // testing a custom filtering function that ignores accents
+  removerAcentos = (s) => {
+    return s.replace(/[\W\[\] ]/g, function (a) {
+      return accentMap[a] || a
+    })
+  };
+
+  filterItems = (searchTerm, items, { subKey, displayKey, uniqueKey }) => {
+    let filteredItems = []
+    let newFilteredItems = []
+    items.forEach((item) => {
+      const parts = this.removerAcentos(searchTerm.trim()).split(/[[ \][)(\\/?\-:]+/)
+      const regex = new RegExp(`(${parts.join('|')})`, 'i')
+      if (regex.test(this.getProp(item, displayKey))) {
+        filteredItems.push(item)
+      }
+      if (item[subKey]) {
+        const newItem = Object.assign({}, item)
+        newItem[subKey] = []
+        item[subKey].forEach((sub) => {
+          if (regex.test(this.getProp(sub, displayKey))) {
+            newItem[subKey] = [...newItem[subKey], sub]
+            newFilteredItems = this.rejectProp(filteredItems, singleItem =>
+              item[uniqueKey] !== singleItem[uniqueKey])
+            newFilteredItems.push(newItem)
+            filteredItems = newFilteredItems
+          }
+        })
+      }
+    })
+    return filteredItems
+  }
+
   onSelectedItemsChange = (selectedItems) => {
     const filteredItems = selectedItems.filter(val => !this.state.selectedItems2.includes(val))
     this.setState({ selectedItems: filteredItems })
@@ -346,7 +423,6 @@ export default class App extends Component {
   onConfirm = () => {
     this.setState({ currentItems: this.state.selectedItems })
   }
-
   onCancel = () => {
     this.SectionedMultiSelect._removeAllItems()
 
@@ -460,6 +536,7 @@ searchAdornment = (searchTerm) => {
           subKey="children"
           displayKey="title"
           showCancelButton
+          filterItems={this.filterItems}
           // alwaysShowSelectText
           searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
           renderSelectText={this.renderSelectText}
@@ -470,6 +547,10 @@ searchAdornment = (searchTerm) => {
               fetchCategories={this.fetchCategories}
             />
           }
+          chipRemoveIconComponent={<Icon style={{
+            fontSize: 18,
+            marginHorizontal: 6,
+          }}>cancel</Icon>}
           //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
           showDropDowns={this.state.showDropDowns}
           expandDropDowns={this.state.expandDropDowns}
