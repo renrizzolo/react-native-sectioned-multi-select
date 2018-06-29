@@ -1,4 +1,8 @@
 # Changelog
+## 0.5.1 - 2018-06-29
+### Added
+    - Add `chipRemoveIconComponent`, this icon wasn't user replaceable before.
+    - Add `filterItems` function prop. It will replace the filter used for searching. parameters are `searchTerm`, `items`, `props`. You need to return an array of item objects. (example in `exampleapp/App.js`).
 ## 0.5.0 - 2018-06-12
 ### Added
     - Add `expandDropDowns` prop. Set to true to expand all parent dropdowns (when using `showDropDowns`).

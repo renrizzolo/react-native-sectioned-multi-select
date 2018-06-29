@@ -196,6 +196,7 @@ Props, there are lots.
 |searchPlaceholderText  |'Search categories...'| string   |the placeholder text for the search input |
 |searchAdornment |   | |function | receives search input text and is output on the right side of the search input |
 |removeAllText  |'Remove all'| string   |Text for optional remove all button |
+|filterItems    | null | function | Use a custom filtering function for the search: receives searchText, items, props. Should return an array of item objects.| 
 |noResultsComponent         | `<Text>Sorry, no results</Text>` | object   |the component to display when the search results are empty |
 |loadingComponent    | `<View style={{marginTop:20, alignItems:'center', justifyContent:'center'}}>   <ActivityIndicator/>  </View>` | object   |the component to display when the items are empty |
 |selectToggleIconComponent | Material `keyboard-arrow-down` | object | The icon to the right of the dropdown in its initial state ) |
@@ -204,6 +205,7 @@ Props, there are lots.
 |dropDownToggleIconUpComponent | Material `keyboard-arrow-up` | object | The parent dropdown icon in closed state
 |dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object | The parent dropdown icon in opened state
 |cancelIconComponent | Material `cancel` | object | The cancel button's inner component |
+|chipRemoveIconComponent  Material `close` | object | The chip remove button's icon component |
 |styles                 | {}            | object    |Styles object - see styles section |
 |colors                 | {...} | object        |colors object - see colors section |
 |itemFontFamily       | Avenir / normal - bold   | object  |font family for the parent items. Can be a regular style object |
