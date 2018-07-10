@@ -246,8 +246,11 @@ These are the styles you can change:
 	`selectToggle`  
 	`selectToggleText`  
 	`item`  
+  `selectedItem`  
 	`subItem`  
-	`itemText`  
+	`itemText` 
+  `selectedItemText`  
+  `selectedSubItemText` 
 	`subItemText`  
 	`searchBar`  
 	`center`  
@@ -259,6 +262,5 @@ These are the styles you can change:
 	`searchTextInput`  
 	`scrollView`  
 	`button`  
-	`confirmText`
-  `selectedItem`
-  `cancelButton`
+	`confirmText`  
+  `cancelButton`  
