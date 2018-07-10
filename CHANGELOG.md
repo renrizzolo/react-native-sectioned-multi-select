@@ -1,8 +1,16 @@
 # Changelog
+
+## 0.5.2 - 2018-07-10
+### Fixed
+    - Added `keyboardShouldPersistTaps` props where needed
+### Added
+    - Add `selectedItemText` and `selectedSubItemText` styles (previously only the parent view style was editable when selected).
+    
 ## 0.5.1 - 2018-06-29
 ### Added
     - Add `chipRemoveIconComponent`, this icon wasn't user replaceable before.
     - Add `filterItems` function prop. It will replace the filter used for searching. parameters are `searchTerm`, `items`, `props`. You need to return an array of item objects. (example in `exampleapp/App.js`).
+
 ## 0.5.0 - 2018-06-12
 ### Added
     - Add `expandDropDowns` prop. Set to true to expand all parent dropdowns (when using `showDropDowns`).
@@ -25,6 +33,7 @@
 ### Added
     - `alwaysShowSelectText` prop - if true the select label won't show the amount selected + `selectedText` or the name of the selected item if only one items is selected. Not applied when `single` is true as single shows the `dispayKey` on the select label only. #23
     - `searchAdornment` prop - function that receives the text of the search input, and is output on the right hand side of the search input. Useful if you need to do something with the search text like add a new item.
+
 ## 0.4.2 - 2018-03-29
 ### Fixed / Added
     - disabled items
