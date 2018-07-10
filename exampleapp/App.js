@@ -525,7 +525,7 @@ searchAdornment = (searchTerm) => {
 
   render() {
     return (
-      <ScrollView style={{ backgroundColor: '#f8f8f8' }} contentContainerStyle={styles.container}>
+      <ScrollView keyboardShouldPersistTaps="always" style={{ backgroundColor: '#f8f8f8' }} contentContainerStyle={styles.container}>
         <Text style={styles.welcome}>
             React native sectioned multi select example.
         </Text>
