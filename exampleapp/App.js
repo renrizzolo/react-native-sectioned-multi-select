@@ -567,7 +567,7 @@ searchAdornment = (searchTerm) => {
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems}
-          colors={{ primary: this.state.selectedItems.length ? 'forestgreen' : 'crimson' }}
+          colors={{ primary: this.state.selectedItems.length ? 'forestgreen' : 'crimson',}}
           itemNumberOfLines={3}
           selectLabelNumberOfLines={3}
           styles={{
@@ -577,8 +577,14 @@ searchAdornment = (searchTerm) => {
             itemText: {
               color: this.state.selectedItems.length ? 'black' : 'lightgrey'
             },
-            subItemText: {
-              color: this.state.selectedItems.length ? 'black' : 'lightgrey'
+            selectedItemText: {
+              color: 'blue',
+            },
+            // subItemText: {
+            //   color: this.state.selectedItems.length ? 'black' : 'lightgrey'
+            // },
+            selectedSubItemText: {
+               color: 'blue',
             },
           }}
            cancelIconComponent={
