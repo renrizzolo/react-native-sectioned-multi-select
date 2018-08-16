@@ -522,12 +522,16 @@ searchAdornment = (searchTerm) => {
     null
   )
 }
+  onToggleSelector = (toggled) => {
+    console.log('selector is ', toggled ? 'open' : 'closed');
+  }
 
   render() {
     return (
       <ScrollView keyboardShouldPersistTaps="always" style={{ backgroundColor: '#f8f8f8' }} contentContainerStyle={styles.container}>
         <Text style={styles.welcome}>
             React native sectioned multi select example.
+
         </Text>
         <SectionedMultiSelect
           items={this.state.items}
@@ -627,6 +631,7 @@ searchAdornment = (searchTerm) => {
           // onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
+          onToggleSelector={this.onToggleSelector}
           selectedItems={this.state.selectedItems2}
           styles={{
             chipText: {
