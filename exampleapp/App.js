@@ -175,74 +175,6 @@ for (let i = 0; i < 100; i++) {
   })
 }
 
-const fonts = {
-  condensed:
-    Platform.select({
-      ios: {
-        fontFamily: 'AvenirNextCondensed-DemiBold',
-      },
-      android: {
-        fontFamily: 'sans-serif-condensed',
-      },
-    }),
-  boldCondensed:
-    Platform.select({
-      ios: {
-        fontFamily: 'AvenirNextCondensed-DemiBold',
-      },
-      android: {
-        fontFamily: 'sans-serif-condensed',
-        fontWeight: '700',
-      },
-    }),
-  regular:
-    Platform.select({
-      ios: {
-        fontFamily: 'Avenir-Heavy',
-      },
-      android: {
-        fontFamily: 'sans-serif',
-      },
-    }),
-  light:
-    Platform.select({
-      ios: {
-        fontFamily: 'Avenir-Light',
-      },
-      android: {
-        fontFamily: 'sans-serif-light',
-      },
-    }),
-  bold:
-    Platform.select({
-      ios: {
-        fontFamily: 'Avenir-Black',
-      },
-      android: {
-        fontFamily: 'sans-serif',
-        fontWeight: '700',
-      },
-    }),
-  black:
-    Platform.select({
-      ios: {
-        fontFamily: 'Avenir-Black',
-      },
-      android: {
-        fontFamily: 'sans-serif',
-        fontWeight: '900',
-      },
-    }),
-  serif:
-    Platform.select({
-      ios: {
-        fontFamily: 'Georgia',
-      },
-      android: {
-        fontFamily: 'serif',
-      },
-    }),
-}
 
 const styles = StyleSheet.create({
   center: {
@@ -350,7 +282,8 @@ export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      items: items,
+      items: null,
+      loading: false,
       selectedItems: [],
       selectedItems2: [],
       selectedItemObjects: [],
@@ -362,11 +295,13 @@ export default class App extends Component {
       selectChildren: false,
       hasErrored: false,
     }
+    this.termId = 100;
   }
 
 
   componentWillMount() {
    // this.fetchCategories()
+   this.pretendToLoad()
   }
   componentDidMount() {
     // programatically opening the select
@@ -376,6 +311,13 @@ export default class App extends Component {
   getProp = (object, key) => object && this.removerAcentos(object[key])
 
   rejectProp = (items, fn) => items.filter(fn)
+
+  pretendToLoad = () => {
+    this.setState({ loading: true })
+    setTimeout(() => {
+      this.setState({ loading: false, items })
+    }, 4000)
+  }
 
   // testing a custom filtering function that ignores accents
   removerAcentos = (s) => {
@@ -477,19 +419,20 @@ export default class App extends Component {
 
   noResults =
     <View key="a" style={styles.center}>
-      <Text>Sorry No results...</Text>
+      <Text>Sorry! No results...</Text>
     </View>;
 
-handleAddSearchTerm = () => {
-  const searchTerm = this.SectionedMultiSelect._getSearchTerm();
-  const id = this.state.items[this.state.items.length - 1].id + 1;
-  if ( searchTerm.length && !this.state.items.some( item => item.title.includes(searchTerm) ) ) {
-    const newItem = {id: id, title: searchTerm};
-    this.setState(prevState => ({items: [...prevState.items, newItem]}));
-    this.onSelectedItemsChange([...this.state.selectedItems, id])
-    this.SectionedMultiSelect._submitSelection()
+  handleAddSearchTerm = () => {
+    const searchTerm = this.SectionedMultiSelect._getSearchTerm();
+    const id = this.termId += 1;
+    if ( searchTerm.length && !(this.state.items || []).some( item => item.title.includes(searchTerm) ) ) {
+      const newItem = { id: id, title: searchTerm };
+      this.setState(prevState => ({items: [...prevState.items || [], newItem]}));
+      this.onSelectedItemsChange([...this.state.selectedItems, id])
+      this.SectionedMultiSelect._submitSelection()
+    }
   }
-}
+
   renderSelectText = () => {
     const { selectedItemObjects } = this.state;
 
@@ -540,11 +483,12 @@ searchAdornment = (searchTerm) => {
           subKey="children"
           displayKey="title"
           showCancelButton
-          filterItems={this.filterItems}
+          loading={this.state.loading}
+          // filterItems={this.filterItems}
           // alwaysShowSelectText
           searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
           renderSelectText={this.renderSelectText}
-          noResultsComponent={this.noResults}
+          // noResultsComponent={this.noResults}
           loadingComponent={
             <Loading
               hasErrored={this.state.hasErrored}
@@ -578,9 +522,9 @@ searchAdornment = (searchTerm) => {
             // chipText: {
             //   maxWidth: Dimensions.get('screen').width - 90,
             // },
-            itemText: {
-              color: this.state.selectedItems.length ? 'black' : 'lightgrey'
-            },
+            // itemText: {
+            //   color: this.state.selectedItems.length ? 'black' : 'lightgrey'
+            // },
             selectedItemText: {
               color: 'blue',
             },
