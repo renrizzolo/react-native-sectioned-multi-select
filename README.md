@@ -155,7 +155,8 @@ Props, there are lots.
 ### Main
 | Prop        					| Default       | type 			| Desc  |
 | ------------- 				|-------------	| -----			|-----	|
-|uniqueKey              | 'id'          | string    |the unique key for your items
+|items              |           | array    |the items |
+|uniqueKey              | 'id'          | string    |the unique key for your items |
 |subKey           | 'sub'         | string    |the array of sub items within items |
 |displayKey           | 'name'         | string    |the key for the display name / title of the item |
 |selectedItems					| []						| array 		|the selected items |
@@ -163,11 +164,13 @@ Props, there are lots.
 |onSelectedItemObjectsChange  |   | function  |function that returns the selected items as their original objects instead of an array of ids |
 |onCancel  |   | function  |function that runs when the cancel button is pressed |
 |onConfirm  |   | function  |function that runs when the confirm button is pressed |
+|onToggleSelector  |   | function  |callback function that runs when the selector is toggled. receives a boolean for the open/close state of the modal |
 
 ### Options
 
 | Prop                  | Default       | type      | Desc  |
 | -------------         |-------------  | -----     |-----  |
+| loading               | false        | bool       |set the loading state, shows `loadingComponent` if true |
 | single                | false         | bool      |allow only one selection |
 | showDropDowns         | true          | bool      |whether to allow dropdown toggles to show/hide the sub items (if false, sub items are always shown)|
 |expandDropDowns        | false         | bool      |when using `showDropDowns`, set to true to expand all the dropdowns on mount|
@@ -197,15 +200,16 @@ Props, there are lots.
 |searchAdornment |   | |function | receives search input text and is output on the right side of the search input |
 |removeAllText  |'Remove all'| string   |Text for optional remove all button |
 |filterItems    | null | function | Use a custom filtering function for the search: receives searchText, items, props. Should return an array of item objects.| 
-|noResultsComponent         | `<Text>Sorry, no results</Text>` | object   |the component to display when the search results are empty |
-|loadingComponent    | `<View style={{marginTop:20, alignItems:'center', justifyContent:'center'}}>   <ActivityIndicator/>  </View>` | object   |the component to display when the items are empty |
+|noResultsComponent         | Sorry, no results | object   |the component to display when the search results are empty |
+|loadingComponent    | `ActivityIndicator` | object  |the component to display when `loading` is set to true |
+|noItemsComponent | No Items | object | Shown when the items array is empty / null |
 |selectToggleIconComponent | Material `keyboard-arrow-down` | object | The icon to the right of the dropdown in its initial state ) |
 |searchIconComponent | Material `search` | object | The search input icon (default Magnifying glass)
 |selectedIconComponent | Material `check` | object | The icon to the left of the selected item (default Checkmark)
 |dropDownToggleIconUpComponent | Material `keyboard-arrow-up` | object | The parent dropdown icon in closed state
 |dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object | The parent dropdown icon in opened state
 |cancelIconComponent | Material `cancel` | object | The cancel button's inner component |
-|chipRemoveIconComponent  Material `close` | object | The chip remove button's icon component |
+|chipRemoveIconComponent | Material `close` | object | The chip remove button's icon component |
 |styles                 | {}            | object    |Styles object - see styles section |
 |colors                 | {...} | object        |colors object - see colors section |
 |itemFontFamily       | Avenir / normal - bold   | object  |font family for the parent items. Can be a regular style object |
@@ -213,8 +217,8 @@ Props, there are lots.
 |searchTextFontFamily |  Avenir / normal - 200       | object  |font family for the search input. Can be a regular style object |
 |confirmFontFamily    |  Avenir / normal - bold      | object  |font family for the confirm button. |
 |itemNumberOfLines        |null              |number     |numberOfLines for item text |  
-|selectLabelNumberOfLines | 1             |number     numberOfLines for select label text |
-|customLayoutAnimation  | `LayoutAnimation.Presets.easeInEaseOut` | object    |define your own `LayoutAnimation` preset or custom animation |
+|selectLabelNumberOfLines | 1             |number  |   numberOfLines for select label text |
+|customLayoutAnimation  | easeInEaseOut | object    |define your own `LayoutAnimation` preset or custom animation |
 
 ## Colors
 You can pass a colors object to theme it how you like.
