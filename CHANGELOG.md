@@ -1,5 +1,5 @@
 # Changelog
-## 0.5.3 - 2018-09-24
+## 0.6.0 - 2018-10-02
 
 ### Fixed
 - prevent crash when pressing select toggle rapidly
