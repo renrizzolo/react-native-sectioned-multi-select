@@ -3,6 +3,9 @@
 
 ### Fixed
 - properly escape regex special chars for test in filter function #64
+### Added
+- Add `hideConfirm` prop - hides the confirm button from the modal #62
+- Add `stickyFooterComponent` shows below the confirm button (but, unlike `footerComponent`, outside of the scroll view so it's always visible)
 
 ## 0.6.0 - 2018-10-02
 
