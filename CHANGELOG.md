@@ -6,6 +6,8 @@
 ### Added
 - Add `hideConfirm` prop - hides the confirm button from the modal #62
 - Add `stickyFooterComponent` shows below the confirm button (but, unlike `footerComponent`, outside of the scroll view so it's always visible)
+- Add `chipsPosition` to position the chips above or below the select. Sstring, either 'top' or 'bottom' #56
+- Add `customChipsRenderer` function. receives all props. #56
 
 ## 0.6.0 - 2018-10-02
 
