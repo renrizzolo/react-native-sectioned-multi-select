@@ -482,7 +482,20 @@ searchAdornment = (searchTerm) => {
           uniqueKey="id"
           subKey="children"
           displayKey="title"
-          showCancelButton
+          // showCancelButton
+          headerComponent={
+            <View style={{ padding: 15, position: 'absolute', top: 0, right: 0, zIndex: 99 }}>
+              <TouchableOpacity onPress={this.SectionedMultiSelect && this.SectionedMultiSelect._cancelSelection}>
+                <Icon>cancel</Icon>
+              </TouchableOpacity>
+            </View>
+          }
+          stickyFooterComponent={
+            <View style={{  padding: 15, }}>
+              <Text style={{textAlign: 'center'}}>Hi</Text>
+            </View>
+          }
+          // hideConfirm
           loading={this.state.loading}
           // filterItems={this.filterItems}
           // alwaysShowSelectText
