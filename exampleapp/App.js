@@ -468,7 +468,27 @@ searchAdornment = (searchTerm) => {
   onToggleSelector = (toggled) => {
     console.log('selector is ', toggled ? 'open' : 'closed');
   }
+  customChipsRenderer = (props) => {
+    console.log('props', props);
+    return (
+      <View style={{backgroundColor: 'yellow', padding: 15,}}>
+      <Text>Selected:</Text>
+        {props.selectedItems.map((singleSelectedItem) => {
+          const item = this.SectionedMultiSelect._findItem(singleSelectedItem)
 
+          if (!item || !item[props.displayKey]) return null
+
+          return (
+            <View key={item[props.uniqueKey]} style={{ flex: 0,marginRight: 5, padding: 10, backgroundColor: 'orange' }}>
+              <TouchableOpacity onPress={() => { this.SectionedMultiSelect._removeItem(item) }}>
+                  <Text>{item[props.displayKey]}</Text>
+              </TouchableOpacity>
+            </View>
+            )
+        })} 
+      </View>
+    )
+  }
   render() {
     return (
       <ScrollView keyboardShouldPersistTaps="always" style={{ backgroundColor: '#f8f8f8' }} contentContainerStyle={styles.container}>
@@ -499,6 +519,8 @@ searchAdornment = (searchTerm) => {
           loading={this.state.loading}
           // filterItems={this.filterItems}
           // alwaysShowSelectText
+          customChipsRenderer={this.customChipsRenderer}
+          chipsPosition="top"
           searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
           renderSelectText={this.renderSelectText}
           // noResultsComponent={this.noResults}
