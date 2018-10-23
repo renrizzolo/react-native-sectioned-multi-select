@@ -1,4 +1,9 @@
 # Changelog
+## 0.6.1 - 2018-10-23
+
+### Fixed
+- properly escape regex special chars for test in filter function #64
+
 ## 0.6.0 - 2018-10-02
 
 ### Fixed
