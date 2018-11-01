@@ -262,6 +262,7 @@ These are the styles you can change:
 	`center`  
 	`separator`  
 	`subSeparator`  
+  `chipsWrapper`  
 	`chipContainer`  
 	`chipText`  
 	`chipIcon`  
