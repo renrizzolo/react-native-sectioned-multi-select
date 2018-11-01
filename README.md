@@ -210,7 +210,7 @@ Props, there are lots.
 |dropDownToggleIconUpComponent | Material `keyboard-arrow-up` | object | The parent dropdown icon in closed state
 |dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object | The parent dropdown icon in opened state
 |cancelIconComponent | Material `cancel` | object | The cancel button's inner component |
-|customChipsRenderer |  | function | Use a custom render function for custom chips: receives props, colors, styles. Should return valid jsx |
+|customChipsRenderer |  | function | Use a custom render function for custom chips: receives uniqueKey, subKey, displayKey, items, selectedItems, colors, styles. should return valid jsx |
 |chipRemoveIconComponent | Material `close` | object | The chip remove button's icon component |
 |styles                 | {}            | object    |Styles object - see styles section |
 |colors                 | {...} | object        |colors object - see colors section |
