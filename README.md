@@ -186,8 +186,8 @@ Props, there are lots.
 |showRemoveAll          |false          | bool      | Whether to show a Remove all chip at the beginning of the selected items chips |
 |modalSupportedOrientations |['landscape', 'portrait']| array   | The supportedOrientations of the Modal |
 |modalAnimationType     |'fade'         | string    |The animation type of the Modal (fade or slide) |
-|modalSafeAreaView     | false        | bool        | If true uses a `<SafeAreaView>` component for the _backdrop_ component. Useful for e.g iPhone X notch |
-
+|modalWithSafeAreaView     | false        | bool        | If true uses a `<SafeAreaView>` component for the _backdrop_ component. Useful for e.g iPhone X notch |
+|modalWithTouchable     | false        | bool        | If true wraps the _backdrop_ component with `<TouchableWithoutFeedback>` . Closes modal on press (`this._closeSelector()`; fires `onToggleSelector(false)`). |
 
 ### Customization
 

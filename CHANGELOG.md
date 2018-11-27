@@ -1,4 +1,9 @@
+
 # Changelog
+## 0.6.2 - 2018-11-27
+### Added
+- Add `modalWithTouchable` prop. Set to true to wrap the backdrop in a `TouchableWithoutFeedback`, which will close the selector (also fires `onToggleSelector(false)`) #76
+
 ## 0.6.1 - 2018-10-23
 
 ### Fixed
@@ -8,6 +13,7 @@
 - Add `stickyFooterComponent` shows below the confirm button (but, unlike `footerComponent`, outside of the scroll view so it's always visible)
 - Add `chipsPosition` to position the chips above or below the select. Sstring, either 'top' or 'bottom' #56
 - Add `customChipsRenderer` function. receives all props. #56
+- Add `modalSafeAreaView` prop. Set to true to use a `SafeAreaView` instead of a `View` as the backdrop inside the `Modal`.
 
 ## 0.6.0 - 2018-10-02
 
