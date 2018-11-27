@@ -1,6 +1,6 @@
 
 # Changelog
-## 0.6.2 - 2018-11-27
+## 0.6.3 - 2018-11-27
 ### Added
 - Add `modalWithTouchable` prop. Set to true to wrap the backdrop in a `TouchableWithoutFeedback`, which will close the selector (also fires `onToggleSelector(false)`) #76
 
