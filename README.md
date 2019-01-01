@@ -177,6 +177,7 @@ Props, there are lots.
 |animateDropDowns       | true          | bool      |whether to animate toggling of dropdowns|
 |showChips              | true          | bool      |whether to show the chips of the selected items |
 |hideSelect             | false         | bool      |hide the select component |
+|hideConfirm            | false         | bool      |hide the confirm buttom |
 |showCancelButton       | false         | bool      |Show a cancel button next to the confirm button. Dismisses modal and removes all selected items. |
 | alwaysShowSelectText  | false         | bool      | Don't show number of items selected or the single selected item on the select label (unless `single` is true).
 |readOnlyHeadings       | false         | bool      |whether the parent items can be pressed or not. If true and `showDropdowns` is true, pressing the parent item will toggle the dropdown  |
@@ -201,6 +202,9 @@ Props, there are lots.
 |searchAdornment |   | |function | receives search input text and is output on the right side of the search input |
 |removeAllText  |'Remove all'| string   |Text for optional remove all button |
 |filterItems    | null | function | Use a custom filtering function for the search: receives searchText, items, props. Should return an array of item objects.| 
+|headerComponent         | undefined | object   |optional component to display above the search bar |
+|footerComponent         | undefined | object   |optional component to display below the confirm button |
+|stickyFooterComponent         | undefined | object   |optional component to display below the confirm button, but outside of the scroll view |
 |noResultsComponent         | Sorry, no results | object   |the component to display when the search results are empty |
 |loadingComponent    | `ActivityIndicator` | object  |the component to display when `loading` is set to true |
 |noItemsComponent | No Items | object | Shown when the items array is empty / null |
