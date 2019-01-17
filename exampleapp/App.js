@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+const img = require('./z.jpg');
 
 // Sorry for the mess
 
@@ -21,10 +22,12 @@ const items = [
   {
     title: 'Fruits from various places around the world, if you like',
     id: 0,
+    icon: { uriq: 'https://banner2.kisspng.com/20180514/wqq/kisspng-leaf-plant-green-clip-art-5af9b5b7402440.7747356215263144232627.jpg'},
+    
     children: [
       {
         title: 'Apple',
-        id: 10,
+        id: 10,        
       },
       {
         title: 'Strawberry and Banana and Pineapple and Pawpaw and Peach',
@@ -84,6 +87,7 @@ const items = [
   {
     title: 'Gèms',
     id: 1,
+    icon: "cake",
     children: [
       {
         title: 'Quartz',
@@ -106,6 +110,8 @@ const items = [
   {
     title: 'Plants',
     id: 2,
+    icon: img,
+
     children: [
       {
         title: "Mother In Law's Tongue",
@@ -131,6 +137,8 @@ const items = [
     id: 34,
   },
 ]
+console.log(items);
+
 // const items2 =
 //   [{
 //     title: 'Plants',
@@ -502,6 +510,7 @@ searchAdornment = (searchTerm) => {
           uniqueKey="id"
           subKey="children"
           displayKey="title"
+          iconKey="icon"
           // showCancelButton
           headerComponent={
             <View style={{ padding: 15, position: 'absolute', top: 0, right: 0, zIndex: 99 }}>
