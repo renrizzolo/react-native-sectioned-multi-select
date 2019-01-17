@@ -32,11 +32,13 @@ import {
 } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
+const icon = require('./icon.png');
+
 const items = [
   {  
     name: "Fruits",
     id: 0,
-    icon: "https://images.vexels.com/media/users/3/147164/isolated/preview/6bf92415c7b2651f512aa0db5a3e1aba-red-apple-icon-fruit-by-vexels.png"
+    icon: icon, // local required file
     children: [{
         name: "Apple",
         id: 10,
@@ -60,7 +62,7 @@ const items = [
   {
     name: "Gems",
     id: 1,
-    icon: "https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png"
+    icon: { uri: "https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png" } // web uri
     children: [{
         name: "Quartz",
         id: 20,
@@ -78,7 +80,7 @@ const items = [
   {
     name: "Plants",
     id: 2,
-    icon: "https://banner2.kisspng.com/20180514/wqq/kisspng-leaf-plant-green-clip-art-5af9b5b7402440.7747356215263144232627.jpg"
+    icon: "filter_vintage" // material icons icon name
     children: [{
         name: "Mother In Law\'s Tongue",
         id: 30,
@@ -114,7 +116,7 @@ export default class App extends Component {
           items={items} 
           uniqueKey='id'
           subKey='children'
-          iconKey='key'
+          iconKey='icon'
           selectText='Choose some things...'
           showDropDowns={true}
           readOnlyHeadings={true}
@@ -163,7 +165,7 @@ Props, there are lots.
 |uniqueKey              | 'id'          | string    |the unique key for your items |
 |subKey                 | 'sub'         | string    |the array of sub items within items |
 |displayKey             | 'name'        | string    |the key for the display name / title of the item |
-|iconKey                | 'icon'        | string    |the key for the display icon / bitmap of the item |
+|iconKey                |               | string    |the key for the display icon / bitmap of the item |
 |selectedItems					| []						| array 		|the selected items |
 |onSelectedItemsChange	| 	            | function	|function that runs when an item is toggled|
 |onSelectedItemObjectsChange  |         | function  |function that returns the selected items as their original objects instead of an array of ids |
