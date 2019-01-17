@@ -1,5 +1,10 @@
 
 # Changelog
+## 0.6.4 - 2019-01-17
+### Added
+- added ability to show an icon before the item text #87. Use prop `iconKey`, then add the key to your item as either a string (to show a material icons `Icon` component by `name`), object (to show an image e.g {uri: 'imageUrl' }, or a number (that is returned from require('./localimage.png') )). use style key `itemIconStyle` to style the Icon / Image
+- added `autoFocus` prop (bool) #86, to autofocus the search input when the modal is opened.
+
 ## 0.6.3 - 2018-11-27
 ### Added
 - Add `modalWithTouchable` prop. Set to true to wrap the backdrop in a `TouchableWithoutFeedback`, which will close the selector (also fires `onToggleSelector(false)`) #76
