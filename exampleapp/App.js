@@ -22,7 +22,7 @@ const items = [
   {
     title: 'Fruits from various places around the world, if you like',
     id: 0,
-    icon: { uriq: 'https://banner2.kisspng.com/20180514/wqq/kisspng-leaf-plant-green-clip-art-5af9b5b7402440.7747356215263144232627.jpg'},
+    icon: { uri: 'https://banner2.kisspng.com/20180514/wqq/kisspng-leaf-plant-green-clip-art-5af9b5b7402440.7747356215263144232627.jpg'},
     
     children: [
       {
@@ -511,6 +511,7 @@ searchAdornment = (searchTerm) => {
           subKey="children"
           displayKey="title"
           iconKey="icon"
+          autoFocus
           // showCancelButton
           headerComponent={
             <View style={{ padding: 15, position: 'absolute', top: 0, right: 0, zIndex: 99 }}>
