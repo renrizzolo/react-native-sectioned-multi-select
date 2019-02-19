@@ -1,3 +1,7 @@
+# Changelog
+## 0.6.5 - 2019-02-19
+### Added
+- added `unselectedIconComponent` #93
 
 # Changelog
 ## 0.6.4 - 2019-01-17
