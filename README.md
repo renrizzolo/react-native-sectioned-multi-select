@@ -70,7 +70,7 @@ const items = [
   {
     name: "Gems",
     id: 1,
-    icon: { uri: "https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png" } // web uri
+    icon: { uri: "https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png" }, // web uri
     children: [{
         name: "Quartz",
         id: 20,
@@ -88,7 +88,7 @@ const items = [
   {
     name: "Plants",
     id: 2,
-    icon: "filter_vintage" // material icons icon name
+    icon: "filter_vintage", // material icons icon name
     children: [{
         name: "Mother In Law\'s Tongue",
         id: 30,
