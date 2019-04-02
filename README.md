@@ -1,4 +1,5 @@
 # react-native-sectioned-multi-select
+[![NPM Version](https://img.shields.io/npm/v/react-native-sectioned-multi-select.svg?style=flat)](https://www.npmjs.com/package/react-native-sectioned-multi-select)
 
 A multi (or single) select component with support for sub categories, search, chips.
 It's intended for long-ish lists, as it opens in a Modal (I might make this optional in the future).
@@ -8,12 +9,10 @@ The problems I had were that I needed it to be in a modal, because of nested Scr
 
 ## Caveats
 
-- Currently all ids must be unique. So if you're pulling data from multiple sources, be aware that id clashes will cause (major) problems i.e both items with the same id will get selected. Looking for contributors for this - would require a bit of a refactor. see #33
-- There is no ajax support
+- Currently all ids must be unique. So if you're pulling data from multiple sources, be aware that id clashes will cause (major) problems i.e both items with the same id will get selected. Looking for contributors for this - would require a bit of a refactor (see #33).
+- There is no ajax support.
 
-## Changelog
-
-view [Changelog](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/CHANGELOG.md)
+## Preview
 
 ![preview 1](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-1.gif)
 ![preview 2](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/previews/example_recording-2.gif)
@@ -22,11 +21,11 @@ view [Changelog](https://github.com/renrizzolo/react-native-sectioned-multi-sele
 
 ## Usage
 
-[![NPM Version](https://img.shields.io/npm/v/react-native-sectioned-multi-select.svg?style=flat)](https://www.npmjs.com/package/react-native-sectioned-multi-select)
+Before installing, please make sure you have [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) set up.
+
+You can install this package with the following command:
 
 `npm i -S react-native-sectioned-multi-select`
-
-react-native-vector-icons package is required, [set it up](https://github.com/oblador/react-native-vector-icons) if you haven't already.
 
 Required props:  
 `items` | array  
@@ -40,13 +39,15 @@ import {
 } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
+// This is how you can load a local icon
+// You can remove this if you'd like
 const icon = require('./icon.png');
 
 const items = [
   {
     name: "Fruits",
     id: 0,
-    icon: icon, // local required file
+    icon: icon, // Make sure the icon const is set, or you can remove this
     children: [{
         name: "Apple",
         id: 10,
@@ -299,3 +300,7 @@ These are the styles you can change:
  `confirmText`  
  `cancelButton`  
  `itemIconStyle`
+
+ ## Changelog
+
+View [changelog](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/CHANGELOG.md).
