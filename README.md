@@ -45,62 +45,113 @@ const icon = require('./icon.png');
 
 const items = [
   {
-    name: "Fruits",
+    name: {
+      en: "Fruits",
+      ar: "فواكه"
+    },
     id: 0,
     icon: icon, // Make sure the icon const is set, or you can remove this
     children: [{
-        name: "Apple",
+        name: {
+          en: "Apple",
+          ar: "تفاح"
+        },
         id: 10,
       },{
-        name: "Strawberry",
+        name: {
+          en: "Strawberry",
+          ar: "فراولة"
+        },
         id: 17,
       },{
-        name: "Pineapple",
+        name: {
+          en: "Pineapple",
+          ar: "أناناس"
+        },
         id: 13,
       },{
-        name: "Banana",
+        name: {
+          en: "Banana",
+          ar: "موز"
+        },
         id: 14,
       },{
-        name: "Watermelon",
+        name: {
+          en: "Watermelon",
+          ar: "بطيخ"
+        },
         id: 15,
       },{
-        name: "Kiwi fruit",
+        name: {
+          en: "Kiwi fruit",
+          ar: "كيوي"
+        },
         id: 16,
       }]
   },
   {
-    name: "Gems",
+    name: {
+      en: "Gems",
+      ar: "ألعاب"
+    },
     id: 1,
     icon: { uri: "https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png" }, // web uri
     children: [{
-        name: "Quartz",
+        name: {
+          en: "Quartz",
+          ar: "كوارتز"
+        },
         id: 20,
       },{
-        name: "Zircon",
+        name: {
+          en: "Zircon",
+          ar: "زيركون"
+        },
         id: 21,
       },{
-        name: "Sapphire",
+        name: {
+          en: "Sapphire",
+          ar: "سفاير"
+        },
         id: 22,
       },{
-        name: "Topaz",
+        name: {
+          en: "Topaz",
+          ar: "توباز"
+        },
         id: 23,
       }]
   },
   {
-    name: "Plants",
+    name: {
+      en: "Plants",
+      ar: "نباتات"
+    },
     id: 2,
     icon: "filter_vintage", // material icons icon name
     children: [{
-        name: "Mother In Law\'s Tongue",
+        name: {
+          en: "Mother In Law\'s Tongue",
+          ar: "لسان العفريت"
+        },
         id: 30,
       },{
-        name: "Yucca",
+        name: {
+          en: "Yucca",
+          ar: "يكة"
+        },
         id: 31,
       },{
-        name: "Monsteria",
+        name: {
+          en: "Monsteria",
+          ar: "قشطة دندروم"
+        },
         id: 32,
       },{
-        name: "Palm",
+        name: {
+          en: "Palm",
+          ar: "نخلة"
+        },
         id: 33,
       }]
   },
@@ -118,6 +169,9 @@ export default class App extends Component {
   }
 
   render() {
+    const { locale } = this.props
+    const language = locale == 'ar' ? 'ar' : 'en'
+
     return (
       <View>
 
@@ -125,6 +179,7 @@ export default class App extends Component {
           items={items}
           uniqueKey='id'
           subKey='children'
+          subDisplayKey={language}
           iconKey='icon'
           selectText='Choose some things...'
           showDropDowns={true}
@@ -180,6 +235,7 @@ Props, there are lots.
 | uniqueKey                   | 'id'    | string   | the unique key for your items                                                                                      |
 | subKey                      | 'sub'   | string   | the array of sub items within items                                                                                |
 | displayKey                  | 'name'  | string   | the key for the display name / title of the item                                                                   |
+| subDisplayKey               | null    | string   | when the title is in a sub item, set `displayKey` to the parent item and `subDisplayKey` to the child item         |
 | iconKey                     |         | string   | the key for the display icon / bitmap of the item                                                                  |
 | selectedItems               | []      | array    | the selected items                                                                                                 |
 | onSelectedItemsChange       |         | function | function that runs when an item is toggled                                                                         |
@@ -216,38 +272,38 @@ Props, there are lots.
 
 | Prop                            | Default                        | type               | Desc                                                                                                                                                 |
 | ------------------------------- | ------------------------------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| selectText                      | 'Select'                       | string             | the text for the select component                                                                                                                    |
-| confirmText                     | 'Confirm'                      | string             | the text for the confirm button                                                                                                                      |
-| selectedText                    | 'selected'                     | string OR function | the text that follows the number of items selected                                                                                                   |
-| renderSelectText                |                                | function           | Function that allows you to set custom Select Text given access to component's `props`                                                               |
-| searchPlaceholderText           | 'Search categories...'         | string             | the placeholder text for the search input                                                                                                            |
-| searchAdornment                 |                                |                    | function                                                                                                                                             | receives search input text and is output on the right side of the search input |
-| removeAllText                   | 'Remove all'                   | string             | Text for optional remove all button                                                                                                                  |
-| filterItems                     | null                           | function           | Use a custom filtering function for the search: receives searchText, items, props. Should return an array of item objects.                           |
-| headerComponent                 | undefined                      | object             | optional component to display above the search bar                                                                                                   |
-| footerComponent                 | undefined                      | object             | optional component to display below the confirm button                                                                                               |
-| stickyFooterComponent           | undefined                      | object             | optional component to display below the confirm button, but outside of the scroll view                                                               |
-| noResultsComponent              | Sorry, no results              | object             | the component to display when the search results are empty                                                                                           |
-| loadingComponent                | `ActivityIndicator`            | object             | the component to display when `loading` is set to true                                                                                               |
-| noItemsComponent                | No Items                       | object             | Shown when the items array is empty / null                                                                                                           |
-| selectToggleIconComponent       | Material `keyboard-arrow-down` | object             | The icon to the right of the dropdown in its initial state )                                                                                         |
-| searchIconComponent             | Material `search`              | object             | The search input icon (default Magnifying glass)                                                                                                     |
-| selectedIconComponent           | Material `check`               | object             | The icon component to the left of the selected item (default Checkmark)                                                                              |
-| unselectedIconComponent         |                                | object             | The icon component to the left of the unselected item                                                                                                |
-| dropDownToggleIconUpComponent   | Material `keyboard-arrow-up`   | object             | The parent dropdown icon in closed state                                                                                                             |
-| dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object             | The parent dropdown icon in opened state                                                                                                             |
-| cancelIconComponent             | Material `cancel`              | object             | The cancel button's inner component                                                                                                                  |
-| customChipsRenderer             |                                | function           | Use a custom render function for custom chips: receives uniqueKey, subKey, displayKey, items, selectedItems, colors, styles. should return valid jsx |
-| chipRemoveIconComponent         | Material `close`               | object             | The chip remove button's icon component                                                                                                              |
-| styles                          | {}                             | object             | Styles object - see styles section                                                                                                                   |
-| colors                          | {...}                          | object             | colors object - see colors section                                                                                                                   |
-| itemFontFamily                  | Avenir / normal - bold         | object             | font family for the parent items. Can be a regular style object                                                                                      |
-| subItemFontFamily               | Avenir / normal - 200          | object             | font family for the sub items. Can be a regular style object                                                                                         |
-| searchTextFontFamily            | Avenir / normal - 200          | object             | font family for the search input. Can be a regular style object                                                                                      |
-| confirmFontFamily               | Avenir / normal - bold         | object             | font family for the confirm button.                                                                                                                  |
-| itemNumberOfLines               | null                           | number             | numberOfLines for item text                                                                                                                          |
-| selectLabelNumberOfLines        | 1                              | number             | numberOfLines for select label text                                                                                                                  |
-| customLayoutAnimation           | easeInEaseOut                  | object             | define your own `LayoutAnimation` preset or custom animation                                                                                         |
+| selectText                      | 'Select'                       | string             | the text for the select component                                                                                                                                   |
+| confirmText                     | 'Confirm'                      | string             | the text for the confirm button                                                                                                                                     |
+| selectedText                    | 'selected'                     | string OR function | the text that follows the number of items selected                                                                                                                  |
+| renderSelectText                |                                | function           | Function that allows you to set custom Select Text given access to component's `props`                                                                              |
+| searchPlaceholderText           | 'Search categories...'         | string             | the placeholder text for the search input                                                                                                                           |
+| searchAdornment                 |                                |                    | function                                                                                                                                                            | receives search input text and is output on the right side of the search input |
+| removeAllText                   | 'Remove all'                   | string             | Text for optional remove all button                                                                                                                                 |
+| filterItems                     | null                           | function           | Use a custom filtering function for the search: receives searchText, items, props. Should return an array of item objects.                                          |
+| headerComponent                 | undefined                      | object             | optional component to display above the search bar                                                                                                                  |
+| footerComponent                 | undefined                      | object             | optional component to display below the confirm button                                                                                                              |
+| stickyFooterComponent           | undefined                      | object             | optional component to display below the confirm button, but outside of the scroll view                                                                              |
+| noResultsComponent              | Sorry, no results              | object             | the component to display when the search results are empty                                                                                                          |
+| loadingComponent                | `ActivityIndicator`            | object             | the component to display when `loading` is set to true                                                                                                              |
+| noItemsComponent                | No Items                       | object             | Shown when the items array is empty / null                                                                                                                          |
+| selectToggleIconComponent       | Material `keyboard-arrow-down` | object             | The icon to the right of the dropdown in its initial state )                                                                                                        |
+| searchIconComponent             | Material `search`              | object             | The search input icon (default Magnifying glass)                                                                                                                    |
+| selectedIconComponent           | Material `check`               | object             | The icon component to the left of the selected item (default Checkmark)                                                                                             |
+| unselectedIconComponent         |                                | object             | The icon component to the left of the unselected item                                                                                                               |
+| dropDownToggleIconUpComponent   | Material `keyboard-arrow-up`   | object             | The parent dropdown icon in closed state                                                                                                                            |
+| dropDownToggleIconDownComponent | Material `keyboard-arrow-down` | object             | The parent dropdown icon in opened state                                                                                                                            |
+| cancelIconComponent             | Material `cancel`              | object             | The cancel button's inner component                                                                                                                                 |
+| customChipsRenderer             |                                | function           | Use a custom render function for custom chips: receives uniqueKey, subKey, displayKey, subDisplayKey, items, selectedItems, colors, styles. should return valid jsx |
+| chipRemoveIconComponent         | Material `close`               | object             | The chip remove button's icon component                                                                                                                             |
+| styles                          | {}                             | object             | Styles object - see styles section                                                                                                                                  |
+| colors                          | {...}                          | object             | colors object - see colors section                                                                                                                                  |
+| itemFontFamily                  | Avenir / normal - bold         | object             | font family for the parent items. Can be a regular style object                                                                                                     |
+| subItemFontFamily               | Avenir / normal - 200          | object             | font family for the sub items. Can be a regular style object                                                                                                        |
+| searchTextFontFamily            | Avenir / normal - 200          | object             | font family for the search input. Can be a regular style object                                                                                                     |
+| confirmFontFamily               | Avenir / normal - bold         | object             | font family for the confirm button.                                                                                                                                 |
+| itemNumberOfLines               | null                           | number             | numberOfLines for item text                                                                                                                                         |
+| selectLabelNumberOfLines        | 1                              | number             | numberOfLines for select label text                                                                                                                                 |
+| customLayoutAnimation           | easeInEaseOut                  | object             | define your own `LayoutAnimation` preset or custom animation                                                                                                        |
 
 ## Colors
 
