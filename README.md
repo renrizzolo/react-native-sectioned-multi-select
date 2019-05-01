@@ -1,4 +1,5 @@
 # react-native-sectioned-multi-select
+
 [![NPM Version](https://img.shields.io/npm/v/react-native-sectioned-multi-select.svg?style=flat)](https://www.npmjs.com/package/react-native-sectioned-multi-select)
 
 A multi (or single) select component with support for sub categories, search, chips.
@@ -34,9 +35,7 @@ Required props:
 
 ```javascript
 import React, { Component } from 'react';
-import {
-  View
-} from 'react-native';
+import { View } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 // This is how you can load a local icon
@@ -45,99 +44,113 @@ const icon = require('./icon.png');
 
 const items = [
   {
-    name: "Fruits",
+    name: 'Fruits',
     id: 0,
     icon: icon, // Make sure the icon const is set, or you can remove this
-    children: [{
-        name: "Apple",
+    children: [
+      {
+        name: 'Apple',
         id: 10,
-      },{
-        name: "Strawberry",
+      },
+      {
+        name: 'Strawberry',
         id: 17,
-      },{
-        name: "Pineapple",
+      },
+      {
+        name: 'Pineapple',
         id: 13,
-      },{
-        name: "Banana",
+      },
+      {
+        name: 'Banana',
         id: 14,
-      },{
-        name: "Watermelon",
+      },
+      {
+        name: 'Watermelon',
         id: 15,
-      },{
-        name: "Kiwi fruit",
+      },
+      {
+        name: 'Kiwi fruit',
         id: 16,
-      }]
+      },
+    ],
   },
   {
-    name: "Gems",
+    name: 'Gems',
     id: 1,
-    icon: { uri: "https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png" }, // web uri
-    children: [{
-        name: "Quartz",
+    icon: { uri: 'https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png' }, // web uri
+    children: [
+      {
+        name: 'Quartz',
         id: 20,
-      },{
-        name: "Zircon",
+      },
+      {
+        name: 'Zircon',
         id: 21,
-      },{
-        name: "Sapphire",
+      },
+      {
+        name: 'Sapphire',
         id: 22,
-      },{
-        name: "Topaz",
+      },
+      {
+        name: 'Topaz',
         id: 23,
-      }]
+      },
+    ],
   },
   {
-    name: "Plants",
+    name: 'Plants',
     id: 2,
-    icon: "filter_vintage", // material icons icon name
-    children: [{
-        name: "Mother In Law\'s Tongue",
+    icon: 'filter_vintage', // material icons icon name
+    children: [
+      {
+        name: "Mother In Law's Tongue",
         id: 30,
-      },{
-        name: "Yucca",
+      },
+      {
+        name: 'Yucca',
         id: 31,
-      },{
-        name: "Monsteria",
+      },
+      {
+        name: 'Monsteria',
         id: 32,
-      },{
-        name: "Palm",
+      },
+      {
+        name: 'Palm',
         id: 33,
-      }]
+      },
+    ],
   },
-]
+];
 
 export default class App extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
       selectedItems: [],
-    }
+    };
   }
   onSelectedItemsChange = (selectedItems) => {
     this.setState({ selectedItems });
-  }
+  };
 
   render() {
     return (
       <View>
-
         <SectionedMultiSelect
           items={items}
-          uniqueKey='id'
-          subKey='children'
-          iconKey='icon'
-          selectText='Choose some things...'
+          uniqueKey="id"
+          subKey="children"
+          iconKey="icon"
+          selectText="Choose some things..."
           showDropDowns={true}
           readOnlyHeadings={true}
           onSelectedItemsChange={this.onSelectedItemsChange}
           selectedItems={this.state.selectedItems}
         />
-
       </View>
     );
   }
 }
-
 ```
 
 You can programatically remove all items by setting up a ref to the component:
@@ -211,6 +224,7 @@ Props, there are lots.
 | modalAnimationType         | 'fade'                    | string | The animation type of the Modal (fade or slide)                                                                                                              |
 | modalWithSafeAreaView      | false                     | bool   | If true uses a `<SafeAreaView>` component for the _backdrop_ component. Useful for e.g iPhone X notch                                                        |
 | modalWithTouchable         | false                     | bool   | If true wraps the _backdrop_ component with `<TouchableWithoutFeedback>` . Closes modal on press (`this._closeSelector()`; fires `onToggleSelector(false)`). |
+| parentChipsRemoveChildren  | false                     | bool   | If true, pressing a parent chip's remove button will remove all of its selected children.                                                                    |
 
 ### Customization
 
@@ -221,7 +235,7 @@ Props, there are lots.
 | selectedText                    | 'selected'                     | string OR function | the text that follows the number of items selected                                                                                                   |
 | renderSelectText                |                                | function           | Function that allows you to set custom Select Text given access to component's `props`                                                               |
 | searchPlaceholderText           | 'Search categories...'         | string             | the placeholder text for the search input                                                                                                            |
-| searchAdornment                 |                                |                    | function                                                                                                                                             | receives search input text and is output on the right side of the search input |
+| searchAdornment                 |                                | function           | receives search input text and is output on the right side of the search input                                                                       |
 | removeAllText                   | 'Remove all'                   | string             | Text for optional remove all button                                                                                                                  |
 | filterItems                     | null                           | function           | Use a custom filtering function for the search: receives searchText, items, props. Should return an array of item objects.                           |
 | headerComponent                 | undefined                      | object             | optional component to display above the search bar                                                                                                   |
@@ -272,7 +286,7 @@ These are the available colors and their defaults:
 
 ## Styles
 
-You can pass a styles object to style it how you like.
+You can pass a `styles` object to style it how you like.
 
 These are the styles you can change:  
  `container`  
@@ -285,14 +299,17 @@ These are the styles you can change:
  `itemText`
 `selectedItemText`  
  `selectedSubItemText`
+`selectedSubItem`
 `subItemText`  
  `searchBar`  
  `center`  
  `separator`  
  `subSeparator`  
  `chipsWrapper`  
- `chipContainer`  
- `chipText`  
+ `chipContainer`
+`parentChipContainer`
+`parentChipText`
+`chipText`  
  `chipIcon`  
  `searchTextInput`  
  `scrollView`  
@@ -301,6 +318,6 @@ These are the styles you can change:
  `cancelButton`  
  `itemIconStyle`
 
- ## Changelog
+## Changelog
 
 View [changelog](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/CHANGELOG.md).
