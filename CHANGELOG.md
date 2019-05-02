@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.7 - 2019-05-2
+
+### Fixed
+
+- fixed bug with backdropView + `modalWithTouchable` taking touches from select list.
+- fixed a couple of cases where items didn't update / future proofed chip remove working inside modal
+
 ## 0.6.6 - 2019-05-1
 
 ### Added
