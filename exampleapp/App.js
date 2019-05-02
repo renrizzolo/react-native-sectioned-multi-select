@@ -473,6 +473,29 @@ searchAdornment = (searchTerm) => {
     null
   )
 }
+  SelectOrRemoveAll = () => (
+    this.SectionedMultiSelect && 
+    <TouchableOpacity
+      style={{
+        justifyContent: 'center',
+        height: 44,
+        borderWidth: 0,
+        paddingHorizontal: 10,
+        backgroundColor: 'darkgrey',
+        alignItems: 'center',
+      }}
+      onPress={
+        this.state.selectedItems.length
+          ? this.SectionedMultiSelect._removeAllItems
+          : this.SectionedMultiSelect._selectAllItems
+      }
+    >
+      <Text style={{ color: 'white', fontWeight: 'bold' }}>
+        {this.state.selectedItems.length ? 'Remove' : 'Select'} all
+      </Text>
+    </TouchableOpacity>
+  )
+
   onToggleSelector = (toggled) => {
     console.log('selector is ', toggled ? 'open' : 'closed');
   }
@@ -512,13 +535,10 @@ searchAdornment = (searchTerm) => {
           displayKey="title"
           iconKey="icon"
           autoFocus
+          modalWithTouchable
           // showCancelButton
           headerComponent={
-            <View style={{ padding: 15, position: 'absolute', top: 0, right: 0, zIndex: 99 }}>
-              <TouchableOpacity onPress={this.SectionedMultiSelect && this.SectionedMultiSelect._cancelSelection}>
-                <Icon>cancel</Icon>
-              </TouchableOpacity>
-            </View>
+            this.SelectOrRemoveAll
           }
           stickyFooterComponent={
             <View style={{  padding: 15, }}>
