@@ -12,3 +12,4 @@ node_modules/
 # exampleapp
 exampleapp/android/
 exampleapp/ios/
+exampleapp/third-party/
