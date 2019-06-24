@@ -22,12 +22,8 @@ const img = require('./z.jpg')
 
 const items = [
   {
-    title: 'Fruits from various places around the world, if you like',
+    title: 'Fruits',
     id: 0,
-    icon: {
-      uri:
-        'https://banner2.kisspng.com/20180514/wqq/kisspng-leaf-plant-green-clip-art-5af9b5b7402440.7747356215263144232627.jpg',
-    },
 
     children: [
       {
@@ -35,7 +31,7 @@ const items = [
         id: 10,
       },
       {
-        title: 'Strawberry and Banana and Pineapple and Pawpaw and Peach',
+        title: 'Strawberry',
         id: 11,
       },
       {
@@ -359,8 +355,8 @@ export default class App extends Component {
 
     const Check = (
       <Image
-        source={{ uri: `https://png.icons8.com/check-mark/${iconColor}ios/` }}
-        style={{ width: size, height: size }}
+        source={{ uri: `https://png.icons8.com/check-mark/${iconColor}android/` }}
+        style={{ width: size / 1.5, height: size / 1.5 }}
       />
     )
     const Cancel = (
@@ -630,13 +626,9 @@ export default class App extends Component {
           iconKey="icon"
           autoFocus
           modalWithTouchable
+          modalWithSafeAreaView
           // showCancelButton
-          headerComponent={this.SelectOrRemoveAll}
-          stickyFooterComponent={
-            <View style={{ padding: 15 }}>
-              <Text style={{ textAlign: 'center' }}>Hi</Text>
-            </View>
-          }
+          // headerComponent={this.SelectOrRemoveAll}
           // hideConfirm
           loading={this.state.loading}
           // filterItems={this.filterItems}
@@ -666,7 +658,7 @@ export default class App extends Component {
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
           selectedItems={this.state.selectedItems}
-          colors={{ primary: this.state.selectedItems.length ? 'forestgreen' : 'crimson' }}
+          colors={{ primary: '#5c3a9e', success: '#5c3a9e' }}
           itemNumberOfLines={3}
           selectLabelNumberOfLines={3}
           styles={{
@@ -676,15 +668,28 @@ export default class App extends Component {
             // itemText: {
             //   color: this.state.selectedItems.length ? 'black' : 'lightgrey'
             // },
-            selectedItemText: {
-              color: 'blue',
-            },
+            // selectedItemText: {
+            //   color: 'blue',
+            // },
             // subItemText: {
             //   color: this.state.selectedItems.length ? 'black' : 'lightgrey'
             // },
-            selectedSubItemText: {
-              color: 'blue',
+            item: {
+              paddingHorizontal: 10,
             },
+            subItem: {
+              paddingHorizontal: 10,
+            },
+            selectedItem: {
+              backgroundColor: 'rgba(0,0,0,0.1)',
+            },
+            selectedSubItem: {
+              backgroundColor: 'rgba(0,0,0,0.1)',
+            },
+            // selectedSubItemText: {
+            //   color: 'blue',
+            // },
+            scrollView: { paddingHorizontal: 0 },
           }}
           // cancelIconComponent={<Icon size={20} name="close" style={{ color: 'white' }} />}
         />
