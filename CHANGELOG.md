@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.7.0 - 2019-06-25
+
+### Fixed
+
+- fixed regression with backdrop / SafeAreaView. Styles: `modalWrapper` wraps the modal and `backdrop` is the backdrop view inside it.
+
+### Added
+
+- Added `iconRenderer` prop. Material Icons is no longer required to be installed fo the lib to work. You can pass `iconRenderer` your own icon component function.
+- Added Recipes doc with more details customization examples.
+
+## Changed
+
+- Made readme example more concise
+- cleand up example app style
+
 ## 0.6.7 - 2019-05-2
 
 ### Fixed
