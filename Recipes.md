@@ -1,12 +1,12 @@
-## Recipes
+# Recipes
 
 Examples of commonly requested functions/patterns. Required props/functions ommited for brevity.
 
-### Ref
+## Ref
 
 Some of these examples use a ref to the component like this: `ref={SectionedMultiSelect => (this.SectionedMultiSelect = SectionedMultiSelect)}`
 
-### Custom select text
+## Custom select text
 
 ```js
   }
@@ -37,7 +37,7 @@ Add the props:
 />
 ```
 
-### Limit selection count
+## Limit selection count
 
 A basic example of using the confirm button text to show the user how many items they have selected / can select
 
@@ -75,7 +75,7 @@ Add the prop:
 />
 ```
 
-### Select or remove all items
+## Select or remove all items
 
 Renders a button that removes all items if anything is selected, or selects all items if nothing is selected.
 
@@ -104,7 +104,7 @@ SelectOrRemoveAll = () =>
   );
 ```
 
-### Item icons
+## Item icons
 
 You can add custom icons next to individual items/sub items by adding them to your items.
 For the example below you would add the prop `iconKey="icon"` to SectionedMultiSelect.
@@ -131,7 +131,7 @@ const items = [
 ]
 ```
 
-### Custom icon renderer
+## Custom icon renderer
 
 Create your icon function
 
@@ -250,7 +250,7 @@ Add the prop:
 <SectionedMultiSelect iconRenderer={this.icon} />
 ```
 
-### Search adornment
+## Search adornment
 
 Adds a button next to search bar when searching something that doesn't exist in the items.
 The button adds a new item to the items list with the name being current search text.
