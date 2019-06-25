@@ -22,31 +22,36 @@ The problems I had were that I needed it to be in a modal, because of nested Scr
 
 ## Usage
 
+You can install this package with the following command:
+`npm i react-native-sectioned-multi-select` or `yarn add react-native-sectioned-multi-select`
+
+### Icons
+
+By default, the library uses React Native Vector Icons Material Icons.
 Before installing, please make sure you have [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) set up.
 
-You can install this package with the following command:
+If you prefer to use your own icon images or icon font, the `iconRenderer` prop can be used to replace the icons used.
+See an example here: https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/9c5f71852aef7a7ac03e7761d5dd810cd2ccef5d/exampleapp/App.js#L322-L397 (note the switch, you can refer to this to know what to map icon names to e.g if you're just passing in a different RN Vector Icons font).
 
-`npm i -S react-native-sectioned-multi-select`
+### Required props:
 
-Required props:  
 `items` | array  
 `uniqueKey` | string  
 `onSelectedItemsChange` | function
+
+### Basic Example
 
 ```javascript
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
-// This is how you can load a local icon
-// You can remove this if you'd like
-const icon = require('./icon.png');
-
 const items = [
+  // this is the parent or 'item'
   {
     name: 'Fruits',
     id: 0,
-    icon: icon, // Make sure the icon const is set, or you can remove this
+    // these are the children or 'sub items'
     children: [
       {
         name: 'Apple',
@@ -75,51 +80,10 @@ const items = [
     ],
   },
   {
-    name: 'Gems',
-    id: 1,
-    icon: { uri: 'https://cdn4.iconfinder.com/data/icons/free-crystal-icons/512/Gemstone.png' }, // web uri
-    children: [
-      {
-        name: 'Quartz',
-        id: 20,
-      },
-      {
-        name: 'Zircon',
-        id: 21,
-      },
-      {
-        name: 'Sapphire',
-        id: 22,
-      },
-      {
-        name: 'Topaz',
-        id: 23,
-      },
-    ],
+    // next parent item
+   ...
   },
-  {
-    name: 'Plants',
-    id: 2,
-    icon: 'filter_vintage', // material icons icon name
-    children: [
-      {
-        name: "Mother In Law's Tongue",
-        id: 30,
-      },
-      {
-        name: 'Yucca',
-        id: 31,
-      },
-      {
-        name: 'Monsteria',
-        id: 32,
-      },
-      {
-        name: 'Palm',
-        id: 33,
-      },
-    ],
-  },
+
 ];
 
 export default class App extends Component {
@@ -140,7 +104,6 @@ export default class App extends Component {
           items={items}
           uniqueKey="id"
           subKey="children"
-          iconKey="icon"
           selectText="Choose some things..."
           showDropDowns={true}
           readOnlyHeadings={true}
@@ -173,6 +136,10 @@ You can open the modal programatically with the \_toggleSelector() method:
 ```
 onPress={() => this.SectionedMultiSelect._toggleSelector()}
 ```
+
+## Recipes
+
+See [Recipes](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/Recipes.md) for more detailed usage examples / customizations.
 
 ## Items
 
@@ -262,6 +229,7 @@ Props, there are lots.
 | itemNumberOfLines               | null                           | number             | numberOfLines for item text                                                                                                                          |
 | selectLabelNumberOfLines        | 1                              | number             | numberOfLines for select label text                                                                                                                  |
 | customLayoutAnimation           | easeInEaseOut                  | object             | define your own `LayoutAnimation` preset or custom animation                                                                                         |
+| iconRenderer                    |                                | function OR object | Use your own icon component function. Receives name, size (in some cases), and style props                                                           |
 
 ## Colors
 
@@ -291,6 +259,7 @@ You can pass a `styles` object to style it how you like.
 These are the styles you can change:  
  `container`
 `modalWrapper`
+`backdrop`
 `listContainer`  
  `selectToggle`  
  `selectToggleText`  
