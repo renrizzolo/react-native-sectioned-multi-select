@@ -304,6 +304,7 @@ export default class App extends Component {
       hasErrored: false,
     }
     this.termId = 100
+    this.maxItems = 5
   }
 
   componentWillMount() {
@@ -435,9 +436,23 @@ export default class App extends Component {
   }
 
   onSelectedItemsChange = (selectedItems) => {
+    console.log(selectedItems, selectedItems.length)
+
+    if (selectedItems.length >= this.maxItems) {
+      if (selectedItems.length === this.maxItems) {
+        this.setState({ selectedItems })
+      }
+      this.setState({
+        maxItems: true,
+      })
+      return
+    }
+    this.setState({
+      maxItems: false,
+    })
+
     const filteredItems = selectedItems.filter(val => !this.state.selectedItems2.includes(val))
     this.setState({ selectedItems: filteredItems })
-    console.log(selectedItems)
   }
 
   onSelectedItemsChange2 = (selectedItems) => {
@@ -521,20 +536,6 @@ export default class App extends Component {
     }
   }
 
-  renderSelectText = () => {
-    const { selectedItemObjects } = this.state
-
-    return selectedItemObjects.length
-      ? `I like ${selectedItemObjects
-        .map((item, i) => {
-          let label = `${item.title}, `
-          if (i === selectedItemObjects.length - 2) label = `${item.title} and `
-          if (i === selectedItemObjects.length - 1) label = `${item.title}.`
-          return label
-        })
-        .join('')}`
-      : 'Select a fruit'
-  }
   searchAdornment = searchTerm =>
     (searchTerm.length ? (
       <TouchableOpacity
@@ -550,6 +551,22 @@ export default class App extends Component {
         </View>
       </TouchableOpacity>
     ) : null)
+
+  renderSelectText = () => {
+    const { selectedItemObjects } = this.state
+
+    return selectedItemObjects.length
+      ? `I like ${selectedItemObjects
+        .map((item, i) => {
+          let label = `${item.title}, `
+          if (i === selectedItemObjects.length - 2) label = `${item.title} and `
+          if (i === selectedItemObjects.length - 1) label = `${item.title}.`
+          return label
+        })
+        .join('')}`
+      : 'Select a fruit'
+  }
+
   SelectOrRemoveAll = () =>
     this.SectionedMultiSelect && (
       <TouchableOpacity
@@ -657,6 +674,9 @@ export default class App extends Component {
           onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
           onCancel={this.onCancel}
           onConfirm={this.onConfirm}
+          confirmText={`${this.state.selectedItems.length}/${this.maxItems} - ${
+            this.state.maxItems ? 'Max selected' : 'Confirm'
+          }`}
           selectedItems={this.state.selectedItems}
           colors={{ primary: '#5c3a9e', success: '#5c3a9e' }}
           itemNumberOfLines={3}
