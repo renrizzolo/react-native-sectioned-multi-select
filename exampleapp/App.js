@@ -327,8 +327,8 @@ export default class App extends Component {
 
     let iconComponent
     // the colour in the url on this site has to be a hex w/o hash
-    const iconColor = color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : ''
-
+    const iconColor = color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '/'
+    console.log('icon', name, iconColor, size);
     const Search = (
       <Image
         source={{ uri: `https://png.icons8.com/search/${iconColor}ios/` }}
@@ -337,26 +337,26 @@ export default class App extends Component {
     )
     const Down = (
       <Image
-        source={{ uri: `https://png.icons8.com/arrow-down/${iconColor}ios/` }}
+        source={{ uri: `https://png.icons8.com/down/${iconColor}ios/` }}
         style={{ width: size, height: size }}
       />
     )
     const Up = (
       <Image
-        source={{ uri: `https://png.icons8.com/arrow-up/${iconColor}ios/` }}
+        source={{ uri: `https://png.icons8.com/up/${iconColor}ios/` }}
         style={{ width: size, height: size }}
       />
     )
     const Close = (
       <Image
-        source={{ uri: `https://png.icons8.com/close-button/${iconColor}ios/` }}
+        source={{ uri: `https://png.icons8.com/multiply/${iconColor}ios/` }}
         style={{ width: size, height: size }}
       />
     )
 
     const Check = (
       <Image
-        source={{ uri: `https://png.icons8.com/check-mark/${iconColor}android/` }}
+        source={{ uri: `https://png.icons8.com/checkmark/${iconColor}android/` }}
         style={{ width: size / 1.5, height: size / 1.5 }}
       />
     )
