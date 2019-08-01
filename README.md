@@ -230,6 +230,8 @@ Props, there are lots.
 | selectLabelNumberOfLines        | 1                              | number             | numberOfLines for select label text                                                                                                                  |
 | customLayoutAnimation           | easeInEaseOut                  | object             | define your own `LayoutAnimation` preset or custom animation                                                                                         |
 | iconRenderer                    |                                | function OR object | Use your own icon component function. Receives name, size (in some cases), and style props                                                           |
+| itemsFlatListProps              | {}                             | object             | extra props to add to / override the FlatList of parent items                                                                                        |
+| subItemsFlatListProps           | {}                             | object             | extra props to add to / override the parent items' sub items FlatList                                                                                |
 
 ## Colors
 

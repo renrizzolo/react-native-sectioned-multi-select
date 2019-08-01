@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1 - 2019-08-01
+
+### Added
+
+- added `itemsFlatListProps` and `subItemsFlatListProps` to be able to pass in custom FlatList props object
+
 ## 0.7.0 - 2019-06-25
 
 ### Fixed
