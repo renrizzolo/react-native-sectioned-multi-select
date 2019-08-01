@@ -328,7 +328,7 @@ export default class App extends Component {
     let iconComponent
     // the colour in the url on this site has to be a hex w/o hash
     const iconColor = color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '/'
-    console.log('icon', name, iconColor, size);
+
     const Search = (
       <Image
         source={{ uri: `https://png.icons8.com/search/${iconColor}ios/` }}
