@@ -192,6 +192,8 @@ Props, there are lots.
 | modalWithSafeAreaView      | false                     | bool   | If true uses a `<SafeAreaView>` component for the _backdrop_ component. Useful for e.g iPhone X notch                                                        |
 | modalWithTouchable         | false                     | bool   | If true wraps the _backdrop_ component with `<TouchableWithoutFeedback>` . Closes modal on press (`this._closeSelector()`; fires `onToggleSelector(false)`). |
 | parentChipsRemoveChildren  | false                     | bool   | If true, pressing a parent chip's remove button will remove all of its selected children.                                                                    |
+| disabled                   | false                     | bool   | If true, disables selection  |
+
 
 ### Customization
 
