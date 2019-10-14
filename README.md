@@ -148,6 +148,12 @@ Any child items of that item should be in `subKey`, and they will have `uniqueKe
 
 Sub categories are optional, there's no need to have `subKey` items if you don't want to.
 
+You can also pass in extra options to individual items:
+
+- `disabled: true` - the item will be disabled
+- Icons: the component prop `iconKey` is the name of the property that individual item icons will be derived from. E.g `icon: {uri: ...}`. See full example [here](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/Recipes.md#item-icons)
+
+
 ## Props
 
 Props, there are lots.
