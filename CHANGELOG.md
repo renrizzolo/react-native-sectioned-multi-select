@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.2 - 2019-10-14
+
+### Fixed
+
+- remove deprecated `componentWillReceiveProps` #147
+- fix subitem `iconRenderer` usage #142
+
 ## 0.7.1 - 2019-08-01
 
 ### Added
@@ -17,7 +24,7 @@
 - Added `iconRenderer` prop. Material Icons is no longer required to be installed fo the lib to work. You can pass `iconRenderer` your own icon component function.
 - Added Recipes doc with more details customization examples.
 
-## Changed
+### Changed
 
 - Made readme example more concise
 - cleand up example app style
@@ -43,8 +50,6 @@
 ### Added
 
 - added `unselectedIconComponent` #93
-
-# Changelog
 
 ## 0.6.4 - 2019-01-17
 
