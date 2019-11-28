@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.32 - 2019-11-28
+
+### Fixed
+
+- remove `ScrollView` that wraps the `FlatList` #151 (the style prop remains as scrollView for now but the element is a View)
+
 ## 0.7.2 - 2019-10-14
 
 ### Fixed
