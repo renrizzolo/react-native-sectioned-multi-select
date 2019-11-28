@@ -7,16 +7,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.0.0",
-    "react-native": "0.50.3",
-    "react-native-sectioned-multi-select": "renrizzolo/react-native-sectioned-multi-select#master",
+    "react": "16.9.0",
+    "react-native": "0.61.2",
+    "react-native-sectioned-multi-select": "github:renrizzolo/react-native-sectioned-multi-select#master",
     "react-native-vector-icons": "^4.4.2"
   },
   "devDependencies": {
-    "babel-jest": "21.2.0",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "21.2.1",
-    "react-test-renderer": "16.0.0"
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "react-native"

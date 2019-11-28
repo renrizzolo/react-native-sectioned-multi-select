@@ -281,7 +281,7 @@ const Toggle = props => (
   <TouchableWithoutFeedback onPress={() => props.onPress(!props.val)} disabled={props.disabled}>
     <View style={styles.switch}>
       <Text style={styles.label}>{props.name}</Text>
-      <Switch onTintColor={tintColor} onValueChange={v => props.onPress(v)} value={props.val} />
+      <Switch trackColor={tintColor} onValueChange={v => props.onPress(v)} value={props.val} />
     </View>
   </TouchableWithoutFeedback>
 )
@@ -307,11 +307,8 @@ export default class App extends Component {
     this.maxItems = 5
   }
 
-  componentWillMount() {
-    // this.fetchCategories()
-    this.pretendToLoad()
-  }
   componentDidMount() {
+    this.pretendToLoad()
     // programatically opening the select
     // this.SectionedMultiSelect._toggleSelector();
   }
@@ -555,7 +552,7 @@ export default class App extends Component {
   renderSelectText = () => {
     const { selectedItemObjects } = this.state
 
-    return selectedItemObjects.length
+    const selectText = selectedItemObjects.length
       ? `I like ${selectedItemObjects
         .map((item, i) => {
           let label = `${item.title}, `
@@ -565,6 +562,7 @@ export default class App extends Component {
         })
         .join('')}`
       : 'Select a fruit'
+      return <Text style={{ color: 'red', fontSize: 24 }}>{selectText}</Text>
   }
 
   SelectOrRemoveAll = () =>
@@ -658,7 +656,7 @@ export default class App extends Component {
           loadingComponent={
             <Loading hasErrored={this.state.hasErrored} fetchCategories={this.fetchCategories} />
           }
-          iconRenderer={this.icon}
+          // iconRenderer={this.icon}
           //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
           showDropDowns={this.state.showDropDowns}
           expandDropDowns={this.state.expandDropDowns}
