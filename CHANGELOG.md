@@ -1,4 +1,9 @@
 # Changelog
+## 0.7.6 - 2019-12-05
+
+### Fixed
+- fixed chip padding when using `hideChipRemove`
+
 ## 0.7.5 - 2019-12-05
 
 ### Added
