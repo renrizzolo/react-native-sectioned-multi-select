@@ -481,7 +481,6 @@ export default class App extends Component {
 
   onSwitchToggle = (k) => {
     const v = !this.state[k]
-    console.log(v, k)
     this.setState({ [k]: v })
   }
 
