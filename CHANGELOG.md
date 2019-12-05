@@ -1,6 +1,11 @@
 # Changelog
+## 0.7.4 - 2019-12-05
 
-## 0.7.32 - 2019-11-28
+### Added
+
+- added type definitions file #63
+
+## 0.7.3 - 2019-11-28
 
 ### Fixed
 
