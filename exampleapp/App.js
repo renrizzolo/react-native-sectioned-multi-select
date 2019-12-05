@@ -264,24 +264,29 @@ const accentMap = {
 }
 const tintColor = '#174A87'
 
-const Loading = props =>
-  (props.hasErrored ? (
+const Loading = (props) =>
+  props.hasErrored ? (
     <TouchableWithoutFeedback onPress={props.fetchCategories}>
       <View style={styles.center}>
         <Text>oops... something went wrong. Tap to reload</Text>
       </View>
     </TouchableWithoutFeedback>
   ) : (
-    <View style={styles.center}>
-      <ActivityIndicator size="large" />
-    </View>
-  ))
+      <View style={styles.center}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
 
-const Toggle = props => (
+const Toggle = (props) => (
   <TouchableWithoutFeedback onPress={() => props.onPress(!props.val)} disabled={props.disabled}>
     <View style={styles.switch}>
       <Text style={styles.label}>{props.name}</Text>
-      <Switch trackColor={tintColor} onValueChange={v => props.onPress(v)} value={props.val} />
+      <Switch
+        trackColor={tintColor}
+        onValueChange={(v) => props.onPress(v)}
+        value={props.val}
+        disabled={props.disabled}
+      />
     </View>
   </TouchableWithoutFeedback>
 )
@@ -301,6 +306,7 @@ export default class App extends Component {
       readOnlyHeadings: false,
       highlightChildren: false,
       selectChildren: false,
+      hideChipRemove: false,
       hasErrored: false,
     }
     this.termId = 100
@@ -310,7 +316,7 @@ export default class App extends Component {
   componentDidMount() {
     this.pretendToLoad()
     // programatically opening the select
-    // this.SectionedMultiSelect._toggleSelector();
+    // this.SectionedMultiSelect._toggleSelector()
   }
 
   // custom icon renderer passed to iconRenderer prop
@@ -402,7 +408,7 @@ export default class App extends Component {
   }
 
   // testing a custom filtering function that ignores accents
-  removerAcentos = s => s.replace(/[\W\[\] ]/g, a => accentMap[a] || a)
+  removerAcentos = (s) => s.replace(/[\W\[\] ]/g, (a) => accentMap[a] || a)
 
   filterItems = (searchTerm, items, { subKey, displayKey, uniqueKey }) => {
     let filteredItems = []
@@ -421,7 +427,7 @@ export default class App extends Component {
             newItem[subKey] = [...newItem[subKey], sub]
             newFilteredItems = this.rejectProp(
               filteredItems,
-              singleItem => item[uniqueKey] !== singleItem[uniqueKey],
+              (singleItem) => item[uniqueKey] !== singleItem[uniqueKey]
             )
             newFilteredItems.push(newItem)
             filteredItems = newFilteredItems
@@ -448,14 +454,15 @@ export default class App extends Component {
       maxItems: false,
     })
 
-    const filteredItems = selectedItems.filter(val => !this.state.selectedItems2.includes(val))
+    const filteredItems = selectedItems.filter((val) => !this.state.selectedItems2.includes(val))
     this.setState({ selectedItems: filteredItems })
   }
 
   onSelectedItemsChange2 = (selectedItems) => {
-    const filteredItems = selectedItems.filter(val => !this.state.selectedItems.includes(val))
+    const filteredItems = selectedItems.filter((val) => !this.state.selectedItems.includes(val))
     this.setState({ selectedItems2: filteredItems })
   }
+
   onConfirm = () => {
     this.setState({ currentItems: this.state.selectedItems })
   }
@@ -471,31 +478,19 @@ export default class App extends Component {
     this.setState({ selectedItemObjects })
     console.log(selectedItemObjects)
   }
-  onExpandDropDownsToggle = (expandDropDowns) => {
-    this.setState({ expandDropDowns })
-  }
-  onShowDropDownsToggle = (showDropDowns) => {
-    this.setState({ showDropDowns })
-  }
-  onReadOnlyHeadingsToggle = (readOnlyHeadings) => {
-    this.setState({ readOnlyHeadings })
-  }
-  onSingleToggle = (single) => {
-    this.setState({ single })
+
+  onSwitchToggle = (k) => {
+    const v = !this.state[k]
+    console.log(v, k)
+    this.setState({ [k]: v })
   }
 
-  onHighlightChildrenToggle = (highlightChildren) => {
-    this.setState({ highlightChildren })
-  }
-  onSelectChildrenToggle = (selectChildren) => {
-    this.setState({ selectChildren })
-  }
   fetchCategories = () => {
     this.setState({ hasErrored: false })
     fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms', {
       headers: 'no-cache',
     })
-      .then(response => response.json())
+      .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ cats: responseJson })
       })
@@ -504,7 +499,7 @@ export default class App extends Component {
         throw error.message
       })
   }
-  filterDuplicates = items =>
+  filterDuplicates = (items) =>
     items.sort().reduce((accumulator, current) => {
       const length = accumulator.length
       if (length === 0 || accumulator[length - 1] !== current) {
@@ -524,17 +519,19 @@ export default class App extends Component {
     const id = (this.termId += 1)
     if (
       searchTerm.length &&
-      !(this.state.items || []).some(item => item.title.includes(searchTerm))
+      !(this.state.items || []).some((item) => item.title.includes(searchTerm))
     ) {
       const newItem = { id, title: searchTerm }
-      this.setState(prevState => ({ items: [...(prevState.items || []), newItem] }))
+      this.setState((prevState) => ({
+        items: [...(prevState.items || []), newItem],
+      }))
       this.onSelectedItemsChange([...this.state.selectedItems, id])
       this.SectionedMultiSelect._submitSelection()
     }
   }
 
-  searchAdornment = searchTerm =>
-    (searchTerm.length ? (
+  searchAdornment = (searchTerm) =>
+    searchTerm.length ? (
       <TouchableOpacity
         style={{ alignItems: 'center', justifyContent: 'center' }}
         onPress={this.handleAddSearchTerm}
@@ -547,7 +544,7 @@ export default class App extends Component {
           {/*   <Icon size={18} style={{ marginHorizontal: 15 }} name="add" /> */}
         </View>
       </TouchableOpacity>
-    ) : null)
+    ) : null;
 
   renderSelectText = () => {
     const { selectedItemObjects } = this.state
@@ -562,7 +559,7 @@ export default class App extends Component {
         })
         .join('')}`
       : 'Select a fruit'
-      return <Text style={{ color: 'red', fontSize: 24 }}>{selectText}</Text>
+    return <Text style={{ color: 'red', fontSize: 24 }}>{selectText}</Text>
   }
 
   SelectOrRemoveAll = () =>
@@ -634,7 +631,7 @@ export default class App extends Component {
         <Text style={styles.welcome}>React native sectioned multi select example.</Text>
         <SectionedMultiSelect
           items={this.state.items}
-          ref={SectionedMultiSelect => (this.SectionedMultiSelect = SectionedMultiSelect)}
+          ref={(SectionedMultiSelect) => (this.SectionedMultiSelect = SectionedMultiSelect)}
           uniqueKey="id"
           subKey="children"
           displayKey="title"
@@ -650,7 +647,7 @@ export default class App extends Component {
           // alwaysShowSelectText
           // customChipsRenderer={this.customChipsRenderer}
           chipsPosition="top"
-          searchAdornment={searchTerm => this.searchAdornment(searchTerm)}
+          searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
           renderSelectText={this.renderSelectText}
           // noResultsComponent={this.noResults}
           loadingComponent={
@@ -664,6 +661,7 @@ export default class App extends Component {
           readOnlyHeadings={this.state.readOnlyHeadings}
           single={this.state.single}
           showRemoveAll
+          hideChipRemove={this.state.hideChipRemove}
           selectChildren={this.state.selectChildren}
           highlightChildren={this.state.highlightChildren}
           //  hideSearch
@@ -674,7 +672,7 @@ export default class App extends Component {
           onConfirm={this.onConfirm}
           confirmText={`${this.state.selectedItems.length}/${this.maxItems} - ${
             this.state.maxItems ? 'Max selected' : 'Confirm'
-          }`}
+            }`}
           selectedItems={this.state.selectedItems}
           colors={{ primary: '#5c3a9e', success: '#5c3a9e' }}
           itemNumberOfLines={3}
@@ -709,101 +707,50 @@ export default class App extends Component {
             // },
             scrollView: { paddingHorizontal: 0 },
           }}
-          // cancelIconComponent={<Icon size={20} name="close" style={{ color: 'white' }} />}
+        // cancelIconComponent={<Icon size={20} name="close" style={{ color: 'white' }} />}
         />
-        {/*
-        <SectionedMultiSelect
-          items={items2}
-          ref={SectionedMultiSelect2 => (this.SectionedMultiSelect2 = SectionedMultiSelect2)}
-          uniqueKey="id"
-          subKey="children"
-          displayKey="title"
-          // showCancelButton
-          // hideSelect={true}
-          selectText={this.state.selectedItems2.length ? 'Select categories' : 'All categories'}
-          noResultsComponent={this.noResults}
-          loadingComponent={
-            <Loading hasErrored={this.state.hasErrored} fetchCategories={this.fetchCategories} />
-          }
-          // selectToggleIconComponent={
-          //   <Icon
-          //     name="login"
-          //     style={{
-          //       fontSize: 18,
-          //       marginHorizontal: 6,
-          //     }}
-          //   />
-          // }
-          cancelIconComponent={<Text style={{ color: 'white' }}>Cancel</Text>}
-          showDropDowns={this.state.showDropDowns}
-          expandDropDowns={this.state.expandDropDowns}
-          customLayoutAnimation={LayoutAnimation.Presets.spring}
-          readOnlyHeadings={this.state.readOnlyHeadings}
-          single={this.state.single}
-          showRemoveAll
-          selectChildren={this.state.selectChildren}
-          highlightChildren={this.state.highlightChildren}
-          // iconRenderer={Icon}
-          //  hideSearch
-          //  itemFontFamily={fonts.boldCondensed}
-          onSelectedItemsChange={this.onSelectedItemsChange2}
-          // onSelectedItemObjectsChange={this.onSelectedItemObjectsChange}
-          onCancel={this.onCancel}
-          onConfirm={this.onConfirm}
-          onToggleSelector={this.onToggleSelector}
-          selectedItems={this.state.selectedItems2}
-          styles={{
-            chipText: {
-              maxWidth: Dimensions.get('screen').width - 90,
-            },
-            itemText: {
-              color: this.state.selectedItems2.length ? 'black' : 'lightgrey',
-            },
-            subItemText: {
-              color: this.state.selectedItems2.length ? 'black' : 'lightgrey',
-            },
-            //   cancelButton: {
-            //  //   flex: 6,
-            //   },
-            //   subItem: {
-            //     paddingVertical: 15,
-            //   },
-          }}
-          // numberOfLines={1}
-        /> */}
         <View>
           <View style={styles.border}>
             <Text style={styles.heading}>Settings</Text>
           </View>
 
-          <Toggle name="Single" onPress={this.onSingleToggle} val={this.state.single} />
+          <Toggle
+            name="Single"
+            onPress={() => this.onSwitchToggle('single')}
+            val={this.state.single}
+          />
           <Toggle
             name="Read only headings"
-            onPress={this.onReadOnlyHeadingsToggle}
+            onPress={() => this.onSwitchToggle('readOnlyHeadings')}
             val={this.state.readOnlyHeadings}
           />
           <Toggle
             name="Expand dropdowns"
-            onPress={this.onExpandDropDownsToggle}
+            onPress={() => this.onSwitchToggle('expandDropDowns')}
             val={this.state.expandDropDowns}
             disabled={!this.state.showDropDowns}
           />
           <Toggle
             name="Show dropdown toggles"
-            onPress={this.onShowDropDownsToggle}
+            onPress={() => this.onSwitchToggle('showDropDowns')}
             val={this.state.showDropDowns}
           />
           <Toggle
             name="Auto-highlight children"
-            onPress={this.onHighlightChildrenToggle}
+            onPress={() => this.onSwitchToggle('highlightChildren')}
             val={this.state.highlightChildren}
             disabled={this.state.selectChildren}
           />
           <Toggle
             name="Auto-select children"
-            onPress={this.onSelectChildrenToggle}
-            val={this.state.selectChildren}
+            onPress={() => this.onSwitchToggle('selectChildren')}
             disabled={this.state.highlightChildren}
+            val={this.state.selectChildren}
+          />
+          <Toggle
+            name="Hide Chip Remove Buttons"
+            onPress={() => this.onSwitchToggle('hideChipRemove')}
+            val={this.state.hideChipRemove}
           />
 
           <TouchableWithoutFeedback onPress={() => this.SectionedMultiSelect._removeAllItems()}>
