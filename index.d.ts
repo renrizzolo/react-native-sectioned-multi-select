@@ -9,7 +9,7 @@ export interface Styles {
   item?: ReactNative.StyleProp<ReactNative.ViewStyle>;
   subItem?: ReactNative.StyleProp<ReactNative.ViewStyle>;
   itemText?: ReactNative.StyleProp<ReactNative.TextStyle>;
-selectedItemText?: ReactNative.StyleProp<ReactNative.TextStyle>;
+  selectedItemText?: ReactNative.StyleProp<ReactNative.TextStyle>;
   selectedSubItemText?: ReactNative.StyleProp<ReactNative.TextStyle>;
   subItemText?: ReactNative.StyleProp<ReactNative.TextStyle>;
   searchBar?: ReactNative.StyleProp<ReactNative.ViewStyle>;
@@ -28,6 +28,8 @@ selectedItemText?: ReactNative.StyleProp<ReactNative.TextStyle>;
   toggleIcon?: ReactNative.StyleProp<ReactNative.ViewStyle>;
   selectedItem?: ReactNative.StyleProp<ReactNative.ViewStyle>;
   selectedSubItem?: ReactNative.StyleProp<ReactNative.ViewStyle>;
+  backdrop?: ReactNative.StyleProp<ReactNative.ViewStyle>;
+  listContainer?: ReactNative.StyleProp<ReactNative.ViewStyle>;
 }
 
 export interface SectionedMultiSelectProps<ItemType> {
