@@ -1,5 +1,5 @@
 {
-  "name": "react-native-sectioned-multi-select",
+  "name": "react-native-sectioned-multi-select-sotero",
   "version": "0.7.6",
   "description": "a multi (or single) select component with support for sub categories, search, chips.",
   "main": "index.js",
