@@ -39,7 +39,7 @@ export interface SectionedMultiSelectProps<ItemType> {
   displayKey?: string;
   uniqueKey: string;
   subKey?: string;
-  onSelectedItemsChange: (items: []) => void;
+  onSelectedItemsChange: (items: ItemType[]) => void;
   showDropDowns?: boolean;
   showChips?: boolean;
   readOnlyHeadings?: boolean;
@@ -119,4 +119,6 @@ export interface SectionedMultiSelectProps<ItemType> {
 }
 export default class SectionedMultiSelect<ItemType> extends React.Component<
   SectionedMultiSelectProps<ItemType>
-> {}
+> {
+  _toggleSelector: () => void
+}
