@@ -1,4 +1,9 @@
 # Changelog
+## 0.7.7 - 2020-04-20
+
+### Fixed
+- types definition fixes
+
 ## 0.7.6 - 2019-12-05
 
 ### Fixed
