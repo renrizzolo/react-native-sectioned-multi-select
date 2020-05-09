@@ -23,7 +23,7 @@ The problems I had were that I needed it to be in a modal, because of nested Scr
 ## Usage
 
 You can install this package with the following command:
-`npm i react-native-sectioned-multi-select` or `yarn add react-native-sectioned-multi-select`
+`npm i react-native-sectioned-multi-select react-native-modal` or `yarn add react-native-sectioned-multi-select react-native-modal`
 
 ### Icons
 
