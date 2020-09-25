@@ -1,22 +1,35 @@
 # Changelog
+
+## 0.7.8 - 2020-09-25
+
+### Fixed
+
+- fix global icon assignment #203
+- check for subkey here idk #173
+- fix recipe #111
+
 ## 0.7.7 - 2020-04-20
 
 ### Fixed
+
 - types definition fixes
 
 ## 0.7.6 - 2019-12-05
 
 ### Fixed
+
 - fixed chip padding when using `hideChipRemove`
 
 ## 0.7.5 - 2019-12-05
 
 ### Added
+
 - added `hideChipRemove` boolean prop to hide chips' remove (x) touchable #150
 
 ## 0.7.4 - 2019-12-05
 
 ### Added
+
 - added type definitions file #63
 
 ## 0.7.3 - 2019-11-28
