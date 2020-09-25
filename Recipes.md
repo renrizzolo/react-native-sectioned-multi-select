@@ -273,7 +273,7 @@ handleAddSearchTerm = (searchTerm) => {
 };
 
 searchAdornment = (searchTerm) =>
-  searchTerm.length ? (
+  return (searchTerm.length ? (
     <TouchableOpacity
       style={{ alignItems: 'center', justifyContent: 'center' }}
       onPress={() => this.handleAddSearchTerm(searchTerm)}
@@ -286,7 +286,7 @@ searchAdornment = (searchTerm) =>
         {/*   <Icon size={18} style={{ marginHorizontal: 15 }} name="add" /> */}
       </View>
     </TouchableOpacity>
-  ) : null;
+  ) : null);
 ```
 
 Add the prop:
