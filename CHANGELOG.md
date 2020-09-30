@@ -12,7 +12,7 @@
 
 ### Changed
 
-- BREAKING: `IconRenderer` is now required (also note the casing change). The lib no longer relies on `react-native-vector-icons`. For the default Material Icons icon set, you must import Icon from 'react-native-vector-icons/MaterialIcons`yourself, and pass that to the`IconRenderer` prop. See Icons section of Readme.
+- BREAKING: `IconRenderer` is now required (also note the casing change). The lib no longer relies on `react-native-vector-icons`. For the default Material Icons icon set, you must import Icon from `react-native-vector-icons/MaterialIcons` yourself, and pass that to the`IconRenderer` prop. See Icons section of Readme.
 
 ## 0.7.8 - 2020-09-25
 
