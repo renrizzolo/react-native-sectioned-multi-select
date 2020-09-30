@@ -1,5 +1,7 @@
 # react-native-sectioned-multi-select
 
+Hi, there's a breaking change in v0.8.0, I chose not to release a major version for various reasons. Please see [Icons](#icons). In short, you must pass `Icon` (from `react-native-vector-icons`, or any icon lib) to the `IconRenderer` prop now.
+
 [![NPM Version](https://img.shields.io/npm/v/react-native-sectioned-multi-select.svg?style=flat)](https://www.npmjs.com/package/react-native-sectioned-multi-select)
 
 A multi (or single) select component with support for sub categories, search, chips.
@@ -27,23 +29,68 @@ You can install this package with the following command:
 
 ### Icons
 
-By default, the library uses React Native Vector Icons Material Icons.
-Before installing, please make sure you have [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) set up.
+The library uses icon names from `react-native-vector-icons/MaterialIcons`, however, it no longer imports the `react-native-vector-icons` library.
+You should install [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) yourself, then pass the icon to the `IconRenderer` prop.
 
-If you prefer to use your own icon images or icon font, the `iconRenderer` prop can be used to replace the icons used.
+```
+import Icon from 'react-native-vector-icons/MaterialIcons`
+
+...
+
+<SectionedMultiSelect IconRenderer={Icon} />
+```
+
+If you prefer to use your own icon images or icon font, the `IconRenderer` prop can be used to replace the icons used.
 See an example here: https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/9c5f71852aef7a7ac03e7761d5dd810cd2ccef5d/exampleapp/App.js#L322-L397 (note the switch, you can refer to this to know what to map icon names to e.g if you're just passing in a different RN Vector Icons font).
+
+### icons prop
+
+You can now pass your own `icons` object to map the names (and sizes) to a different icon library or your own `IconRenderer` function.
+For each of these keys, the IconRenderer will be called with the corresponding `name` and `size`.
+Here is the default icons object, which uses the material icons names.
+
+```
+icons: {
+  search: {
+    name: 'search',
+    size: 24
+  },
+  arrowUp: {
+    name: 'keyboard-arrow-up',
+    size: 16
+  },
+  arrowDown: {
+    name: 'keyboard-arrow-down',
+    size: 16
+  },
+  close: {
+    name: 'close',
+    size: 22
+  },
+  check: {
+    name: 'check',
+    size: 16
+  },
+  cancel: {
+    name: 'cancel',
+    size: 16
+  }
+}
+```
 
 ### Required props:
 
 `items` | array  
 `uniqueKey` | string  
 `onSelectedItemsChange` | function
+`IconRenderer` | function or object
 
 ### Basic Example
 
 ```javascript
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons`
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 const items = [
@@ -102,6 +149,7 @@ export default class App extends Component {
       <View>
         <SectionedMultiSelect
           items={items}
+          IconRenderer={Icon}
           uniqueKey="id"
           subKey="children"
           selectText="Choose some things..."
@@ -152,7 +200,6 @@ You can also pass in extra options to individual items:
 
 - `disabled: true` - the item will be disabled
 - Icons: the component prop `iconKey` is the name of the property that individual item icons will be derived from. E.g `icon: {uri: ...}`. See full example [here](https://github.com/renrizzolo/react-native-sectioned-multi-select/blob/master/Recipes.md#item-icons)
-
 
 ## Props
 
@@ -235,7 +282,7 @@ Props, there are lots.
 | itemNumberOfLines               | null                           | number             | numberOfLines for item text                                                                                                                          |
 | selectLabelNumberOfLines        | 1                              | number             | numberOfLines for select label text                                                                                                                  |
 | customLayoutAnimation           | easeInEaseOut                  | object             | define your own `LayoutAnimation` preset or custom animation                                                                                         |
-| iconRenderer                    |                                | function OR object | Use your own icon component function. Receives name, size (in some cases), and style props                                                           |
+| IconRenderer                    |                                | function OR object | The icon component to use. Receives name, size (in some cases), and style props                                                                      |
 | itemsFlatListProps              | {}                             | object             | extra props to add to / override the FlatList of parent items                                                                                        |
 | subItemsFlatListProps           | {}                             | object             | extra props to add to / override the parent items' sub items FlatList                                                                                |
 
