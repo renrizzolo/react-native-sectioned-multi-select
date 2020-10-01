@@ -34,10 +34,15 @@ You should install [react-native-vector-icons](https://github.com/oblador/react-
 
 ```
 import Icon from 'react-native-vector-icons/MaterialIcons`
-
 ...
-
 <SectionedMultiSelect IconRenderer={Icon} />
+```
+
+Similarly, for Expo environments you can use:
+```
+import {MaterialIcons} from '@expo/vector-icons';
+...
+<SectionedMultiSelect IconRenderer={MaterialIcons} />
 ```
 
 If you prefer to use your own icon images or icon font, the `IconRenderer` prop can be used to replace the icons used.
