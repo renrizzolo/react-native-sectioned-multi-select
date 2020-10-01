@@ -11,10 +11,10 @@ import {
   ActivityIndicator,
   Dimensions,
   LayoutAnimation,
-  Image,
+  Image
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
-// import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const img = require('./z.jpg')
 
@@ -28,61 +28,61 @@ const items = [
     children: [
       {
         title: 'Apple',
-        id: 10,
+        id: 10
       },
       {
         title: 'Strawberry',
-        id: 11,
+        id: 11
       },
       {
         title: 'Pineapple',
-        id: 13,
+        id: 13
       },
       {
         title: 'Banana',
-        id: 14,
+        id: 14
       },
       {
         title: 'Wátermelon',
-        id: 15,
+        id: 15
       },
       {
         title: 'אבטיח',
-        id: 17,
+        id: 17
       },
       {
         title: 'Raspberry',
-        id: 18,
+        id: 18
       },
       {
         title: 'Orange',
-        id: 19,
+        id: 19
       },
       {
         title: 'Mandarin',
-        id: 20,
+        id: 20
       },
       {
         title: 'Papaya',
-        id: 21,
+        id: 21
       },
       {
         title: 'Lychee',
-        id: 22,
+        id: 22
       },
       {
         title: 'Cherry',
-        id: 23,
+        id: 23
       },
       {
         title: 'Peach',
-        id: 24,
+        id: 24
       },
       {
         title: 'Apricot',
-        id: 25,
-      },
-    ],
+        id: 25
+      }
+    ]
   },
   {
     title: 'Gèms',
@@ -91,21 +91,21 @@ const items = [
     children: [
       {
         title: 'Quartz',
-        id: 26,
+        id: 26
       },
       {
         title: 'Zircon',
-        id: 27,
+        id: 27
       },
       {
         title: 'Sapphirè',
-        id: 28,
+        id: 28
       },
       {
         title: 'Topaz',
-        id: 29,
-      },
-    ],
+        id: 29
+      }
+    ]
   },
   {
     title: 'Plants',
@@ -115,26 +115,26 @@ const items = [
     children: [
       {
         title: "Mother In Law's Tongue",
-        id: 30,
+        id: 30
       },
       {
         title: 'Yucca',
-        id: 31,
+        id: 31
       },
       {
         title: 'Monsteria',
-        id: 32,
+        id: 32
       },
       {
         title: 'Palm',
-        id: 33,
-      },
-    ],
+        id: 33
+      }
+    ]
   },
   {
     title: 'No child',
-    id: 34,
-  },
+    id: 34
+  }
 ]
 console.log(items)
 
@@ -170,17 +170,17 @@ for (let i = 0; i < 100; i++) {
     children: [
       {
         id: `10${i}`,
-        title: `child 10${i}`,
+        title: `child 10${i}`
       },
       {
         id: `11${i}`,
-        title: `child 11${i}`,
+        title: `child 11${i}`
       },
       {
         id: `12${i}`,
-        title: `child 12${i}`,
-      },
-    ],
+        title: `child 12${i}`
+      }
+    ]
   })
 }
 
@@ -189,38 +189,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 30
   },
   container: {
     paddingTop: 40,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    color: '#333',
+    color: '#333'
   },
   border: {
     borderBottomWidth: 1,
     borderBottomColor: '#dadada',
-    marginBottom: 20,
+    marginBottom: 20
   },
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 5,
-    marginTop: 20,
+    marginTop: 20
   },
   label: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   switch: {
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
+    justifyContent: 'space-between'
+  }
 })
 const accentMap = {
   â: 'a',
@@ -260,11 +260,11 @@ const accentMap = {
   ù: 'u',
   Ù: 'U',
   ç: 'c',
-  Ç: 'C',
+  Ç: 'C'
 }
 const tintColor = '#174A87'
 
-const Loading = (props) =>
+const Loading = props =>
   props.hasErrored ? (
     <TouchableWithoutFeedback onPress={props.fetchCategories}>
       <View style={styles.center}>
@@ -272,18 +272,20 @@ const Loading = (props) =>
       </View>
     </TouchableWithoutFeedback>
   ) : (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" />
-      </View>
-    )
+    <View style={styles.center}>
+      <ActivityIndicator size="large" />
+    </View>
+  )
 
-const Toggle = (props) => (
-  <TouchableWithoutFeedback onPress={() => props.onPress(!props.val)} disabled={props.disabled}>
+const Toggle = props => (
+  <TouchableWithoutFeedback
+    onPress={() => props.onPress(!props.val)}
+    disabled={props.disabled}>
     <View style={styles.switch}>
       <Text style={styles.label}>{props.name}</Text>
       <Switch
         trackColor={tintColor}
-        onValueChange={(v) => props.onPress(v)}
+        onValueChange={v => props.onPress(v)}
         value={props.val}
         disabled={props.disabled}
       />
@@ -307,7 +309,7 @@ export default class App extends Component {
       highlightChildren: false,
       selectChildren: false,
       hideChipRemove: false,
-      hasErrored: false,
+      hasErrored: false
     }
     this.termId = 100
     this.maxItems = 5
@@ -330,7 +332,8 @@ export default class App extends Component {
 
     let iconComponent
     // the colour in the url on this site has to be a hex w/o hash
-    const iconColor = color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '/'
+    const iconColor =
+      color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '/'
 
     const Search = (
       <Image
@@ -359,7 +362,9 @@ export default class App extends Component {
 
     const Check = (
       <Image
-        source={{ uri: `https://png.icons8.com/checkmark/${iconColor}android/` }}
+        source={{
+          uri: `https://png.icons8.com/checkmark/${iconColor}android/`
+        }}
         style={{ width: size / 1.5, height: size / 1.5 }}
       />
     )
@@ -408,13 +413,15 @@ export default class App extends Component {
   }
 
   // testing a custom filtering function that ignores accents
-  removerAcentos = (s) => s.replace(/[\W\[\] ]/g, (a) => accentMap[a] || a)
+  removerAcentos = s => s.replace(/[\W\[\] ]/g, a => accentMap[a] || a)
 
   filterItems = (searchTerm, items, { subKey, displayKey, uniqueKey }) => {
     let filteredItems = []
     let newFilteredItems = []
-    items.forEach((item) => {
-      const parts = this.removerAcentos(searchTerm.trim()).split(/[[ \][)(\\/?\-:]+/)
+    items.forEach(item => {
+      const parts = this.removerAcentos(searchTerm.trim()).split(
+        /[[ \][)(\\/?\-:]+/
+      )
       const regex = new RegExp(`(${parts.join('|')})`, 'i')
       if (regex.test(this.getProp(item, displayKey))) {
         filteredItems.push(item)
@@ -422,12 +429,12 @@ export default class App extends Component {
       if (item[subKey]) {
         const newItem = Object.assign({}, item)
         newItem[subKey] = []
-        item[subKey].forEach((sub) => {
+        item[subKey].forEach(sub => {
           if (regex.test(this.getProp(sub, displayKey))) {
             newItem[subKey] = [...newItem[subKey], sub]
             newFilteredItems = this.rejectProp(
               filteredItems,
-              (singleItem) => item[uniqueKey] !== singleItem[uniqueKey]
+              singleItem => item[uniqueKey] !== singleItem[uniqueKey]
             )
             newFilteredItems.push(newItem)
             filteredItems = newFilteredItems
@@ -438,7 +445,7 @@ export default class App extends Component {
     return filteredItems
   }
 
-  onSelectedItemsChange = (selectedItems) => {
+  onSelectedItemsChange = selectedItems => {
     console.log(selectedItems, selectedItems.length)
 
     if (selectedItems.length >= this.maxItems) {
@@ -446,20 +453,24 @@ export default class App extends Component {
         this.setState({ selectedItems })
       }
       this.setState({
-        maxItems: true,
+        maxItems: true
       })
       return
     }
     this.setState({
-      maxItems: false,
+      maxItems: false
     })
 
-    const filteredItems = selectedItems.filter((val) => !this.state.selectedItems2.includes(val))
+    const filteredItems = selectedItems.filter(
+      val => !this.state.selectedItems2.includes(val)
+    )
     this.setState({ selectedItems: filteredItems })
   }
 
-  onSelectedItemsChange2 = (selectedItems) => {
-    const filteredItems = selectedItems.filter((val) => !this.state.selectedItems.includes(val))
+  onSelectedItemsChange2 = selectedItems => {
+    const filteredItems = selectedItems.filter(
+      val => !this.state.selectedItems.includes(val)
+    )
     this.setState({ selectedItems2: filteredItems })
   }
 
@@ -470,16 +481,16 @@ export default class App extends Component {
     this.SectionedMultiSelect._removeAllItems()
 
     this.setState({
-      selectedItems: this.state.currentItems,
+      selectedItems: this.state.currentItems
     })
     console.log(this.state.selectedItems)
   }
-  onSelectedItemObjectsChange = (selectedItemObjects) => {
+  onSelectedItemObjectsChange = selectedItemObjects => {
     this.setState({ selectedItemObjects })
     console.log(selectedItemObjects)
   }
 
-  onSwitchToggle = (k) => {
+  onSwitchToggle = k => {
     const v = !this.state[k]
     this.setState({ [k]: v })
   }
@@ -487,18 +498,18 @@ export default class App extends Component {
   fetchCategories = () => {
     this.setState({ hasErrored: false })
     fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms', {
-      headers: 'no-cache',
+      headers: 'no-cache'
     })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then(response => response.json())
+      .then(responseJson => {
         this.setState({ cats: responseJson })
       })
-      .catch((error) => {
+      .catch(error => {
         this.setState({ hasErrored: true })
         throw error.message
       })
   }
-  filterDuplicates = (items) =>
+  filterDuplicates = items =>
     items.sort().reduce((accumulator, current) => {
       const length = accumulator.length
       if (length === 0 || accumulator[length - 1] !== current) {
@@ -518,23 +529,22 @@ export default class App extends Component {
     const id = (this.termId += 1)
     if (
       searchTerm.length &&
-      !(this.state.items || []).some((item) => item.title.includes(searchTerm))
+      !(this.state.items || []).some(item => item.title.includes(searchTerm))
     ) {
       const newItem = { id, title: searchTerm }
-      this.setState((prevState) => ({
-        items: [...(prevState.items || []), newItem],
+      this.setState(prevState => ({
+        items: [...(prevState.items || []), newItem]
       }))
       this.onSelectedItemsChange([...this.state.selectedItems, id])
       this.SectionedMultiSelect._submitSelection()
     }
   }
 
-  searchAdornment = (searchTerm) =>
+  searchAdornment = searchTerm =>
     searchTerm.length ? (
       <TouchableOpacity
         style={{ alignItems: 'center', justifyContent: 'center' }}
-        onPress={this.handleAddSearchTerm}
-      >
+        onPress={this.handleAddSearchTerm}>
         <View style={{}}>
           <Image
             source={{ uri: 'https://png.icons8.com/plus' }}
@@ -543,20 +553,21 @@ export default class App extends Component {
           {/*   <Icon size={18} style={{ marginHorizontal: 15 }} name="add" /> */}
         </View>
       </TouchableOpacity>
-    ) : null;
+    ) : null
 
   renderSelectText = () => {
     const { selectedItemObjects } = this.state
 
     const selectText = selectedItemObjects.length
       ? `I like ${selectedItemObjects
-        .map((item, i) => {
-          let label = `${item.title}, `
-          if (i === selectedItemObjects.length - 2) label = `${item.title} and `
-          if (i === selectedItemObjects.length - 1) label = `${item.title}.`
-          return label
-        })
-        .join('')}`
+          .map((item, i) => {
+            let label = `${item.title}, `
+            if (i === selectedItemObjects.length - 2)
+              label = `${item.title} and `
+            if (i === selectedItemObjects.length - 1) label = `${item.title}.`
+            return label
+          })
+          .join('')}`
       : 'Select a fruit'
     return <Text style={{ color: 'red', fontSize: 24 }}>{selectText}</Text>
   }
@@ -570,29 +581,28 @@ export default class App extends Component {
           borderWidth: 0,
           paddingHorizontal: 10,
           backgroundColor: 'darkgrey',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
         onPress={
           this.state.selectedItems.length
             ? this.SectionedMultiSelect._removeAllItems
             : this.SectionedMultiSelect._selectAllItems
-        }
-      >
+        }>
         <Text style={{ color: 'white', fontWeight: 'bold' }}>
           {this.state.selectedItems.length ? 'Remove' : 'Select'} all
         </Text>
       </TouchableOpacity>
     )
 
-  onToggleSelector = (toggled) => {
+  onToggleSelector = toggled => {
     console.log('selector is ', toggled ? 'open' : 'closed')
   }
-  customChipsRenderer = (props) => {
+  customChipsRenderer = props => {
     console.log('props', props)
     return (
       <View style={{ backgroundColor: 'yellow', padding: 15 }}>
         <Text>Selected:</Text>
-        {props.selectedItems.map((singleSelectedItem) => {
+        {props.selectedItems.map(singleSelectedItem => {
           const item = this.SectionedMultiSelect._findItem(singleSelectedItem)
 
           if (!item || !item[props.displayKey]) return null
@@ -604,14 +614,12 @@ export default class App extends Component {
                 flex: 0,
                 marginRight: 5,
                 padding: 10,
-                backgroundColor: 'orange',
-              }}
-            >
+                backgroundColor: 'orange'
+              }}>
               <TouchableOpacity
                 onPress={() => {
                   this.SectionedMultiSelect._removeItem(item)
-                }}
-              >
+                }}>
                 <Text>{item[props.displayKey]}</Text>
               </TouchableOpacity>
             </View>
@@ -625,12 +633,15 @@ export default class App extends Component {
       <ScrollView
         keyboardShouldPersistTaps="always"
         style={{ backgroundColor: '#f8f8f8' }}
-        contentContainerStyle={styles.container}
-      >
-        <Text style={styles.welcome}>React native sectioned multi select example.</Text>
+        contentContainerStyle={styles.container}>
+        <Text style={styles.welcome}>
+          React native sectioned multi select example.
+        </Text>
         <SectionedMultiSelect
           items={this.state.items}
-          ref={(SectionedMultiSelect) => (this.SectionedMultiSelect = SectionedMultiSelect)}
+          ref={SectionedMultiSelect =>
+            (this.SectionedMultiSelect = SectionedMultiSelect)
+          }
           uniqueKey="id"
           subKey="children"
           displayKey="title"
@@ -646,13 +657,16 @@ export default class App extends Component {
           // alwaysShowSelectText
           // customChipsRenderer={this.customChipsRenderer}
           chipsPosition="top"
-          searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
+          searchAdornment={searchTerm => this.searchAdornment(searchTerm)}
           renderSelectText={this.renderSelectText}
           // noResultsComponent={this.noResults}
           loadingComponent={
-            <Loading hasErrored={this.state.hasErrored} fetchCategories={this.fetchCategories} />
+            <Loading
+              hasErrored={this.state.hasErrored}
+              fetchCategories={this.fetchCategories}
+            />
           }
-          // iconRenderer={this.icon}
+          IconRenderer={Icon}
           //  cancelIconComponent={<Text style={{color:'white'}}>Cancel</Text>}
           showDropDowns={this.state.showDropDowns}
           expandDropDowns={this.state.expandDropDowns}
@@ -671,7 +685,7 @@ export default class App extends Component {
           onConfirm={this.onConfirm}
           confirmText={`${this.state.selectedItems.length}/${this.maxItems} - ${
             this.state.maxItems ? 'Max selected' : 'Confirm'
-            }`}
+          }`}
           selectedItems={this.state.selectedItems}
           colors={{ primary: '#5c3a9e', success: '#5c3a9e' }}
           itemNumberOfLines={3}
@@ -690,23 +704,23 @@ export default class App extends Component {
             //   color: this.state.selectedItems.length ? 'black' : 'lightgrey'
             // },
             item: {
-              paddingHorizontal: 10,
+              paddingHorizontal: 10
             },
             subItem: {
-              paddingHorizontal: 10,
+              paddingHorizontal: 10
             },
             selectedItem: {
-              backgroundColor: 'rgba(0,0,0,0.1)',
+              backgroundColor: 'rgba(0,0,0,0.1)'
             },
             selectedSubItem: {
-              backgroundColor: 'rgba(0,0,0,0.1)',
+              backgroundColor: 'rgba(0,0,0,0.1)'
             },
             // selectedSubItemText: {
             //   color: 'blue',
             // },
-            scrollView: { paddingHorizontal: 0 },
+            scrollView: { paddingHorizontal: 0 }
           }}
-        // cancelIconComponent={<Icon size={20} name="close" style={{ color: 'white' }} />}
+          // cancelIconComponent={<Icon size={20} name="close" style={{ color: 'white' }} />}
         />
         <View>
           <View style={styles.border}>
@@ -752,7 +766,8 @@ export default class App extends Component {
             val={this.state.hideChipRemove}
           />
 
-          <TouchableWithoutFeedback onPress={() => this.SectionedMultiSelect._removeAllItems()}>
+          <TouchableWithoutFeedback
+            onPress={() => this.SectionedMultiSelect._removeAllItems()}>
             <View style={styles.switch}>
               <Text style={styles.label}>Remove All</Text>
             </View>
