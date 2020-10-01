@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.8.0 - 2020-09-30
+## 0.8.0 - 2020-10-01
 
 ### Fixed
 
@@ -8,11 +8,11 @@
 
 ### Added
 
-- the `icons` prop is an object that maps the names and sizes used for the icons. In conjunction with `IconRenderer` you can now easily switch out the icon library. See Icons section of Readme.
+- the `icons` prop is an object that maps the names and sizes used for the icons (all properties are spread onto the `IconRenderer`). In conjunction with `IconRenderer` you can now easily switch out the icon library. See Icons section of Readme.
 
 ### Changed
 
-- BREAKING: `IconRenderer` is now required (also note the casing change). The lib no longer relies on `react-native-vector-icons`. For the default Material Icons icon set, you must import Icon from `react-native-vector-icons/MaterialIcons` yourself, and pass that to the`IconRenderer` prop. See Icons section of Readme.
+- BREAKING: `IconRenderer` is now required (also note the casing change). The lib no longer depends on `react-native-vector-icons`. For the default Material Icons icon set, you must import Icon from `react-native-vector-icons/MaterialIcons` yourself, and pass that to the`IconRenderer` prop. See Icons section of Readme.
 
 ## 0.7.8 - 2020-09-25
 

@@ -45,35 +45,41 @@ See an example here: https://github.com/renrizzolo/react-native-sectioned-multi-
 
 ### icons prop
 
-You can now pass your own `icons` object to map the names (and sizes) to a different icon library or your own `IconRenderer` function.
-For each of these keys, the IconRenderer will be called with the corresponding `name` and `size`.
-Here is the default icons object, which uses the material icons names.
+You can now pass your own `icons` object to map the properties to a different icon library or your own `IconRenderer` component.
+For each of these keys, the `IconRenderer` will be called with the corresponding `name` and `size` props.
+All properties are spread to the `IconRenderer`, so you can override style or other props your icon component might use.
+
+Here is the default icons object, which uses Material Icons names.
 
 ```
 icons: {
   search: {
-    name: 'search',
+    name: 'search', // search input
     size: 24
   },
   arrowUp: {
-    name: 'keyboard-arrow-up',
-    size: 16
-  },
-  arrowDown: {
-    name: 'keyboard-arrow-down',
-    size: 16
-  },
-  close: {
-    name: 'close',
+    name: 'keyboard-arrow-up', // dropdown toggle
     size: 22
   },
+  arrowDown: {
+    name: 'keyboard-arrow-down', // dropdown toggle
+    size: 22
+  },
+  selectArrowDown: {
+    name: 'keyboard-arrow-down', // select
+    size: 24
+  },
+  close: {
+    name: 'close', // chip close
+    size: 16
+  },
   check: {
-    name: 'check',
+    name: 'check', // selected item
     size: 16
   },
   cancel: {
-    name: 'cancel',
-    size: 16
+    name: 'cancel', // cancel button
+    size: 18
   }
 }
 ```
