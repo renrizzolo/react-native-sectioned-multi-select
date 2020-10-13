@@ -103,6 +103,7 @@ export interface SectionedMultiSelectProps<ItemType> {
   expandDropDowns?: boolean
   animateDropDowns?: boolean
   customLayoutAnimation?: object
+  onChangeSearchText?: (searchTerm: string) => void
   filterItems?: (searchTerm: string) => void
   onToggleSelector?: (selected: boolean) => void
   noItemsComponent?: (() => void) | JSX.Element
