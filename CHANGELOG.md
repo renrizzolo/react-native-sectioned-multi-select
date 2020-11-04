@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.1 - 2020-11-03
+
+### Fixed
+
+ - React NAtive's UIManager.setLayoutAnimationEnabledExperimental causing tests fail. This version has fix for it. \n Details:
+ ```sh
+ TypeError: _reactNative.UIManager.setLayoutAnimationEnabledExperimental is not a function
+ ```
+
 ## 0.8.0 - 2020-10-01
 
 ### Fixed
