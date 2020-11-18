@@ -4,7 +4,35 @@ Examples of commonly requested functions/patterns. Required props/functions ommi
 
 ## Ref
 
-Some of these examples use a ref to the component like this: `ref={SectionedMultiSelect => (this.SectionedMultiSelect = SectionedMultiSelect)}`
+Some of these examples use a ref to the component like this:
+
+```JS
+// function component
+import React, { useRef } from 'react'
+
+const App = () => {
+const ref = useRef(null)
+// ref.current._toggleSelector()
+  return (
+    <>
+    <SectionedMultiSelect
+      ...
+      ref={ref}
+    />
+    <Button onPress={() => ref?.current?._toggleSelector()} />
+  </>
+  )
+}
+
+// class component
+<>
+  <SectionedMultiSelect
+    ...
+    ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
+  />
+  <Button onPress={() => this.SectionedMultiSelect._toggleSelector()} />
+</>
+```
 
 ## Custom select text
 
@@ -33,7 +61,9 @@ Add the props:
 ```js
 <SectionedMultiSelect
   renderSelectText={this.renderSelectText}
-  onSelectedItemObjectsChange={(selectedItemObjects) => this.setState({ selectedItemObjects })}
+  onSelectedItemObjectsChange={(selectedItemObjects) =>
+    this.setState({ selectedItemObjects })
+  }
 />
 ```
 
@@ -89,19 +119,18 @@ SelectOrRemoveAll = () =>
         borderWidth: 0,
         paddingHorizontal: 10,
         backgroundColor: 'darkgrey',
-        alignItems: 'center',
+        alignItems: 'center'
       }}
       onPress={
         this.state.selectedItems.length
           ? this.SectionedMultiSelect._removeAllItems
           : this.SectionedMultiSelect._selectAllItems
-      }
-    >
+      }>
       <Text style={{ color: 'white', fontWeight: 'bold' }}>
         {this.state.selectedItems.length ? 'Remove' : 'Select'} all
       </Text>
     </TouchableOpacity>
-  );
+  )
 ```
 
 ## Item icons
@@ -138,77 +167,78 @@ Create your icon function
 ```js
 icon = ({ name, size = 18, style }) => {
   // flatten the styles
-  const flat = StyleSheet.flatten(style);
+  const flat = StyleSheet.flatten(style)
   // remove out the keys that aren't accepted on View
-  const { color, fontSize, ...styles } = flat;
+  const { color, fontSize, ...styles } = flat
 
-  let iconComponent;
+  let iconComponent
   // the colour in the url on this site has to be a hex w/o hash
-  const iconColor = color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '';
+  const iconColor =
+    color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : ''
 
   const Search = (
     <Image
       source={{ uri: `https://png.icons8.com/search/${iconColor}ios/` }}
       style={{ width: size, height: size }}
     />
-  );
+  )
   const Down = (
     <Image
       source={{ uri: `https://png.icons8.com/arrow-down/${iconColor}ios/` }}
       style={{ width: size, height: size }}
     />
-  );
+  )
   const Up = (
     <Image
       source={{ uri: `https://png.icons8.com/arrow-up/${iconColor}ios/` }}
       style={{ width: size, height: size }}
     />
-  );
+  )
   const Close = (
     <Image
       source={{ uri: `https://png.icons8.com/close-button/${iconColor}ios/` }}
       style={{ width: size, height: size }}
     />
-  );
+  )
 
   const Check = (
     <Image
       source={{ uri: `https://png.icons8.com/check-mark/${iconColor}android/` }}
       style={{ width: size / 1.5, height: size / 1.5 }}
     />
-  );
+  )
   const Cancel = (
     <Image
       source={{ uri: `https://png.icons8.com/cancel/${iconColor}ios/` }}
       style={{ width: size, height: size }}
     />
-  );
+  )
 
   switch (name) {
     case 'search':
-      iconComponent = Search;
-      break;
+      iconComponent = Search
+      break
     case 'keyboard-arrow-up':
-      iconComponent = Up;
-      break;
+      iconComponent = Up
+      break
     case 'keyboard-arrow-down':
-      iconComponent = Down;
-      break;
+      iconComponent = Down
+      break
     case 'close':
-      iconComponent = Close;
-      break;
+      iconComponent = Close
+      break
     case 'check':
-      iconComponent = Check;
-      break;
+      iconComponent = Check
+      break
     case 'cancel':
-      iconComponent = Cancel;
-      break;
+      iconComponent = Cancel
+      break
     default:
-      iconComponent = null;
-      break;
+      iconComponent = null
+      break
   }
-  return <View style={styles}>{iconComponent}</View>;
-};
+  return <View style={styles}>{iconComponent}</View>
+}
 ```
 
 Another example using a different icon font
@@ -217,31 +247,31 @@ Another example using a different icon font
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 icon = ({ name, size = 18, style }) => {
-    switch (name) {
-      case 'search':
-        iconName = 'magnifier'
-        break
-      case 'keyboard-arrow-up':
-        iconName = 'arrow-up'
-        break
-      case 'keyboard-arrow-down':
-        iconName = 'arrow-down'
-        break
-      case 'close':
-        iconName = 'close
-        break
-      case 'check':
-        iconName = 'check'
-        break
-      case 'cancel':
-        iconName = 'close'
-        break
-      default:
-        iconName = null
-        break
-    }
-    return <Icon style={style} size={size} name={iconName}/>
+  switch (name) {
+    case 'search':
+      iconName = 'magnifier'
+      break
+    case 'keyboard-arrow-up':
+      iconName = 'arrow-up'
+      break
+    case 'keyboard-arrow-down':
+      iconName = 'arrow-down'
+      break
+    case 'close':
+      iconName = 'close'
+      break
+    case 'check':
+      iconName = 'check'
+      break
+    case 'cancel':
+      iconName = 'close'
+      break
+    default:
+      iconName = null
+      break
   }
+  return <Icon style={style} size={size} name={iconName} />
+}
 ```
 
 Add the prop:
@@ -292,5 +322,7 @@ searchAdornment = (searchTerm) =>
 Add the prop:
 
 ```js
-<SectionedMultiSelect searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)} />
+<SectionedMultiSelect
+  searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
+/>
 ```
