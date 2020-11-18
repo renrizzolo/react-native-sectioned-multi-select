@@ -6,8 +6,9 @@ Examples of commonly requested functions/patterns. Required props/functions ommi
 
 Some of these examples use a ref to the component like this:
 
+Function component:
+
 ```JS
-// function component
 import React, { useRef } from 'react'
 
 const App = () => {
@@ -23,8 +24,11 @@ const ref = useRef(null)
   </>
   )
 }
+```
 
-// class component
+Class component:
+
+```JS
 <>
   <SectionedMultiSelect
     ...
