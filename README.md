@@ -1,7 +1,5 @@
 # react-native-sectioned-multi-select
 
-Hi, there's a breaking change in v0.8.0, I chose not to release a major version for various reasons. Please see [Icons](#icons). In short, you must pass `Icon` (from `react-native-vector-icons`, or any icon lib) to the `IconRenderer` prop now.
-
 [![NPM Version](https://img.shields.io/npm/v/react-native-sectioned-multi-select.svg?style=flat)](https://www.npmjs.com/package/react-native-sectioned-multi-select)
 
 A multi (or single) select component with support for sub categories, search, chips.
@@ -39,6 +37,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons`
 ```
 
 Similarly, for Expo environments you can use:
+
 ```
 import {MaterialIcons} from '@expo/vector-icons';
 ...
@@ -175,24 +174,46 @@ export default class App extends Component {
 }
 ```
 
-You can programatically remove all items by setting up a ref to the component:
+### Refs / internal methods
 
-```
+You can do some programatic operations by setting up a ref to the component and accessing its internal methods:
+
+```JS
+// function component
+import React, { useRef } from 'react'
+
+const App = () => {
+const ref = useRef(null)
+  return (
+    <SectionedMultiSelect
+      ...
+      ref={ref}
+    />
+  )
+}
+
+// class component
 <SectionedMultiSelect
     ...
     ref={SectionedMultiSelect => this.SectionedMultiSelect = SectionedMultiSelect}
 />
 ```
 
-and then use the `_removeAllItems` function:
+Remove all items:
 
-```
+```JS
+// function component
+onPress={() => ref && ref.current && ref.current._removeAllItems()}
+// class component
 onPress={() => this.SectionedMultiSelect._removeAllItems()}
 ```
 
-You can open the modal programatically with the \_toggleSelector() method:
+Toggle the modal:
 
-```
+```JS
+// function component
+onPress={() => ref && ref.current && ref.current._removeAllItems()}
+// class component
 onPress={() => this.SectionedMultiSelect._toggleSelector()}
 ```
 
