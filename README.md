@@ -92,7 +92,7 @@ icons: {
 
 `items` | array  
 `uniqueKey` | string  
-`onSelectedItemsChange` | function
+`onSelectedItemsChange` | function  
 `IconRenderer` | function or object
 
 ### Basic Example
