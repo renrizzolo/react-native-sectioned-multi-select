@@ -37,5 +37,10 @@
   "bugs": {
     "url": "https://github.com/renrizzolo/react-native-sectioned-multi-select/issues"
   },
-  "homepage": "https://github.com/renrizzolo/react-native-sectioned-multi-select#readme"
+  "homepage": "https://github.com/renrizzolo/react-native-sectioned-multi-select#readme",
+  "dependencies": {
+    "@gorhom/bottom-sheet": "^3.6.4",
+    "i": "^0.3.6",
+    "npm": "^7.13.0"
+  }
 }
