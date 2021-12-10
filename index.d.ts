@@ -113,13 +113,13 @@ export interface SectionedMultiSelectProps<ItemType> {
   disabled?: boolean
   selectedIconOnLeft?: boolean
   parentChipsRemoveChildren?: boolean
-  IconRenderer?: (() => void) | JSX.Element
+  IconRenderer?: (() => void) | JSX.Element | React.ReactNode
   itemsFlatListProps?: Omit<ReactNative.FlatListProps<T>, 'data' | 'renderItem'>
   subItemsFlatListProps?: Omit<
     ReactNative.FlatListProps<T>,
     'data' | 'renderItem'
   >
-  icons: {
+  icons?: {
     search: {
       name: string
       size: number
