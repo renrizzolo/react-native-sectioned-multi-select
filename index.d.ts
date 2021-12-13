@@ -103,6 +103,7 @@ export interface SectionedMultiSelectProps<ItemType> {
   expandDropDowns?: boolean
   animateDropDowns?: boolean
   customLayoutAnimation?: object
+  onChangeSearchText?: (searchTerm: string) => void
   filterItems?: (searchTerm: string) => void
   onToggleSelector?: (selected: boolean) => void
   noItemsComponent?: (() => void) | JSX.Element
@@ -113,12 +114,13 @@ export interface SectionedMultiSelectProps<ItemType> {
   disabled?: boolean
   selectedIconOnLeft?: boolean
   parentChipsRemoveChildren?: boolean
-  IconRenderer?: (() => void) | JSX.Element
+  IconRenderer?: (() => void) | JSX.Element | React.ReactNode
   itemsFlatListProps?: Omit<ReactNative.FlatListProps<T>, 'data' | 'renderItem'>
   subItemsFlatListProps?: Omit<
     ReactNative.FlatListProps<T>,
     'data' | 'renderItem'
   >
+
   icons?: Partial<{
     search: {
       name: string
