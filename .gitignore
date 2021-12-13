@@ -1,4 +1,3 @@
-
 # Logs
 logs
 *.log
@@ -6,10 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# OSX
+.DS_Store
+
 # Dependency directories
 node_modules/
-
-# exampleapp
-exampleapp/android/
-exampleapp/ios/
-exampleapp/third-party/

@@ -1,0 +1,44 @@
+{
+  "name": "rnsmsexample",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "build-web": "webpack --mode production",
+    "start-web": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "storybook": "start-storybook"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "html-loader": "^1.0.0",
+    "html-webpack-plugin": "^4.0.3",
+    "modal-enhanced-react-native-web": "^0.2.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.13.1",
+    "react-native": "0.61.2",
+    "react-native-sectioned-multi-select": "github:renrizzolo/react-native-sectioned-multi-select#master",
+    "react-native-vector-icons": "^4.4.2",
+    "react-native-web": "^0.12.2",
+    "storybook": "^5.3.17",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/runtime": "^7.6.2",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.9.0",
+    "url-loader": "^4.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
