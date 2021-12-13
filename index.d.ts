@@ -1,6 +1,12 @@
 import * as React from 'react'
 import * as ReactNative from 'react-native'
 
+type IconProps = {
+  name: string
+  size?: number
+  [x: string]: any
+}
+
 export interface Styles {
   container?: ReactNative.StyleProp<ReactNative.ViewStyle>
   modalWrapper?: ReactNative.StyleProp<ReactNative.ViewStyle>
@@ -64,8 +70,8 @@ export interface SectionedMultiSelectProps<ItemType> {
     disabled?: string
   }
   searchPlaceholderText?: string
-  noResultsComponent?: (() => void) | JSX.Element
-  loadingComponent?: (() => void) | JSX.Element
+  noResultsComponent?: React.ReactNode
+  loadingComponent?: React.ReactNode
   loading?: boolean
   subItemFontFamily?: object
   itemFontFamily?: object
@@ -78,16 +84,16 @@ export interface SectionedMultiSelectProps<ItemType> {
   modalWithSafeAreaView?: boolean
   modalWithTouchable?: boolean
   hideSearch?: boolean
-  footerComponent?: (() => void) | JSX.Element
-  stickyFooterComponent?: (() => void) | JSX.Element
-  selectToggleIconComponent?: (() => void) | JSX.Element
-  cancelIconComponent?: (() => void) | JSX.Element
-  searchIconComponent?: (() => void) | JSX.Element
-  selectedIconComponent?: (() => void) | JSX.Element
-  unselectedIconComponent?: (() => void) | JSX.Element
-  dropDownToggleIconUpComponent?: (() => void) | JSX.Element
-  dropDownToggleIconDownComponent?: (() => void) | JSX.Element
-  chipRemoveIconComponent?: (() => void) | JSX.Element
+  footerComponent?: React.ReactNode
+  stickyFooterComponent?: React.ReactNode
+  selectToggleIconComponent?: React.ReactNode
+  cancelIconComponent?: React.ReactNode
+  searchIconComponent?: React.ReactNode
+  selectedIconComponent?: React.ReactNode
+  unselectedIconComponent?: React.ReactNode
+  dropDownToggleIconUpComponent?: React.ReactNode
+  dropDownToggleIconDownComponent?: React.ReactNode
+  chipRemoveIconComponent?: React.ReactNode
   selectChildren?: boolean
   highlightChildren?: boolean
   onSelectedItemObjectsChange?: (items: ItemType[]) => void
@@ -97,7 +103,7 @@ export interface SectionedMultiSelectProps<ItemType> {
   hideSelect?: boolean
   onConfirm?: () => void
   onCancel?: () => void
-  headerComponent?: (() => void) | JSX.Element
+  headerComponent?: React.ReactNode
   alwaysShowSelectText?: boolean
   searchAdornment?: (searchText: string) => void
   expandDropDowns?: boolean
@@ -106,7 +112,7 @@ export interface SectionedMultiSelectProps<ItemType> {
   onChangeSearchText?: (searchTerm: string) => void
   filterItems?: (searchTerm: string) => void
   onToggleSelector?: (selected: boolean) => void
-  noItemsComponent?: (() => void) | JSX.Element
+  noItemsComponent?: React.ReactNode
   customChipsRenderer?: (chipProperties: object) => void
   chipsPosition?: 'top' | 'bottom'
   autoFocus?: boolean
@@ -114,7 +120,8 @@ export interface SectionedMultiSelectProps<ItemType> {
   disabled?: boolean
   selectedIconOnLeft?: boolean
   parentChipsRemoveChildren?: boolean
-  IconRenderer?: (() => void) | JSX.Element | React.ReactNode
+  hideChipRemove?: boolean
+  IconRenderer?: React.ReactNode
   itemsFlatListProps?: Omit<ReactNative.FlatListProps<T>, 'data' | 'renderItem'>
   subItemsFlatListProps?: Omit<
     ReactNative.FlatListProps<T>,
@@ -122,34 +129,21 @@ export interface SectionedMultiSelectProps<ItemType> {
   >
 
   icons?: Partial<{
-    search: {
-      name: string
-      size: number
-    }
-    arrowUp: {
-      name: string
-      size: number
-    }
-    arrowDown: {
-      name: string
-      size: number
-    }
-    close: {
-      name: string
-      size: number
-    }
-    check: {
-      name: string
-      size: number
-    }
-    cancel: {
-      name: string
-      size: number
-    }
+    search: IconProps
+    arrowUp: IconProps
+    arrowDown: IconProps
+    close: IconProps
+    check: IconProps
+    cancel: IconProps
   }>
 }
 export default class SectionedMultiSelect<ItemType> extends React.Component<
   SectionedMultiSelectProps<ItemType>
 > {
   _toggleSelector: () => void
+  _removeAllItems: () => void
+  _removeItem: (item: ItemType) => void
+  _selectAllItems: () => void
+  _findItem: (id: string | number) => ItemType | object | undefined
+  _itemSelected: (item: ItemType) => boolean
 }
