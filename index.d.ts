@@ -120,7 +120,8 @@ export interface SectionedMultiSelectProps<ItemType> {
     ReactNative.FlatListProps<T>,
     'data' | 'renderItem'
   >
-  icons?: {
+
+  icons?: Partial<{
     search: {
       name: string
       size: number
@@ -145,7 +146,7 @@ export interface SectionedMultiSelectProps<ItemType> {
       name: string
       size: number
     }
-  }
+  }>
 }
 export default class SectionedMultiSelect<ItemType> extends React.Component<
   SectionedMultiSelectProps<ItemType>
