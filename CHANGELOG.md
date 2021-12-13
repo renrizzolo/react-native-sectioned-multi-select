@@ -1,13 +1,30 @@
 # Changelog
 
+## 0.8.2 - 2021-12-13
+
+### Added
+
+- onChangeSearchText event #210
+
+### Fixed
+
+- Various types fixes
+
+  - all props that return components are now `ReactNode`. #253
+  - `icons` individual icon objects are now optional and allow any extra properties you wish to be added to your icon component. #253 #232
+  - added types for some useful internal methods.
+
+- Fix TypeError: undefined is not an object (evaluating 'item[subKey]') with unpopulated items. #237
+
 ## 0.8.1 - 2020-11-03
 
 ### Fixed
 
- - React NAtive's UIManager.setLayoutAnimationEnabledExperimental causing tests fail. This version has fix for it. \n Details:
- ```sh
- TypeError: _reactNative.UIManager.setLayoutAnimationEnabledExperimental is not a function
- ```
+- React Native's UIManager.setLayoutAnimationEnabledExperimental causing tests fail. This version has fix for it. \n Details:
+
+```sh
+TypeError: _reactNative.UIManager.setLayoutAnimationEnabledExperimental is not a function
+```
 
 ## 0.8.0 - 2020-10-01
 
