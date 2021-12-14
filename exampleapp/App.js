@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
@@ -11,12 +11,13 @@ import {
   ActivityIndicator,
   Dimensions,
   LayoutAnimation,
-  Image
-} from 'react-native'
-import SectionedMultiSelect from 'react-native-sectioned-multi-select'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+  Image,
+  Appearance,
+} from 'react-native';
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const img = require('./z.jpg')
+const img = require('./z.jpg');
 
 // Sorry for the mess
 
@@ -28,61 +29,61 @@ const items = [
     children: [
       {
         title: 'Apple',
-        id: 10
+        id: 10,
       },
       {
         title: 'Strawberry',
-        id: 11
+        id: 11,
       },
       {
         title: 'Pineapple',
-        id: 13
+        id: 13,
       },
       {
         title: 'Banana',
-        id: 14
+        id: 14,
       },
       {
         title: 'Wátermelon',
-        id: 15
+        id: 15,
       },
       {
         title: 'אבטיח',
-        id: 17
+        id: 17,
       },
       {
         title: 'Raspberry',
-        id: 18
+        id: 18,
       },
       {
         title: 'Orange',
-        id: 19
+        id: 19,
       },
       {
         title: 'Mandarin',
-        id: 20
+        id: 20,
       },
       {
         title: 'Papaya',
-        id: 21
+        id: 21,
       },
       {
         title: 'Lychee',
-        id: 22
+        id: 22,
       },
       {
         title: 'Cherry',
-        id: 23
+        id: 23,
       },
       {
         title: 'Peach',
-        id: 24
+        id: 24,
       },
       {
         title: 'Apricot',
-        id: 25
-      }
-    ]
+        id: 25,
+      },
+    ],
   },
   {
     title: 'Gèms',
@@ -91,21 +92,21 @@ const items = [
     children: [
       {
         title: 'Quartz',
-        id: 26
+        id: 26,
       },
       {
         title: 'Zircon',
-        id: 27
+        id: 27,
       },
       {
         title: 'Sapphirè',
-        id: 28
+        id: 28,
       },
       {
         title: 'Topaz',
-        id: 29
-      }
-    ]
+        id: 29,
+      },
+    ],
   },
   {
     title: 'Plants',
@@ -115,28 +116,28 @@ const items = [
     children: [
       {
         title: "Mother In Law's Tongue",
-        id: 30
+        id: 30,
       },
       {
         title: 'Yucca',
-        id: 31
+        id: 31,
       },
       {
         title: 'Monsteria',
-        id: 32
+        id: 32,
       },
       {
         title: 'Palm',
-        id: 33
-      }
-    ]
+        id: 33,
+      },
+    ],
   },
   {
     title: 'No child',
-    id: 34
-  }
-]
-console.log(items)
+    id: 34,
+  },
+];
+console.log(items);
 
 // const items2 =
 //   [{
@@ -162,7 +163,7 @@ console.log(items)
 
 //     ],
 //   }]
-const items2 = []
+const items2 = [];
 for (let i = 0; i < 100; i++) {
   items2.push({
     id: i,
@@ -170,18 +171,18 @@ for (let i = 0; i < 100; i++) {
     children: [
       {
         id: `10${i}`,
-        title: `child 10${i}`
+        title: `child 10${i}`,
       },
       {
         id: `11${i}`,
-        title: `child 11${i}`
+        title: `child 11${i}`,
       },
       {
         id: `12${i}`,
-        title: `child 12${i}`
-      }
-    ]
-  })
+        title: `child 12${i}`,
+      },
+    ],
+  });
 }
 
 const styles = StyleSheet.create({
@@ -189,39 +190,39 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30
+    marginTop: 30,
   },
   container: {
     paddingTop: 40,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    color: '#333'
+    color: '#333',
   },
   border: {
     borderBottomWidth: 1,
     borderBottomColor: '#dadada',
-    marginBottom: 20
+    marginBottom: 20,
   },
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 5,
-    marginTop: 20
+    marginTop: 20,
   },
   label: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   switch: {
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'flex-end',
-    justifyContent: 'space-between'
-  }
-})
+    justifyContent: 'space-between',
+  },
+});
 const accentMap = {
   â: 'a',
   Â: 'A',
@@ -260,9 +261,9 @@ const accentMap = {
   ù: 'u',
   Ù: 'U',
   ç: 'c',
-  Ç: 'C'
-}
-const tintColor = '#174A87'
+  Ç: 'C',
+};
+const tintColor = '#174A87';
 
 const Loading = props =>
   props.hasErrored ? (
@@ -275,7 +276,7 @@ const Loading = props =>
     <View style={styles.center}>
       <ActivityIndicator size="large" />
     </View>
-  )
+  );
 
 const Toggle = props => (
   <TouchableWithoutFeedback
@@ -291,11 +292,11 @@ const Toggle = props => (
       />
     </View>
   </TouchableWithoutFeedback>
-)
+);
 
 export default class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       items: null,
       loading: false,
@@ -309,14 +310,20 @@ export default class App extends Component {
       highlightChildren: false,
       selectChildren: false,
       hideChipRemove: false,
-      hasErrored: false
-    }
-    this.termId = 100
-    this.maxItems = 5
+      hasErrored: false,
+      isDarkMode: false,
+    };
+    this.termId = 100;
+    this.maxItems = 5;
   }
 
   componentDidMount() {
-    this.pretendToLoad()
+    this.pretendToLoad();
+    const colorScheme = Appearance.getColorScheme();
+    if (colorScheme === 'dark') {
+      // Use dark color scheme
+      this.setState({isDarkMode: true});
+    }
     // programatically opening the select
     // this.SectionedMultiSelect._toggleSelector()
   }
@@ -324,253 +331,261 @@ export default class App extends Component {
   // custom icon renderer passed to iconRenderer prop
   // see the switch for possible icon name
   // values
-  icon = ({ name, size = 18, style }) => {
+  icon = ({name, size = 18, style}) => {
     // flatten the styles
-    const flat = StyleSheet.flatten(style)
+    const flat = StyleSheet.flatten(style);
     // remove out the keys that aren't accepted on View
-    const { color, fontSize, ...styles } = flat
+    const {color, fontSize, ...styles} = flat;
 
-    let iconComponent
+    let iconComponent;
     // the colour in the url on this site has to be a hex w/o hash
     const iconColor =
-      color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '/'
+      color && color.substr(0, 1) === '#' ? `${color.substr(1)}/` : '/';
 
     const Search = (
       <Image
-        source={{ uri: `https://png.icons8.com/search/${iconColor}ios/` }}
-        style={{ width: size, height: size }}
+        source={{uri: `https://png.icons8.com/search/${iconColor}ios/`}}
+        style={{width: size, height: size}}
       />
-    )
+    );
     const Down = (
       <Image
-        source={{ uri: `https://png.icons8.com/down/${iconColor}ios/` }}
-        style={{ width: size, height: size }}
+        source={{uri: `https://png.icons8.com/down/${iconColor}ios/`}}
+        style={{width: size, height: size}}
       />
-    )
+    );
     const Up = (
       <Image
-        source={{ uri: `https://png.icons8.com/up/${iconColor}ios/` }}
-        style={{ width: size, height: size }}
+        source={{uri: `https://png.icons8.com/up/${iconColor}ios/`}}
+        style={{width: size, height: size}}
       />
-    )
+    );
     const Close = (
       <Image
-        source={{ uri: `https://png.icons8.com/multiply/${iconColor}ios/` }}
-        style={{ width: size, height: size }}
+        source={{uri: `https://png.icons8.com/multiply/${iconColor}ios/`}}
+        style={{width: size, height: size}}
       />
-    )
+    );
 
     const Check = (
       <Image
         source={{
-          uri: `https://png.icons8.com/checkmark/${iconColor}android/`
+          uri: `https://png.icons8.com/checkmark/${iconColor}android/`,
         }}
-        style={{ width: size / 1.5, height: size / 1.5 }}
+        style={{width: size / 1.5, height: size / 1.5}}
       />
-    )
+    );
     const Cancel = (
       <Image
-        source={{ uri: `https://png.icons8.com/cancel/${iconColor}ios/` }}
-        style={{ width: size, height: size }}
+        source={{uri: `https://png.icons8.com/cancel/${iconColor}ios/`}}
+        style={{width: size, height: size}}
       />
-    )
+    );
 
     switch (name) {
       case 'search':
-        iconComponent = Search
-        break
+        iconComponent = Search;
+        break;
       case 'keyboard-arrow-up':
-        iconComponent = Up
-        break
+        iconComponent = Up;
+        break;
       case 'keyboard-arrow-down':
-        iconComponent = Down
-        break
+        iconComponent = Down;
+        break;
       case 'close':
-        iconComponent = Close
-        break
+        iconComponent = Close;
+        break;
       case 'check':
-        iconComponent = Check
-        break
+        iconComponent = Check;
+        break;
       case 'cancel':
-        iconComponent = Cancel
-        break
+        iconComponent = Cancel;
+        break;
       default:
-        iconComponent = null
-        break
+        iconComponent = null;
+        break;
     }
-    return <View style={styles}>{iconComponent}</View>
-  }
+    return <View style={styles}>{iconComponent}</View>;
+  };
 
-  getProp = (object, key) => object && this.removerAcentos(object[key])
+  getProp = (object, key) => object && this.removerAcentos(object[key]);
 
-  rejectProp = (items, fn) => items.filter(fn)
+  rejectProp = (items, fn) => items.filter(fn);
 
   pretendToLoad = () => {
-    this.setState({ loading: true })
+    this.setState({loading: true});
     setTimeout(() => {
-      this.setState({ loading: false, items })
-    }, 4000)
-  }
+      this.setState({loading: false, items});
+    }, 4000);
+  };
 
   // testing a custom filtering function that ignores accents
-  removerAcentos = s => s.replace(/[\W\[\] ]/g, a => accentMap[a] || a)
+  removerAcentos = s => s.replace(/[\W\[\] ]/g, a => accentMap[a] || a);
 
-  filterItems = (searchTerm, items, { subKey, displayKey, uniqueKey }) => {
-    let filteredItems = []
-    let newFilteredItems = []
+  filterItems = (searchTerm, items, {subKey, displayKey, uniqueKey}) => {
+    let filteredItems = [];
+    let newFilteredItems = [];
     items.forEach(item => {
       const parts = this.removerAcentos(searchTerm.trim()).split(
-        /[[ \][)(\\/?\-:]+/
-      )
-      const regex = new RegExp(`(${parts.join('|')})`, 'i')
+        /[[ \][)(\\/?\-:]+/,
+      );
+      const regex = new RegExp(`(${parts.join('|')})`, 'i');
       if (regex.test(this.getProp(item, displayKey))) {
-        filteredItems.push(item)
+        filteredItems.push(item);
       }
       if (item[subKey]) {
-        const newItem = Object.assign({}, item)
-        newItem[subKey] = []
+        const newItem = Object.assign({}, item);
+        newItem[subKey] = [];
         item[subKey].forEach(sub => {
           if (regex.test(this.getProp(sub, displayKey))) {
-            newItem[subKey] = [...newItem[subKey], sub]
+            newItem[subKey] = [...newItem[subKey], sub];
             newFilteredItems = this.rejectProp(
               filteredItems,
-              singleItem => item[uniqueKey] !== singleItem[uniqueKey]
-            )
-            newFilteredItems.push(newItem)
-            filteredItems = newFilteredItems
+              singleItem => item[uniqueKey] !== singleItem[uniqueKey],
+            );
+            newFilteredItems.push(newItem);
+            filteredItems = newFilteredItems;
           }
-        })
+        });
       }
-    })
-    return filteredItems
-  }
+    });
+    return filteredItems;
+  };
 
   onSelectedItemsChange = selectedItems => {
-    console.log(selectedItems, selectedItems.length)
+    console.log(selectedItems, selectedItems.length);
 
     if (selectedItems.length >= this.maxItems) {
       if (selectedItems.length === this.maxItems) {
-        this.setState({ selectedItems })
+        this.setState({selectedItems});
       }
       this.setState({
-        maxItems: true
-      })
-      return
+        maxItems: true,
+      });
+      return;
     }
     this.setState({
-      maxItems: false
-    })
+      maxItems: false,
+    });
 
     const filteredItems = selectedItems.filter(
-      val => !this.state.selectedItems2.includes(val)
-    )
-    this.setState({ selectedItems: filteredItems })
-  }
+      val => !this.state.selectedItems2.includes(val),
+    );
+    this.setState({selectedItems: filteredItems});
+  };
 
   onSelectedItemsChange2 = selectedItems => {
     const filteredItems = selectedItems.filter(
-      val => !this.state.selectedItems.includes(val)
-    )
-    this.setState({ selectedItems2: filteredItems })
-  }
+      val => !this.state.selectedItems.includes(val),
+    );
+    this.setState({selectedItems2: filteredItems});
+  };
 
   onConfirm = () => {
-    this.setState({ currentItems: this.state.selectedItems })
-  }
+    this.setState({currentItems: this.state.selectedItems});
+  };
   onCancel = () => {
-    this.SectionedMultiSelect._removeAllItems()
+    this.SectionedMultiSelect._removeAllItems();
 
     this.setState({
-      selectedItems: this.state.currentItems
-    })
-    console.log(this.state.selectedItems)
-  }
+      selectedItems: this.state.currentItems,
+    });
+    console.log(this.state.selectedItems);
+  };
   onSelectedItemObjectsChange = selectedItemObjects => {
-    this.setState({ selectedItemObjects })
-    console.log(selectedItemObjects)
-  }
+    this.setState({selectedItemObjects});
+    console.log(selectedItemObjects);
+  };
 
   onSwitchToggle = k => {
-    const v = !this.state[k]
-    this.setState({ [k]: v })
-  }
+    const v = !this.state[k];
+    this.setState({[k]: v});
+  };
 
   fetchCategories = () => {
-    this.setState({ hasErrored: false })
+    this.setState({hasErrored: false});
     fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms', {
-      headers: 'no-cache'
+      headers: 'no-cache',
     })
       .then(response => response.json())
       .then(responseJson => {
-        this.setState({ cats: responseJson })
+        this.setState({cats: responseJson});
       })
       .catch(error => {
-        this.setState({ hasErrored: true })
-        throw error.message
-      })
-  }
+        this.setState({hasErrored: true});
+        throw error.message;
+      });
+  };
   filterDuplicates = items =>
     items.sort().reduce((accumulator, current) => {
-      const length = accumulator.length
+      const length = accumulator.length;
       if (length === 0 || accumulator[length - 1] !== current) {
-        accumulator.push(current)
+        accumulator.push(current);
       }
-      return accumulator
-    }, [])
+      return accumulator;
+    }, []);
 
   noResults = (
     <View key="a" style={styles.center}>
       <Text>Sorry! No results...</Text>
     </View>
-  )
+  );
 
   handleAddSearchTerm = () => {
-    const searchTerm = this.SectionedMultiSelect._getSearchTerm()
-    const id = (this.termId += 1)
+    const searchTerm = this.SectionedMultiSelect._getSearchTerm();
+    const id = (this.termId += 1);
     if (
       searchTerm.length &&
       !(this.state.items || []).some(item => item.title.includes(searchTerm))
     ) {
-      const newItem = { id, title: searchTerm }
+      const newItem = {id, title: searchTerm};
       this.setState(prevState => ({
-        items: [...(prevState.items || []), newItem]
-      }))
-      this.onSelectedItemsChange([...this.state.selectedItems, id])
-      this.SectionedMultiSelect._submitSelection()
+        items: [...(prevState.items || []), newItem],
+      }));
+      this.onSelectedItemsChange([...this.state.selectedItems, id]);
+      this.SectionedMultiSelect._submitSelection();
     }
-  }
+  };
 
   searchAdornment = searchTerm =>
     searchTerm.length ? (
       <TouchableOpacity
-        style={{ alignItems: 'center', justifyContent: 'center' }}
+        style={{alignItems: 'center', justifyContent: 'center'}}
         onPress={this.handleAddSearchTerm}>
         <View style={{}}>
           <Image
-            source={{ uri: 'https://png.icons8.com/plus' }}
-            style={{ width: 16, height: 16, marginHorizontal: 15 }}
+            source={{uri: 'https://png.icons8.com/plus'}}
+            style={{width: 16, height: 16, marginHorizontal: 15}}
           />
           {/*   <Icon size={18} style={{ marginHorizontal: 15 }} name="add" /> */}
         </View>
       </TouchableOpacity>
-    ) : null
+    ) : null;
 
   renderSelectText = () => {
-    const { selectedItemObjects } = this.state
+    const {selectedItemObjects} = this.state;
 
     const selectText = selectedItemObjects.length
       ? `I like ${selectedItemObjects
           .map((item, i) => {
-            let label = `${item.title}, `
+            let label = `${item.title}, `;
             if (i === selectedItemObjects.length - 2)
-              label = `${item.title} and `
-            if (i === selectedItemObjects.length - 1) label = `${item.title}.`
-            return label
+              label = `${item.title} and `;
+            if (i === selectedItemObjects.length - 1) label = `${item.title}.`;
+            return label;
           })
           .join('')}`
-      : 'Select a fruit'
-    return <Text style={{ color: 'red', fontSize: 24 }}>{selectText}</Text>
-  }
+      : 'Select a fruit';
+    return (
+      <Text
+        style={{
+          color: this.state.isDarkMode ? 'white' : 'black',
+          fontSize: 18,
+        }}>
+        {selectText}
+      </Text>
+    );
+  };
 
   SelectOrRemoveAll = () =>
     this.SectionedMultiSelect && (
@@ -581,31 +596,31 @@ export default class App extends Component {
           borderWidth: 0,
           paddingHorizontal: 10,
           backgroundColor: 'darkgrey',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
         onPress={
           this.state.selectedItems.length
             ? this.SectionedMultiSelect._removeAllItems
             : this.SectionedMultiSelect._selectAllItems
         }>
-        <Text style={{ color: 'white', fontWeight: 'bold' }}>
+        <Text style={{color: 'white', fontWeight: 'bold'}}>
           {this.state.selectedItems.length ? 'Remove' : 'Select'} all
         </Text>
       </TouchableOpacity>
-    )
+    );
 
   onToggleSelector = toggled => {
-    console.log('selector is ', toggled ? 'open' : 'closed')
-  }
+    console.log('selector is ', toggled ? 'open' : 'closed');
+  };
   customChipsRenderer = props => {
-    console.log('props', props)
+    console.log('props', props);
     return (
-      <View style={{ backgroundColor: 'yellow', padding: 15 }}>
+      <View style={{backgroundColor: 'yellow', padding: 15}}>
         <Text>Selected:</Text>
         {props.selectedItems.map(singleSelectedItem => {
-          const item = this.SectionedMultiSelect._findItem(singleSelectedItem)
+          const item = this.SectionedMultiSelect._findItem(singleSelectedItem);
 
-          if (!item || !item[props.displayKey]) return null
+          if (!item || !item[props.displayKey]) return null;
 
           return (
             <View
@@ -614,25 +629,27 @@ export default class App extends Component {
                 flex: 0,
                 marginRight: 5,
                 padding: 10,
-                backgroundColor: 'orange'
+                backgroundColor: 'orange',
               }}>
               <TouchableOpacity
                 onPress={() => {
-                  this.SectionedMultiSelect._removeItem(item)
+                  this.SectionedMultiSelect._removeItem(item);
                 }}>
                 <Text>{item[props.displayKey]}</Text>
               </TouchableOpacity>
             </View>
-          )
+          );
         })}
       </View>
-    )
-  }
+    );
+  };
   render() {
     return (
       <ScrollView
         keyboardShouldPersistTaps="always"
-        style={{ backgroundColor: '#f8f8f8' }}
+        style={{
+          backgroundColor: this.state.isDarkMode ? '#333' : '#f8f8f8',
+        }}
         contentContainerStyle={styles.container}>
         <Text style={styles.welcome}>
           React native sectioned multi select example.
@@ -687,7 +704,11 @@ export default class App extends Component {
             this.state.maxItems ? 'Max selected' : 'Confirm'
           }`}
           selectedItems={this.state.selectedItems}
-          colors={{ primary: '#5c3a9e', success: '#5c3a9e' }}
+          colors={{
+            primary: '#5c3a9e',
+            success: '#5c3a9e',
+            chipColor: this.state.isDarkMode ? '#f7f7f7' : '#333',
+          }}
           itemNumberOfLines={3}
           selectLabelNumberOfLines={3}
           styles={{
@@ -704,21 +725,21 @@ export default class App extends Component {
             //   color: this.state.selectedItems.length ? 'black' : 'lightgrey'
             // },
             item: {
-              paddingHorizontal: 10
+              paddingHorizontal: 10,
             },
             subItem: {
-              paddingHorizontal: 10
+              paddingHorizontal: 10,
             },
             selectedItem: {
-              backgroundColor: 'rgba(0,0,0,0.1)'
+              backgroundColor: 'rgba(0,0,0,0.1)',
             },
             selectedSubItem: {
-              backgroundColor: 'rgba(0,0,0,0.1)'
+              backgroundColor: 'rgba(0,0,0,0.1)',
             },
             // selectedSubItemText: {
             //   color: 'blue',
             // },
-            scrollView: { paddingHorizontal: 0 }
+            scrollView: {paddingHorizontal: 0},
           }}
           // cancelIconComponent={<Icon size={20} name="close" style={{ color: 'white' }} />}
         />
@@ -774,6 +795,6 @@ export default class App extends Component {
           </TouchableWithoutFeedback>
         </View>
       </ScrollView>
-    )
+    );
   }
 }
