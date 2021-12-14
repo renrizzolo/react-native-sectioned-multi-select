@@ -38,6 +38,21 @@ export interface Styles {
   listContainer?: ReactNative.StyleProp<ReactNative.ViewStyle>
 }
 
+export interface Colors {
+  primary?: string
+  success?: string
+  cancel?: string
+  text?: string
+  subText?: string
+  selectToggleTextColor?: string
+  searchPlaceholderTextColor?: string
+  searchSelectionColor?: string
+  chipColor?: string
+  itemBackground?: string
+  subItemBackground?: string
+  disabled?: string
+}
+
 export interface SectionedMultiSelectProps<ItemType> {
   single?: boolean
   selectedItems?: any[]
@@ -45,30 +60,17 @@ export interface SectionedMultiSelectProps<ItemType> {
   displayKey?: string
   uniqueKey: string
   subKey?: string
-  onSelectedItemsChange: (items: ItemType[]) => void
+  onSelectedItemsChange: (items: any[]) => void
   showDropDowns?: boolean
   showChips?: boolean
   readOnlyHeadings?: boolean
   selectText?: string
   selectedText?: string | (() => void)
-  renderSelectText?: (props: object) => void
+  renderSelectText?: (props: this) => void
   confirmText?: string
   hideConfirm?: boolean
   styles?: Styles
-  colors?: {
-    primary?: string
-    success?: string
-    cancel?: string
-    text?: string
-    subText?: string
-    selectToggleTextColor?: string
-    searchPlaceholderTextColor?: string
-    searchSelectionColor?: string
-    chipColor?: string
-    itemBackground?: string
-    subItemBackground?: string
-    disabled?: string
-  }
+  colors?: Colors
   searchPlaceholderText?: string
   noResultsComponent?: React.ReactNode
   loadingComponent?: React.ReactNode
@@ -113,7 +115,15 @@ export interface SectionedMultiSelectProps<ItemType> {
   filterItems?: (searchTerm: string) => void
   onToggleSelector?: (selected: boolean) => void
   noItemsComponent?: React.ReactNode
-  customChipsRenderer?: (chipProperties: object) => void
+  customChipsRenderer?: (chipProperties: {
+    colors: Colors
+    displayKey: string
+    items: ItemType[]
+    selectedItems: any[]
+    styles: Styles
+    subKey: string
+    uniqueKey: string
+  }) => void
   chipsPosition?: 'top' | 'bottom'
   autoFocus?: boolean
   iconKey?: string
@@ -121,10 +131,13 @@ export interface SectionedMultiSelectProps<ItemType> {
   selectedIconOnLeft?: boolean
   parentChipsRemoveChildren?: boolean
   hideChipRemove?: boolean
-  IconRenderer?: React.ReactNode
-  itemsFlatListProps?: Omit<ReactNative.FlatListProps<T>, 'data' | 'renderItem'>
+  IconRenderer: React.ReactNode
+  itemsFlatListProps?: Omit<
+    ReactNative.FlatListProps<ItemType>,
+    'data' | 'renderItem'
+  >
   subItemsFlatListProps?: Omit<
-    ReactNative.FlatListProps<T>,
+    ReactNative.FlatListProps<ItemType>,
     'data' | 'renderItem'
   >
 
@@ -144,7 +157,7 @@ export default class SectionedMultiSelect<ItemType> extends React.Component<
   _removeAllItems: () => void
   _removeItem: (item: ItemType) => void
   _selectAllItems: () => void
-  _findItem: (id: string | number) => ItemType | object | undefined
+  _findItem: (id: any) => ItemType | undefined
   _itemSelected: (item: ItemType) => boolean
   _getSearchTerm: () => string
   _submitSelection: () => void
