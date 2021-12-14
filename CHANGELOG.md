@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.4 - 2021-12-14
+
+### Fixed
+
+- More type related fixes
+- IconRenderer prop should have been required
+
 ## 0.8.3 - 2021-12-14
 
 ### Fixed
