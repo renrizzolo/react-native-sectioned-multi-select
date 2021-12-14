@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.3 - 2021-12-14
+
+### Fixed
+
+- more type related fixes
+
+### Added
+
+- added exampleapp version using typescript with ItemType generic and ref methods
+
+### Fixed
+
 ## 0.8.2 - 2021-12-13
 
 ### Added
