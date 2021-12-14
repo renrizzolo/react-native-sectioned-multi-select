@@ -9,6 +9,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/require-default-props": [0],
     "semi": ["error", "never"],
+    "comma-dangle": "off",
     "no-underscore-dangle": ["error", { "allowAfterThis": true }]
   }
 }
