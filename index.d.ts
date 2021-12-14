@@ -146,4 +146,7 @@ export default class SectionedMultiSelect<ItemType> extends React.Component<
   _selectAllItems: () => void
   _findItem: (id: string | number) => ItemType | object | undefined
   _itemSelected: (item: ItemType) => boolean
+  _getSearchTerm: () => string
+  _submitSelection: () => void
+  _cancelSelection: () => void
 }
