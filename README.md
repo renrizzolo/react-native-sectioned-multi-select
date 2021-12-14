@@ -212,7 +212,7 @@ Toggle the modal:
 
 ```JS
 // function component
-onPress={() => ref && ref.current && ref.current._removeAllItems()}
+onPress={() => ref && ref.current && ref.current._toggleSelector()}
 // class component
 onPress={() => this.SectionedMultiSelect._toggleSelector()}
 ```
