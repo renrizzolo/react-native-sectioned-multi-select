@@ -312,8 +312,7 @@ export default class App extends Component {
       selectChildren: false,
       hideChipRemove: false,
       hasErrored: false,
-      isDarkMode: false,
-      selectToggleTextColor: 'black'
+      isDarkMode: false
     }
     this.termId = 100
     this.maxItems = 5
@@ -714,10 +713,7 @@ export default class App extends Component {
           selectedItems={this.state.selectedItems}
           colors={{
             primary: '#5c3a9e',
-            success: '#bada55',
-            subItemBackground:
-              this.state.selectedItems.length > 2 ? 'purple' : 'gold',
-            selectToggleTextColor: this.state.selectToggleTextColor,
+            success: '#5c3a9e',
             chipColor: this.state.isDarkMode ? '#f7f7f7' : '#333'
           }}
           itemNumberOfLines={3}
@@ -797,20 +793,7 @@ export default class App extends Component {
             onPress={() => this.onSwitchToggle('hideChipRemove')}
             val={this.state.hideChipRemove}
           />
-          <TouchableWithoutFeedback
-            onPress={() => this.setState({ selectToggleTextColor: 'pink' })}
-          >
-            <View style={styles.switch}>
-              <Text style={styles.label}>Color test</Text>
-            </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback
-            onPress={() => this.setState({ selectToggleTextColor: 'green' })}
-          >
-            <View style={styles.switch}>
-              <Text style={styles.label}>Color test</Text>
-            </View>
-          </TouchableWithoutFeedback>
+
           <TouchableWithoutFeedback
             onPress={() => this.SectionedMultiSelect._removeAllItems()}
           >
