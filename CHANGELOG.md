@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0 - 2021-12-17
+
+### Fixed
+
+- Changed the way styles and colors are recalculated. Style/color prop changes will now correctly reflect to sub items. This isn't a breaking change per se but it will cause different results to previous versions when changing styles/colors dynamically.
+
 ## 0.8.4 - 2021-12-14
 
 ### Fixed
