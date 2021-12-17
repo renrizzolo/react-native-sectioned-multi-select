@@ -1,43 +1,43 @@
-import React, {useRef} from 'react';
-import {View, Button, Text, ScrollView, TouchableOpacity} from 'react-native';
-import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import React, { useRef } from 'react'
+import { View, Button, Text, ScrollView, TouchableOpacity } from 'react-native'
+import SectionedMultiSelect from 'react-native-sectioned-multi-select'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 type ItemType = {
-  title: string;
-  id: number;
-};
+  title: string
+  id: number
+}
 const items = [
   {
     id: 1,
-    title: 'Item 1 234234',
+    title: 'Item 1 234234'
   },
   {
     id: 2,
-    title: 'Item 2 asdfsa',
+    title: 'Item 2 asdfsa'
   },
   {
     id: 3,
-    title: 'Item 3 asdf d',
+    title: 'Item 3 asdf d'
   },
   {
     id: 4,
-    title: 'Item 4d a',
-  },
-];
+    title: 'Item 4d a'
+  }
+]
 
 const App: React.FC = () => {
-  const ref = useRef<SectionedMultiSelect<ItemType>>();
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const ref = useRef<SectionedMultiSelect<ItemType>>()
+  const [selectedItems, setSelectedItems] = React.useState([])
 
   const removeAll = () => {
-    ref.current?._removeAllItems();
-  };
+    ref.current?._removeAllItems()
+  }
   const toggle = () => {
-    ref.current?._toggleSelector();
-  };
-  console.log(selectedItems);
+    ref.current?._toggleSelector()
+  }
+  console.log(selectedItems)
   return (
     <View>
       <SectionedMultiSelect<ItemType>
@@ -47,21 +47,22 @@ const App: React.FC = () => {
         selectedItems={selectedItems}
         items={items}
         ref={ref}
-        customChipsRenderer={props => (
+        customChipsRenderer={(props) => (
           <ScrollView
             horizontal
             style={{
               height: 58,
-              width: '100%',
+              width: '100%'
             }}
             contentContainerStyle={{
               alignItems: 'center',
               flexDirection: 'row',
               flexWrap: 'wrap',
-              padding: 8,
-            }}>
-            {selectedItems.map(itemId => {
-              const item = items.find(({id}) => id === itemId);
+              padding: 8
+            }}
+          >
+            {selectedItems.map((itemId) => {
+              const item = items.find(({ id }) => id === itemId)
               return (
                 <View
                   style={{
@@ -73,25 +74,28 @@ const App: React.FC = () => {
                     borderRadius: 24,
                     flexDirection: 'row',
                     borderColor: props.colors.chipColor,
-                    borderWidth: 1,
+                    borderWidth: 1
                   }}
-                  key={item.id}>
+                  key={item.id}
+                >
                   <Text
                     style={{
                       fontSize: 16,
                       fontWeight: 'bold',
                       color: props.colors.chipColor,
-                      marginLeft: 16,
-                    }}>
+                      marginLeft: 16
+                    }}
+                  >
                     {item.title}
                   </Text>
                   <TouchableOpacity
-                    style={{padding: 4, marginRight: 8}}
-                    onPress={() => ref.current?._removeItem(item)}>
+                    style={{ padding: 4, marginRight: 8 }}
+                    onPress={() => ref.current?._removeItem(item)}
+                  >
                     <Icon name="close" size={18} />
                   </TouchableOpacity>
                 </View>
-              );
+              )
             })}
           </ScrollView>
         )}
@@ -100,21 +104,21 @@ const App: React.FC = () => {
           check: {
             name: 'check-circle',
             style: {
-              color: Colors.secondary,
+              color: Colors.secondary
             },
-            size: 22,
+            size: 22
           },
           search: {
             name: 'search',
             color: '#333',
-            size: 22,
-          },
+            size: 22
+          }
         }}
       />
       <Button title="Open" onPress={toggle} />
       <Button title="Remove All" onPress={removeAll} />
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App

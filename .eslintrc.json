@@ -4,12 +4,17 @@
     "browser": true
   },
   "plugins": ["react"],
-  "extends": ["airbnb", "plugin:react/recommended"],
+  "extends": [
+    "prettier",
+    "@react-native-community",
+    "plugin:react-native-a11y/all"
+  ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/require-default-props": [0],
     "semi": ["error", "never"],
-    "comma-dangle": "off",
-    "no-underscore-dangle": ["error", { "allowAfterThis": true }]
+    "comma-dangle": ["error", "never"],
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "react-native/no-inline-styles": 0
   }
 }

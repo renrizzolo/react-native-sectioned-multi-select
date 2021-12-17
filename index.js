@@ -1,3 +1,3 @@
-import SectionedMultiSelect from './lib/sectioned-multi-select';
+import SectionedMultiSelect from './lib/sectioned-multi-select'
 
-export default SectionedMultiSelect;
+export default SectionedMultiSelect

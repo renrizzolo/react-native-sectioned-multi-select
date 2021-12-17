@@ -7,15 +7,20 @@
     "lib": "lib"
   },
   "scripts": {
+    "lint": "eslint ./lib/**/*.{js,jsx} --fix",
+    "format": "prettier ./lib/**/*.{js,jsx} --write && npm run lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "lodash.isequal": "^4.5.0",
+    "memoize-one": "^6.0.0"
+  },
   "devDependencies": {
-    "babel-eslint": "^8.1.2",
-    "eslint": "^4.15.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1"
+    "@react-native-community/eslint-config": "^3.0.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-react-native-a11y": "^3.0.0",
+    "prettier": "^2.5.1"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0"

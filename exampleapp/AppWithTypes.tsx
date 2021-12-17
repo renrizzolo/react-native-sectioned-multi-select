@@ -265,7 +265,7 @@ const accentMap = {
 }
 const tintColor = '#174A87'
 
-const Loading = props =>
+const Loading = (props) =>
   props.hasErrored ? (
     <TouchableWithoutFeedback onPress={props.fetchCategories}>
       <View style={styles.center}>
@@ -278,15 +278,16 @@ const Loading = props =>
     </View>
   )
 
-const Toggle = props => (
+const Toggle = (props) => (
   <TouchableWithoutFeedback
     onPress={() => props.onPress(!props.val)}
-    disabled={props.disabled}>
+    disabled={props.disabled}
+  >
     <View style={styles.switch}>
       <Text style={styles.label}>{props.name}</Text>
       <Switch
         trackColor={{ false: tintColor, true: tintColor }}
-        onValueChange={v => props.onPress(v)}
+        onValueChange={(v) => props.onPress(v)}
         value={props.val}
         disabled={props.disabled}
       />
@@ -466,12 +467,12 @@ export default class App extends Component<{}, State> {
   }
 
   // testing a custom filtering function that ignores accents
-  removerAcentos = s => s.replace(/[\W\[\] ]/g, a => accentMap[a] || a)
+  removerAcentos = (s) => s.replace(/[\W\[\] ]/g, (a) => accentMap[a] || a)
 
   filterItems = (searchTerm, items, { subKey, displayKey, uniqueKey }) => {
     let filteredItems = []
     let newFilteredItems = []
-    items.forEach(item => {
+    items.forEach((item) => {
       const parts = this.removerAcentos(searchTerm.trim()).split(
         /[[ \][)(\\/?\-:]+/
       )
@@ -482,12 +483,12 @@ export default class App extends Component<{}, State> {
       if (item[subKey]) {
         const newItem = Object.assign({}, item)
         newItem[subKey] = []
-        item[subKey].forEach(sub => {
+        item[subKey].forEach((sub) => {
           if (regex.test(this.getProp(sub, displayKey))) {
             newItem[subKey] = [...newItem[subKey], sub]
             newFilteredItems = this.rejectProp(
               filteredItems,
-              singleItem => item[uniqueKey] !== singleItem[uniqueKey]
+              (singleItem) => item[uniqueKey] !== singleItem[uniqueKey]
             )
             newFilteredItems.push(newItem)
             filteredItems = newFilteredItems
@@ -498,7 +499,7 @@ export default class App extends Component<{}, State> {
     return filteredItems
   }
 
-  onSelectedItemsChange = selectedItems => {
+  onSelectedItemsChange = (selectedItems) => {
     console.log(selectedItems, selectedItems.length)
 
     if (selectedItems.length >= this.maxItems) {
@@ -515,16 +516,16 @@ export default class App extends Component<{}, State> {
     })
 
     const filteredItems = selectedItems.filter(
-      val => !this.state.selectedItems2.includes(val)
+      (val) => !this.state.selectedItems2.includes(val)
     )
     this.setState({
       selectedItems: filteredItems
     })
   }
 
-  onSelectedItemsChange2 = selectedItems => {
+  onSelectedItemsChange2 = (selectedItems) => {
     const filteredItems = selectedItems.filter(
-      val => !this.state.selectedItems.includes(val)
+      (val) => !this.state.selectedItems.includes(val)
     )
     this.setState({
       selectedItems2: filteredItems
@@ -544,7 +545,7 @@ export default class App extends Component<{}, State> {
     })
     console.log(this.state.selectedItems)
   }
-  onSelectedItemObjectsChange = selectedItemObjects => {
+  onSelectedItemObjectsChange = (selectedItemObjects) => {
     this.setState({ selectedItemObjects })
     console.log(selectedItemObjects)
   }
@@ -557,16 +558,16 @@ export default class App extends Component<{}, State> {
   fetchCategories = () => {
     this.setState({ hasErrored: false })
     fetch('http://www.mocky.io/v2/5a5573a22f00005c04beea49?mocky-delay=500ms')
-      .then(response => response.json())
-      .then(responseJson => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         this.setState({ selectedItems: responseJson })
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ hasErrored: true })
         throw error.message
       })
   }
-  filterDuplicates = items =>
+  filterDuplicates = (items) =>
     items.sort().reduce((accumulator, current) => {
       const length = accumulator.length
       if (length === 0 || accumulator[length - 1] !== current) {
@@ -586,10 +587,10 @@ export default class App extends Component<{}, State> {
     const id = (this.termId += 1)
     if (
       searchTerm.length &&
-      !(this.state.items || []).some(item => item.title.includes(searchTerm))
+      !(this.state.items || []).some((item) => item.title.includes(searchTerm))
     ) {
       const newItem = { id, title: searchTerm }
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         items: [...(prevState.items || []), newItem]
       }))
       this.onSelectedItemsChange([...this.state.selectedItems, id])
@@ -597,14 +598,15 @@ export default class App extends Component<{}, State> {
     }
   }
 
-  searchAdornment = searchTerm =>
+  searchAdornment = (searchTerm) =>
     searchTerm.length ? (
       <TouchableOpacity
         style={{
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        onPress={this.handleAddSearchTerm}>
+        onPress={this.handleAddSearchTerm}
+      >
         <View style={{}}>
           <Image
             source={{
@@ -653,33 +655,35 @@ export default class App extends Component<{}, State> {
           this.state.selectedItems.length
             ? this.sectionedMultiSelectRef._removeAllItems
             : this.sectionedMultiSelectRef._selectAllItems
-        }>
+        }
+      >
         <Text
           style={{
             color: 'white',
             fontWeight: 'bold'
-          }}>
+          }}
+        >
           {this.state.selectedItems.length ? 'Remove' : 'Select'} all
         </Text>
       </TouchableOpacity>
     )
 
-  onToggleSelector = toggled => {
+  onToggleSelector = (toggled) => {
     console.log('selector is ', toggled ? 'open' : 'closed')
   }
-  customChipsRenderer = props => {
+  customChipsRenderer = (props) => {
     console.log('props', props)
     return (
       <View
         style={{
           backgroundColor: 'yellow',
           padding: 15
-        }}>
+        }}
+      >
         <Text>Selected:</Text>
-        {props.selectedItems.map(singleSelectedItem => {
-          const item = this.sectionedMultiSelectRef._findItem(
-            singleSelectedItem
-          )
+        {props.selectedItems.map((singleSelectedItem) => {
+          const item =
+            this.sectionedMultiSelectRef._findItem(singleSelectedItem)
 
           if (!item || !item[props.displayKey]) return null
 
@@ -691,11 +695,13 @@ export default class App extends Component<{}, State> {
                 marginRight: 5,
                 padding: 10,
                 backgroundColor: 'orange'
-              }}>
+              }}
+            >
               <TouchableOpacity
                 onPress={() => {
                   this.sectionedMultiSelectRef._removeItem(item)
-                }}>
+                }}
+              >
                 <Text>{item[props.displayKey]}</Text>
               </TouchableOpacity>
             </View>
@@ -709,13 +715,14 @@ export default class App extends Component<{}, State> {
       <ScrollView
         keyboardShouldPersistTaps="always"
         style={{ backgroundColor: '#f8f8f8' }}
-        contentContainerStyle={styles.container}>
+        contentContainerStyle={styles.container}
+      >
         <Text style={styles.welcome}>
           React native sectioned multi select example.
         </Text>
         <SectionedMultiSelect<ItemType>
           items={this.state.items}
-          ref={SectionedMultiSelect =>
+          ref={(SectionedMultiSelect) =>
             (this.sectionedMultiSelectRef = SectionedMultiSelect)
           }
           uniqueKey="id"
@@ -737,7 +744,7 @@ export default class App extends Component<{}, State> {
             keyExtractor: (item, index) => `${item.id}-${index}`
           }}
           chipsPosition="top"
-          searchAdornment={searchTerm => this.searchAdornment(searchTerm)}
+          searchAdornment={(searchTerm) => this.searchAdornment(searchTerm)}
           renderSelectText={this.renderSelectText}
           // noResultsComponent={this.noResults}
           loadingComponent={
@@ -850,7 +857,8 @@ export default class App extends Component<{}, State> {
           />
 
           <TouchableWithoutFeedback
-            onPress={() => this.sectionedMultiSelectRef._removeAllItems()}>
+            onPress={() => this.sectionedMultiSelectRef._removeAllItems()}
+          >
             <View style={styles.switch}>
               <Text style={styles.label}>Remove All</Text>
             </View>
