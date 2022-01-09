@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1 - 2022-01-09
+
+### Fixed
+
+- remove accidental console log #259
+
 ## 0.9.0 - 2021-12-17
 
 ### Fixed
