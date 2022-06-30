@@ -1,5 +1,8 @@
 # Changelog
 
+### Added
+- Selected entries shows associtated icons
+
 ## 0.9.1 - 2022-01-09
 
 ### Fixed
