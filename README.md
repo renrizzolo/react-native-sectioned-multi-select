@@ -100,7 +100,7 @@ icons: {
 ```javascript
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons`
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 const items = [
