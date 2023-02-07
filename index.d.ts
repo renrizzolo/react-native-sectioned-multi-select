@@ -53,14 +53,19 @@ export interface Colors {
   disabled?: string
 }
 
-export interface SectionedMultiSelectProps<ItemType> {
+type ItemTypeBase = { [key: string]: any }
+
+export interface SectionedMultiSelectProps<
+  ItemType extends ItemTypeBase,
+  UKey extends keyof ItemType = 'id'
+> {
   single?: boolean
-  selectedItems?: any[]
+  selectedItems?: ItemType[UKey][]
   items?: ItemType[]
-  displayKey?: string
-  uniqueKey: string
-  subKey?: string
-  onSelectedItemsChange: (items: any[]) => void
+  displayKey?: keyof ItemType
+  uniqueKey: UKey
+  subKey?: keyof ItemType
+  onSelectedItemsChange: (items: ItemType[UKey][]) => void
   showDropDowns?: boolean
   showChips?: boolean
   readOnlyHeadings?: boolean
@@ -112,14 +117,14 @@ export interface SectionedMultiSelectProps<ItemType> {
   animateDropDowns?: boolean
   customLayoutAnimation?: object
   onChangeSearchText?: (searchTerm: string) => void
-  filterItems?: (searchTerm: string) => void
+  filterItems?: (searchTerm: string, items: ItemType[], props: this) => void
   onToggleSelector?: (selected: boolean) => void
   noItemsComponent?: React.ReactNode
   customChipsRenderer?: (chipProperties: {
     colors: Colors
     displayKey: string
     items: ItemType[]
-    selectedItems: any[]
+    selectedItems: ItemType[UKey][]
     styles: Styles
     subKey: string
     uniqueKey: string
@@ -150,14 +155,15 @@ export interface SectionedMultiSelectProps<ItemType> {
     cancel: IconProps
   }>
 }
-export default class SectionedMultiSelect<ItemType> extends React.Component<
-  SectionedMultiSelectProps<ItemType>
-> {
+export default class SectionedMultiSelect<
+  ItemType extends ItemTypeBase,
+  UKey extends keyof ItemType = 'id'
+> extends React.Component<SectionedMultiSelectProps<ItemType, UKey>> {
   _toggleSelector: () => void
   _removeAllItems: () => void
   _removeItem: (item: ItemType) => void
   _selectAllItems: () => void
-  _findItem: (id: any) => ItemType | undefined
+  _findItem: (id: ItemType[UKey]) => ItemType | undefined
   _itemSelected: (item: ItemType) => boolean
   _getSearchTerm: () => string
   _submitSelection: () => void

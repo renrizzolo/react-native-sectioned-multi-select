@@ -8,28 +8,16 @@ type ItemType = {
   title: string
   id: number
 }
-const items = [
+const items: ItemType[] = [
   {
     id: 1,
     title: 'Item 1 234234'
-  },
-  {
-    id: 2,
-    title: 'Item 2 asdfsa'
-  },
-  {
-    id: 3,
-    title: 'Item 3 asdf d'
-  },
-  {
-    id: 4,
-    title: 'Item 4d a'
   }
 ]
 
 const App: React.FC = () => {
-  const ref = useRef<SectionedMultiSelect<ItemType>>()
-  const [selectedItems, setSelectedItems] = React.useState([])
+  const ref = useRef<SectionedMultiSelect<ItemType, 'id'>>()
+  const [selectedItems, setSelectedItems] = React.useState([1, 2, 3, 'x'])
 
   const removeAll = () => {
     ref.current?._removeAllItems()
@@ -40,7 +28,7 @@ const App: React.FC = () => {
   console.log(selectedItems)
   return (
     <View>
-      <SectionedMultiSelect<ItemType>
+      <SectionedMultiSelect<ItemType, 'id'>
         uniqueKey="id"
         displayKey="title"
         onSelectedItemsChange={setSelectedItems}
@@ -61,7 +49,7 @@ const App: React.FC = () => {
               padding: 8
             }}
           >
-            {selectedItems.map((itemId) => {
+            {/* {selectedItems.map((itemId) => {
               const item = items.find(({ id }) => id === itemId)
               return (
                 <View
@@ -96,7 +84,7 @@ const App: React.FC = () => {
                   </TouchableOpacity>
                 </View>
               )
-            })}
+            })} */}
           </ScrollView>
         )}
         IconRenderer={Icon}

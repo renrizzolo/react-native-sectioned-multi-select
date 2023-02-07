@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
@@ -9,23 +8,19 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   ActivityIndicator,
-  Dimensions,
-  LayoutAnimation,
   Image
 } from 'react-native'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { SectionedMultiSelectProps } from '..'
 
 const img = require('./z.jpg')
 
 // Sorry for the mess
 
-const items = [
+const items: ItemType[] = [
   {
     title: 'Fruits',
     id: 0,
-
     children: [
       {
         title: 'Apple',
@@ -163,7 +158,7 @@ console.log(items)
 
 //     ],
 //   }]
-const items2 = []
+const items2: ItemType[] = []
 for (let i = 0; i < 100; i++) {
   items2.push({
     id: i,
@@ -295,14 +290,14 @@ const Toggle = (props) => (
   </TouchableWithoutFeedback>
 )
 type ItemType = {
-  id: number
+  id: string | number
   title: string
   icon?: string
   children?: Omit<ItemType, 'children'>[]
 }
 
 type State = {
-  items: null | ItemType[]
+  items?: ItemType[]
   loading: boolean
   selectedItems: ItemType['id'][]
   selectedItems2: ItemType['id'][]
@@ -329,14 +324,14 @@ enum ToggleTypes {
   'hideChipRemove'
 }
 export default class App extends Component<{}, State> {
-  private sectionedMultiSelectRef: SectionedMultiSelect<ItemType>
+  private sectionedMultiSelectRef: SectionedMultiSelect<ItemType> | null
   private termId: number
   private maxItems: number
 
   constructor(props) {
     super(props)
     this.state = {
-      items: null,
+      items: undefined,
       loading: false,
       selectedItems: [],
       selectedItems2: [],
@@ -469,36 +464,6 @@ export default class App extends Component<{}, State> {
   // testing a custom filtering function that ignores accents
   removerAcentos = (s) => s.replace(/[\W\[\] ]/g, (a) => accentMap[a] || a)
 
-  filterItems = (searchTerm, items, { subKey, displayKey, uniqueKey }) => {
-    let filteredItems = []
-    let newFilteredItems = []
-    items.forEach((item) => {
-      const parts = this.removerAcentos(searchTerm.trim()).split(
-        /[[ \][)(\\/?\-:]+/
-      )
-      const regex = new RegExp(`(${parts.join('|')})`, 'i')
-      if (regex.test(this.getProp(item, displayKey))) {
-        filteredItems.push(item)
-      }
-      if (item[subKey]) {
-        const newItem = Object.assign({}, item)
-        newItem[subKey] = []
-        item[subKey].forEach((sub) => {
-          if (regex.test(this.getProp(sub, displayKey))) {
-            newItem[subKey] = [...newItem[subKey], sub]
-            newFilteredItems = this.rejectProp(
-              filteredItems,
-              (singleItem) => item[uniqueKey] !== singleItem[uniqueKey]
-            )
-            newFilteredItems.push(newItem)
-            filteredItems = newFilteredItems
-          }
-        })
-      }
-    })
-    return filteredItems
-  }
-
   onSelectedItemsChange = (selectedItems) => {
     console.log(selectedItems, selectedItems.length)
 
@@ -538,7 +503,7 @@ export default class App extends Component<{}, State> {
     })
   }
   onCancel = () => {
-    this.sectionedMultiSelectRef._removeAllItems()
+    this.sectionedMultiSelectRef?._removeAllItems()
 
     this.setState({
       selectedItems: this.state.currentItems
@@ -583,7 +548,7 @@ export default class App extends Component<{}, State> {
   )
 
   handleAddSearchTerm = () => {
-    const searchTerm = this.sectionedMultiSelectRef._getSearchTerm()
+    const searchTerm = this.sectionedMultiSelectRef!._getSearchTerm()
     const id = (this.termId += 1)
     if (
       searchTerm.length &&
@@ -594,7 +559,7 @@ export default class App extends Component<{}, State> {
         items: [...(prevState.items || []), newItem]
       }))
       this.onSelectedItemsChange([...this.state.selectedItems, id])
-      this.sectionedMultiSelectRef._submitSelection()
+      this.sectionedMultiSelectRef?._submitSelection()
     }
   }
 
@@ -683,7 +648,7 @@ export default class App extends Component<{}, State> {
         <Text>Selected:</Text>
         {props.selectedItems.map((singleSelectedItem) => {
           const item =
-            this.sectionedMultiSelectRef._findItem(singleSelectedItem)
+            this.sectionedMultiSelectRef?._findItem(singleSelectedItem)
 
           if (!item || !item[props.displayKey]) return null
 
@@ -699,7 +664,7 @@ export default class App extends Component<{}, State> {
             >
               <TouchableOpacity
                 onPress={() => {
-                  this.sectionedMultiSelectRef._removeItem(item)
+                  this.sectionedMultiSelectRef?._removeItem(item)
                 }}
               >
                 <Text>{item[props.displayKey]}</Text>
@@ -720,7 +685,7 @@ export default class App extends Component<{}, State> {
         <Text style={styles.welcome}>
           React native sectioned multi select example.
         </Text>
-        <SectionedMultiSelect<ItemType>
+        <SectionedMultiSelect<ItemType, 'id'>
           items={this.state.items}
           ref={(SectionedMultiSelect) =>
             (this.sectionedMultiSelectRef = SectionedMultiSelect)
@@ -736,7 +701,39 @@ export default class App extends Component<{}, State> {
           // headerComponent={this.SelectOrRemoveAll}
           // hideConfirm
           loading={this.state.loading}
-          // filterItems={this.filterItems}
+          filterItems={(
+            searchTerm,
+            items,
+            { subKey, displayKey, uniqueKey }
+          ) => {
+            let filteredItems: typeof items = []
+            let newFilteredItems: typeof items = []
+            items.forEach((item) => {
+              const parts = this.removerAcentos(searchTerm.trim()).split(
+                /[[ \][)(\\/?\-:]+/
+              )
+              const regex = new RegExp(`(${parts.join('|')})`, 'i')
+              if (regex.test(this.getProp(item, displayKey))) {
+                filteredItems.push(item)
+              }
+              if (subKey && item[subKey]) {
+                const newItem = Object.assign({}, item)
+                newItem[subKey] = []
+                item[subKey].forEach((sub) => {
+                  if (regex.test(this.getProp(sub, displayKey))) {
+                    newItem[subKey] = [...newItem[subKey], sub]
+                    newFilteredItems = this.rejectProp(
+                      filteredItems,
+                      (singleItem) => item[uniqueKey] !== singleItem[uniqueKey]
+                    )
+                    newFilteredItems.push(newItem)
+                    filteredItems = newFilteredItems
+                  }
+                })
+              }
+            })
+            return filteredItems
+          }}
           // alwaysShowSelectText
           // customChipsRenderer={this.customChipsRenderer}
           itemsFlatListProps={{
@@ -857,7 +854,7 @@ export default class App extends Component<{}, State> {
           />
 
           <TouchableWithoutFeedback
-            onPress={() => this.sectionedMultiSelectRef._removeAllItems()}
+            onPress={() => this.sectionedMultiSelectRef?._removeAllItems()}
           >
             <View style={styles.switch}>
               <Text style={styles.label}>Remove All</Text>
