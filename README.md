@@ -164,7 +164,6 @@ export default class App extends Component {
           subKey="children"
           selectText="Choose some things..."
           showDropDowns={true}
-          readOnlyHeadings={true}
           onSelectedItemsChange={this.onSelectedItemsChange}
           selectedItems={this.state.selectedItems}
         />
