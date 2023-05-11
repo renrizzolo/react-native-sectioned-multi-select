@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "react": "17.0.2",
-    "react-native": "0.66.4",
+    "react-native": "0.71.8",
     "react-native-sectioned-multi-select": "github:renrizzolo/react-native-sectioned-multi-select#master",
     "react-native-vector-icons": "^9.0.0"
   },
