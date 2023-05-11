@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.2 - 2023-05-11
+
+### Fixed
+
+- Add Various Accessibility Properties #290
+  - adds rolls and accessibility states for selected state, expanded state
+- readme fixes #275, #287
+
 ## 0.9.1 - 2022-01-09
 
 ### Fixed
